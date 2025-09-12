@@ -1,0 +1,10 @@
+---
+title: "Pulso Social – Antioquia"
+format: html
+---
+
+Bienvenido/a al sitio de resultados de la réplica metodológica para **Antioquia**.
+
+- **Metodología.** Resumen del pipeline (datos → estandarización → PCA → clustering).
+- **Antioquia.** Panel con fichas y comparativos.
+- **Múltiples Colombias.** Explicación de la tipología y visualizaciones.

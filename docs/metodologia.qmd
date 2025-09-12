@@ -1,0 +1,22 @@
+---
+title: "Metodología"
+format: html
+---
+
+## Pipeline general
+
+1. **Data/**: descarga, limpieza y estandarización por fuente.
+2. **Descriptives/**: estadísticas y figuras por tema/dimensión.
+3. **Analysis/01_build_indices**: PCA (orderNorm + centrar/escalar; retención por varianza).
+4. **Analysis/02_cluster**: distancias euclídeas, método del codo, dendrograma y mapas.
+5. **Analysis/03_antioquia**: fichas y comparativos para el departamento.
+
+## Estandarización y PCA
+
+- `recipes::step_orderNorm()` → `step_center()` → `step_scale()`.
+- Reporte de varianza explicada y *loadings* por dimensión.
+
+## Clustering
+
+- Distancia **euclídea**.
+- k según **método del codo**; cluster jerárquico (enlace Ward).
