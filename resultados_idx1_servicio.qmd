@@ -10,33 +10,33 @@ Este reporte presenta los principales outputs generados por la función `reduc_d
 ## Imágenes radar de componentes principales
 
 ```{r}
-knitr::include_graphics("../03_Outputs/all/idx1_servicio_radar_PC1.png")
-knitr::include_graphics("../03_Outputs/all/idx1_servicio_radar_PC2.png")
-knitr::include_graphics("../03_Outputs/all/idx1_servicio_radar_PC3.png")
+knitr::include_graphics("03_Outputs/all/idx1_servicio_radar_PC1.png")
+knitr::include_graphics("03_Outputs/all/idx1_servicio_radar_PC2.png")
+knitr::include_graphics("03_Outputs/all/idx1_servicio_radar_PC3.png")
 ```
 
 ## Mapas de componentes principales
 
 ### Mapa PC1
 ```{r}
-knitr::include_graphics("../03_Outputs/all/02_Imagenes/idx1_servicio_map_pc1.pdf")
+knitr::include_graphics("03_Outputs/all/02_Imagenes/idx1_servicio_map_pc1.pdf")
 ```
 
 ### Mapa combinado de componentes principales
 ```{r}
-knitr::include_graphics("../03_Outputs/all/02_Imagenes/idx1_servicio_map_pcall.pdf")
+knitr::include_graphics("03_Outputs/all/02_Imagenes/idx1_servicio_map_pcall.pdf")
 ```
 
 ### Resultados completos en PDF
 ```{r}
-knitr::include_graphics("../03_Outputs/all/02_Imagenes/idx1_servicio_results.pdf")
+knitr::include_graphics("03_Outputs/all/02_Imagenes/idx1_servicio_results.pdf")
 ```
 
 ## Archivos Excel de cargas y variables principales
 
 Puedes descargar el archivo Excel con los resultados de cargas y variables principales:
 
-- [idx1_servicio_loadings_y_tops.xlsx](../03_Outputs/all/idx1_servicio_loadings_y_tops.xlsx)
+- [idx1_servicio_loadings_y_tops.xlsx](03_Outputs/all/idx1_servicio_loadings_y_tops.xlsx)
 
 ---
 

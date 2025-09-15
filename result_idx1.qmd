@@ -14,8 +14,8 @@ Esta página presenta los principales outputs generados por la función `reduc_d
 ```{r}
 # Ejemplo de inclusión de imágenes generadas por reduc_dim
 # Ajusta los nombres de los archivos según los outputs reales
-knitr::include_graphics("../03_Outputs/Sub_Vulnerable/idx1_servicio_radar_PC1.png")
-knitr::include_graphics("../03_Outputs/Sub_Vulnerable/idx1_servicio_radar_PC2.png")
+knitr::include_graphics("03_Outputs/Sub_Vulnerable/idx1_servicio_radar_PC1.png")
+knitr::include_graphics("03_Outputs/Sub_Vulnerable/idx1_servicio_radar_PC2.png")
 # Repite para otros índices y componentes
 ```
 
@@ -23,9 +23,9 @@ knitr::include_graphics("../03_Outputs/Sub_Vulnerable/idx1_servicio_radar_PC2.pn
 
 Puedes descargar los archivos Excel con los resultados de cargas y variables principales:
 
-- [idx1_servicio_loadings_y_tops.xlsx](../03_Outputs/Sub_Vulnerable/idx1_servicio_loadings_y_tops.xlsx)
-- [idx2_Adultez_loadings_y_tops.xlsx](../03_Outputs/Sub_Vulnerable/idx2_Adultez_loadings_y_tops.xlsx)
-- [idx3_climatico_loadings_y_tops.xlsx](../03_Outputs/Sub_Vulnerable/idx3_climatico_loadings_y_tops.xlsx)
+- [idx1_servicio_loadings_y_tops.xlsx](03_Outputs/Sub_Vulnerable/idx1_servicio_loadings_y_tops.xlsx)
+- [idx2_Adultez_loadings_y_tops.xlsx](03_Outputs/Sub_Vulnerable/idx2_Adultez_loadings_y_tops.xlsx)
+- [idx3_climatico_loadings_y_tops.xlsx](03_Outputs/Sub_Vulnerable/idx3_climatico_loadings_y_tops.xlsx)
 
 _Agrega más archivos según los outputs generados por tu script._
 
