@@ -3,3 +3,5 @@
 
 # Permitir el archivo .gitignore en esa carpeta
 !01_Data/00_Inputs/.gitignore
+
+/.quarto/
