@@ -1,0 +1,70 @@
+---
+title: "Metodología"
+format: html
+---
+
+## Pipeline general
+
+1. **Data/**: descarga, limpieza y estandarización por fuente.
+2. **Descriptives/**: estadísticas y figuras por tema/dimensión.
+3. **Analysis/01_build_indices**: PCA (orderNorm + centrar/escalar; retención por varianza).
+4. **Analysis/02_cluster**: distancias euclídeas, método del codo, dendrograma y mapas.
+5. **Analysis/03_antioquia**: fichas y comparativos para el departamento.
+
+## Estandarización y PCA
+
+- `recipes::step_orderNorm()` → `step_center()` → `step_scale()`.
+- Reporte de varianza explicada y *loadings* por dimensión.
+
+## Clustering
+
+- Distancia **euclídea**.
+- k según **método del codo**; cluster jerárquico (enlace Ward).
+
+## Componentes del Índice Pulso Social
+
+A continuación se describen los principales componentes que conforman el índice Pulso Social, construidos a partir de variables y metodologías detalladas en los documentos técnicos del proyecto:
+
+### 1. Accidentalidad
+Indicadores sobre la tasa de accidentes y hogares afectados por eventos de accidentalidad.
+
+### 2. Calidad de Vida
+Incluye el Índice de Calidad de Vida (ICV), Índice de Pobreza Multidimensional (IPM), línea de pobreza, línea de indigencia, Necesidades Básicas Insatisfechas (NBI), entre otros.
+
+### 3. Demografía
+Proporción de población campesina, tasa de migración, índice de dependencia económica, índice de masculinidad, jefatura de hogar por sexo y composición.
+
+### 4. Discapacidad
+Personas con alguna dificultad funcional o discapacidad.
+
+### 5. Educación
+Nivel educativo, tasa de escolaridad, tasa de analfabetismo, deserción escolar, promedio de años de educación, bilingüismo, asistencia escolar, entre otros.
+
+### 6. Fuerza Laboral
+Gini de ingresos, ingreso per cápita, tasa de participación, tasa de desocupación, subutilización de la fuerza de trabajo, composición ocupacional y ramas de actividad económica.
+
+### 7. General ECV2023
+Indicadores generales de la Encuesta de Calidad de Vida 2023.
+
+### 8. Recreación, Deporte y Cultura
+Acceso y participación en actividades culturales y deportivas.
+
+### 9. Seguridad Alimentaria
+Indicadores de acceso y suficiencia alimentaria.
+
+### 10. Seguridad Social
+Cobertura y acceso a servicios de seguridad social.
+
+### 11. Seguridad y Convivencia
+Indicadores de percepción y hechos de seguridad y convivencia ciudadana.
+
+### 12. Vivienda
+Condiciones de habitabilidad, acceso a servicios básicos, déficit cualitativo y cuantitativo de vivienda.
+
+---
+
+## Referencia Metodológica
+
+Para mayor detalle sobre la construcción de los componentes y la metodología empleada, consultar:
+
+> "Desigualdades territoriales en Colombia: realidades". Disponible en la carpeta `00_Documentos/Documentos Metodologicos/Desigualdades-territoriales-en-Colombia-realidades.pdf`.

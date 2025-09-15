@@ -1,0 +1,34 @@
+---
+title: "Resultados de idx_1"
+format: html
+---
+
+# Resultados de la función `reduc_dim`
+
+Esta página presenta los principales outputs generados por la función `reduc_dim` para cada índice temático del análisis regional de Antioquia.
+
+## Imágenes de componentes principales (PCA)
+
+
+
+```{r}
+# Ejemplo de inclusión de imágenes generadas por reduc_dim
+# Ajusta los nombres de los archivos según los outputs reales
+knitr::include_graphics("03_Outputs/Sub_Vulnerable/idx1_servicio_radar_PC1.png")
+knitr::include_graphics("03_Outputs/Sub_Vulnerable/idx1_servicio_radar_PC2.png")
+# Repite para otros índices y componentes
+```
+
+## Archivos Excel de cargas y variables principales
+
+Puedes descargar los archivos Excel con los resultados de cargas y variables principales:
+
+- [idx1_servicio_loadings_y_tops.xlsx](03_Outputs/Sub_Vulnerable/idx1_servicio_loadings_y_tops.xlsx)
+- [idx2_Adultez_loadings_y_tops.xlsx](03_Outputs/Sub_Vulnerable/idx2_Adultez_loadings_y_tops.xlsx)
+- [idx3_climatico_loadings_y_tops.xlsx](03_Outputs/Sub_Vulnerable/idx3_climatico_loadings_y_tops.xlsx)
+
+_Agrega más archivos según los outputs generados por tu script._
+
+---
+
+> Los gráficos y tablas aquí presentados corresponden a los resultados de la reducción de dimensionalidad y análisis de componentes principales para cada subdimensión temática.

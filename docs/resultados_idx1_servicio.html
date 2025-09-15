@@ -132,7 +132,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Metodología</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./antioquia.html"> 
+    <a class="nav-link" href="./antioquia.qmd"> 
 <span class="menu-text">Antioquia</span></a>
   </li>  
   <li class="nav-item">
@@ -265,43 +265,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Este reporte presenta los principales outputs generados por la función <code>reduc_dim</code> para el primer índice temático del análisis regional de Antioquia.</p>
 <section id="imágenes-radar-de-componentes-principales" class="level2">
 <h2 class="anchored" data-anchor-id="imágenes-radar-de-componentes-principales">Imágenes radar de componentes principales</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"03_Outputs/all/idx1_servicio_radar_PC1.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_Outputs/all/idx1_servicio_radar_PC1.png" class="img-fluid figure-img" width="1200"></p>
-</figure>
+<p>Puedes visualizar los gráficos radar de los tres primeros componentes principales a continuación:</p>
+<div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+<p><img src="../03_Outputs/all/idx1_servicio_radar_PC1.png" width="250px"> <img src="../03_Outputs/all/idx1_servicio_radar_PC2.png" width="250px"> <img src="../03_Outputs/all/idx1_servicio_radar_PC3.png" width="250px"></p>
 </div>
-</div>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"03_Outputs/all/idx1_servicio_radar_PC2.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_Outputs/all/idx1_servicio_radar_PC2.png" class="img-fluid figure-img" width="1200"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"03_Outputs/all/idx1_servicio_radar_PC3.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_Outputs/all/idx1_servicio_radar_PC3.png" class="img-fluid figure-img" width="1200"></p>
-</figure>
-</div>
-</div>
-</div>
+<hr>
 </section>
 <section id="mapas-de-componentes-principales" class="level2">
 <h2 class="anchored" data-anchor-id="mapas-de-componentes-principales">Mapas de componentes principales</h2>
 <section id="mapa-pc1" class="level3">
 <h3 class="anchored" data-anchor-id="mapa-pc1">Mapa PC1</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"03_Outputs/all/02_Imagenes/idx1_servicio_map_pc1.pdf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"../03_Outputs/all/02_Imagenes/idx1_servicio_map_pc1.pdf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><embed src="03_Outputs/all/02_Imagenes/idx1_servicio_map_pc1.pdf" class="img-fluid"></p>
+<p><embed src="../03_Outputs/all/02_Imagenes/idx1_servicio_map_pc1.pdf" class="img-fluid"></p>
 </figure>
 </div>
 </div>
@@ -310,11 +292,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="mapa-combinado-de-componentes-principales" class="level3">
 <h3 class="anchored" data-anchor-id="mapa-combinado-de-componentes-principales">Mapa combinado de componentes principales</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"03_Outputs/all/02_Imagenes/idx1_servicio_map_pcall.pdf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"../03_Outputs/all/02_Imagenes/idx1_servicio_map_pcall.pdf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><embed src="03_Outputs/all/02_Imagenes/idx1_servicio_map_pcall.pdf" class="img-fluid"></p>
+<p><embed src="../03_Outputs/all/02_Imagenes/idx1_servicio_map_pcall.pdf" class="img-fluid"></p>
 </figure>
 </div>
 </div>
@@ -323,11 +308,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="resultados-completos-en-pdf" class="level3">
 <h3 class="anchored" data-anchor-id="resultados-completos-en-pdf">Resultados completos en PDF</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"03_Outputs/all/02_Imagenes/idx1_servicio_results.pdf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"../03_Outputs/all/02_Imagenes/idx1_servicio_results.pdf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><embed src="03_Outputs/all/02_Imagenes/idx1_servicio_results.pdf" class="img-fluid"></p>
+<p><embed src="../03_Outputs/all/02_Imagenes/idx1_servicio_results.pdf" class="img-fluid"></p>
 </figure>
 </div>
 </div>
@@ -338,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="archivos-excel-de-cargas-y-variables-principales">Archivos Excel de cargas y variables principales</h2>
 <p>Puedes descargar el archivo Excel con los resultados de cargas y variables principales:</p>
 <ul>
-<li><a href="03_Outputs/all/idx1_servicio_loadings_y_tops.xlsx">idx1_servicio_loadings_y_tops.xlsx</a></li>
+<li><a href="../03_Outputs/all/idx1_servicio_loadings_y_tops.xlsx">idx1_servicio_loadings_y_tops.xlsx</a></li>
 </ul>
 <hr>
 <blockquote class="blockquote">

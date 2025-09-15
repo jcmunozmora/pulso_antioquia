@@ -67,21 +67,21 @@
     "href": "resultados_idx1_servicio.html",
     "title": "Resultados IDX 1: Acceso a servicio de agua potable y saneamiento",
     "section": "",
-    "text": "Este reporte presenta los principales outputs generados por la función reduc_dim para el primer índice temático del análisis regional de Antioquia.\n\n\n\nknitr::include_graphics(\"03_Outputs/all/idx1_servicio_radar_PC1.png\")\n\n\n\n\n\n\n\nknitr::include_graphics(\"03_Outputs/all/idx1_servicio_radar_PC2.png\")\n\n\n\n\n\n\n\nknitr::include_graphics(\"03_Outputs/all/idx1_servicio_radar_PC3.png\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nknitr::include_graphics(\"03_Outputs/all/02_Imagenes/idx1_servicio_map_pc1.pdf\")\n\n\n\n\n\n\n\n\n\n\n\n\nknitr::include_graphics(\"03_Outputs/all/02_Imagenes/idx1_servicio_map_pcall.pdf\")\n\n\n\n\n\n\n\n\n\n\n\n\nknitr::include_graphics(\"03_Outputs/all/02_Imagenes/idx1_servicio_results.pdf\")\n\n\n\n\n\n\n\n\n\n\n\n\nPuedes descargar el archivo Excel con los resultados de cargas y variables principales:\n\nidx1_servicio_loadings_y_tops.xlsx\n\n\n\nLos gráficos y tablas aquí presentados corresponden a los resultados de la reducción de dimensionalidad y análisis de componentes principales para el índice de acceso a agua potable y saneamiento."
+    "text": "Este reporte presenta los principales outputs generados por la función reduc_dim para el primer índice temático del análisis regional de Antioquia.\n\n\nPuedes visualizar los gráficos radar de los tres primeros componentes principales a continuación:\n\n  \n\n\n\n\n\n\n\n\n\nCode\nknitr::include_graphics(\"../03_Outputs/all/02_Imagenes/idx1_servicio_map_pc1.pdf\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nknitr::include_graphics(\"../03_Outputs/all/02_Imagenes/idx1_servicio_map_pcall.pdf\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nknitr::include_graphics(\"../03_Outputs/all/02_Imagenes/idx1_servicio_results.pdf\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nPuedes descargar el archivo Excel con los resultados de cargas y variables principales:\n\nidx1_servicio_loadings_y_tops.xlsx\n\n\n\nLos gráficos y tablas aquí presentados corresponden a los resultados de la reducción de dimensionalidad y análisis de componentes principales para el índice de acceso a agua potable y saneamiento."
   },
   {
     "objectID": "resultados_idx1_servicio.html#imágenes-radar-de-componentes-principales",
     "href": "resultados_idx1_servicio.html#imágenes-radar-de-componentes-principales",
     "title": "Resultados IDX 1: Acceso a servicio de agua potable y saneamiento",
     "section": "",
-    "text": "knitr::include_graphics(\"03_Outputs/all/idx1_servicio_radar_PC1.png\")\n\n\n\n\n\n\n\nknitr::include_graphics(\"03_Outputs/all/idx1_servicio_radar_PC2.png\")\n\n\n\n\n\n\n\nknitr::include_graphics(\"03_Outputs/all/idx1_servicio_radar_PC3.png\")"
+    "text": "Puedes visualizar los gráficos radar de los tres primeros componentes principales a continuación:"
   },
   {
     "objectID": "resultados_idx1_servicio.html#mapas-de-componentes-principales",
     "href": "resultados_idx1_servicio.html#mapas-de-componentes-principales",
     "title": "Resultados IDX 1: Acceso a servicio de agua potable y saneamiento",
     "section": "",
-    "text": "knitr::include_graphics(\"03_Outputs/all/02_Imagenes/idx1_servicio_map_pc1.pdf\")\n\n\n\n\n\n\n\n\n\n\n\n\nknitr::include_graphics(\"03_Outputs/all/02_Imagenes/idx1_servicio_map_pcall.pdf\")\n\n\n\n\n\n\n\n\n\n\n\n\nknitr::include_graphics(\"03_Outputs/all/02_Imagenes/idx1_servicio_results.pdf\")"
+    "text": "Code\nknitr::include_graphics(\"../03_Outputs/all/02_Imagenes/idx1_servicio_map_pc1.pdf\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nknitr::include_graphics(\"../03_Outputs/all/02_Imagenes/idx1_servicio_map_pcall.pdf\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nknitr::include_graphics(\"../03_Outputs/all/02_Imagenes/idx1_servicio_results.pdf\")"
   },
   {
     "objectID": "resultados_idx1_servicio.html#archivos-excel-de-cargas-y-variables-principales",
