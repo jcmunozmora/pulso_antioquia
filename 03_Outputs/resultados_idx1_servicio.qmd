@@ -3,13 +3,16 @@ title: "Resultados IDX 1: Acceso a servicio de agua potable y saneamiento"
 format: html
 ---
 
-# Resultados del Índice 1: Acceso a servicio de agua potable y saneamiento
+**Resumen:**
+Esta página presenta el análisis y los resultados del Índice de Acceso a Servicios de Agua Potable y Saneamiento para los municipios de Antioquia. Se describe la metodología utilizada, se muestran estadísticas descriptivas de las variables involucradas, se explica la construcción del índice mediante análisis de componentes principales (PCA) y se presentan los resultados numéricos y espaciales. Además, se facilita la descarga de la base de datos y los gráficos generados, así como el acceso al código fuente empleado en el estudio.
 
+## Resultados para Antioquia
 
+Aquí se presenta los resultados usando todos los datos para el departmento
 
 ## Estadísticas descriptivas
 
-Aquí se encuentra una revisión de las estadísticas descriptivas de las variables que componen el componente:
+A continuación se muestran las estadísticas descriptivas de las variables que componen el índice. Se incluyen medidas como la media, desviación estándar, mínimo y máximo para cada variable relevante.
 
 ```{r}
 library(readxl)
@@ -36,14 +39,16 @@ tabla_resumen %>%
 
 ---
 
-## Construcción del índice 
 
-En esta sección se presentan los principales componentes extraídos mediante análisis de componentes principales (PCA). Se muestran las variables más relevantes que conforman cada componente, junto con sus respectivas cargas, lo que permite identificar cuáles factores tienen mayor influencia en el índice de acceso a servicios de agua potable y saneamiento.
+## Construcción del índice
+
+Se empleó análisis de componentes principales (PCA) para identificar los factores más relevantes que explican el acceso a servicios de agua potable y saneamiento. A continuación se presentan los principales componentes extraídos y las variables con mayor peso en cada uno.
 
 <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
   <img src="all/idx1_servicio_radar_PC1.png" width="300px" />
   <img src="all/idx1_servicio_radar_PC2.png" width="300px" />
   <img src="all/idx1_servicio_radar_PC3.png" width="300px" />
+  <img src="all/idx10_juventud_radar_PC4.png" width="300px" />
 </div>
 
 ```{r, fig.cap = 'Resultados completos en PNG'}
@@ -52,10 +57,12 @@ knitr::include_graphics("all/02_Imagenes/idx1_servicio_results.png")
 
 ---
 
-### Resultados númericos
 
+### Resultados numéricos
 
-```{r}
+Se presentan las cargas por variable y componente, la varianza explicada y las variables más influyentes en los principales componentes.
+
+```{r, echo=FALSE}
 library(readxl)
 library(knitr)
 
@@ -78,13 +85,20 @@ kable(top_PC2, caption = "Top variables en PC2")
 
 ---
 
-### Espacial ditribución de
 
-El siguiente mapa muestra la distribución espacial de los índices 1 y 2, agrupados por cuartiles.
+### Distribución espacial
 
-```{r, fig.cap = 'Mapa combinado de componentes principales'}
+El siguiente mapa muestra la distribución espacial de los índices 1 y 2, agrupados por cuartiles en los municipios de Antioquia.
+
+```{r, fig.cap = 'Mapa combinado de componentes principales', echo=FALSE}
 knitr::include_graphics("all/02_Imagenes/idx1_servicio_map_pcall.png")
 ```
+
+
+## Descarga de datos
+
+Puedes descargar la base de datos asociada a este índice aquí:
+[Descargar base de datos IDX 1](/03_DS/idx1_servicio.xlsx)
 
 ---
 

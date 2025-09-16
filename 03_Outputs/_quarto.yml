@@ -21,6 +21,8 @@ website:
         text: Multiples Colombias
       - text: Índices
         menu:
+          - href: Metodologia_indices.qmd
+            text: Metodología Índices
           - href: resultados_idx1_servicio.qmd
             text: "IDX 1: Acceso a servicio de agua potable y saneamiento"
           - href: resultados_idx2_Adultez.qmd
@@ -51,6 +53,11 @@ website:
             text: "IDX 14: Seguridad"
           - href: resultados_idx15_vejez.qmd
             text: "IDX 15: Vejez"
+      - text: Índices
+        menu:
+          - href: Metodologia_indices.qmd
+            text: Metodología Índices
+          
 
 format:
   html:

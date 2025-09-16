@@ -3,7 +3,10 @@ title: "Resultados IDX 9: Infancia y Niñez"
 format: html
 ---
 
-# Resultados del Índice 9: Infancia y Niñez
+## Resultados para toda Antioquia
+
+**Resumen:**
+Este informe presenta el análisis y los resultados del Índice de Infancia y Niñez para los municipios de Antioquia. Se describe la metodología utilizada, se muestran estadísticas descriptivas de las variables involucradas, se explica la construcción del índice mediante análisis de componentes principales (PCA) y se presentan los resultados numéricos y espaciales. Además, se facilita la descarga de la base de datos y los gráficos generados, así como el acceso al código fuente empleado en el estudio.
 
 ## Estadísticas descriptivas
 
@@ -32,6 +35,13 @@ tabla_resumen %>%
 ```{r, fig.cap = 'Resultados completos en PNG'}
 knitr::include_graphics("all/02_Imagenes/idx9_infnin_results.png")
 ```
+
+---
+
+## Descarga de datos
+
+Puedes descargar la base de datos asociada a este índice aquí:
+[Descargar base de datos IDX 9](/03_DS/idx9_infnin.xlsx)
 
 ---
 

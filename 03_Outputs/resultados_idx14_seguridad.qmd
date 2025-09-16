@@ -3,7 +3,15 @@ title: "Resultados IDX 14: Seguridad"
 format: html
 ---
 
-# Resultados del Índice 14: Seguridad
+
+## Resultados para toda Antioquia
+
+**Resumen:**
+Este informe presenta el análisis y los resultados del Índice de Seguridad para los municipios de Antioquia. Se describe la metodología utilizada, se muestran estadísticas descriptivas de las variables involucradas, se explica la construcción del índice mediante análisis de componentes principales (PCA) y se presentan los resultados numéricos y espaciales. Además, se facilita la descarga de la base de datos y los gráficos generados, así como el acceso al código fuente empleado en el estudio.
+## Descarga de datos
+
+Puedes descargar la base de datos asociada a este índice aquí:
+[Descargar base de datos IDX 14](/03_DS/idx14_seguridad.xlsx)
 
 ## Estadísticas descriptivas
 

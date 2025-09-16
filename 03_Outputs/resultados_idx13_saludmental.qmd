@@ -3,7 +3,15 @@ title: "Resultados IDX 13: Salud mental"
 format: html
 ---
 
-# Resultados del Índice 13: Salud mental
+
+## Resultados para toda Antioquia
+
+**Resumen:**
+Este informe presenta el análisis y los resultados del Índice de Salud Mental para los municipios de Antioquia. Se describe la metodología utilizada, se muestran estadísticas descriptivas de las variables involucradas, se explica la construcción del índice mediante análisis de componentes principales (PCA) y se presentan los resultados numéricos y espaciales. Además, se facilita la descarga de la base de datos y los gráficos generados, así como el acceso al código fuente empleado en el estudio.
+## Descarga de datos
+
+Puedes descargar la base de datos asociada a este índice aquí:
+[Descargar base de datos IDX 13](/03_DS/idx13_saludmental.xlsx)
 
 ## Estadísticas descriptivas
 

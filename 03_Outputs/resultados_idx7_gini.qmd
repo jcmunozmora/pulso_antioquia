@@ -3,7 +3,12 @@ title: "Resultados IDX 7: Desigualdad"
 format: html
 ---
 
-# Resultados del Índice 7: Desigualdad
+**Resumen:**
+Este informe presenta el análisis y los resultados del Índice de Desigualdad para los municipios de Antioquia. Se describe la metodología utilizada, se muestran estadísticas descriptivas de las variables involucradas, se explica la construcción del índice mediante análisis de componentes principales (PCA) y se presentan los resultados numéricos y espaciales. Además, se facilita la descarga de la base de datos y los gráficos generados, así como el acceso al código fuente empleado en el estudio.
+
+
+## Resultados para Antioquia
+
 
 ## Estadísticas descriptivas
 
@@ -57,6 +62,11 @@ knitr::include_graphics("all/02_Imagenes/idx7_gini_map_pcall.png")
 ```
 
 ---
+
+## Descarga de datos
+
+Puedes descargar la base de datos asociada a este índice aquí:
+[Descargar base de datos IDX 7](/03_DS/idx7_gini.xlsx)
 
 ## Descarga de gráficos y acceso a código fuente
 

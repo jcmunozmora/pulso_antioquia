@@ -3,7 +3,15 @@ title: "Resultados IDX 10: Juventud"
 format: html
 ---
 
-# Resultados del Índice 10: Juventud
+
+## Resultados para toda Antioquia
+
+**Resumen:**
+Este informe presenta el análisis y los resultados del Índice de Juventud para los municipios de Antioquia. Se describe la metodología utilizada, se muestran estadísticas descriptivas de las variables involucradas, se explica la construcción del índice mediante análisis de componentes principales (PCA) y se presentan los resultados numéricos y espaciales. Además, se facilita la descarga de la base de datos y los gráficos generados, así como el acceso al código fuente empleado en el estudio.
+## Descarga de datos
+
+Puedes descargar la base de datos asociada a este índice aquí:
+[Descargar base de datos IDX 10](/03_DS/idx10_juventud.xlsx)
 
 ## Estadísticas descriptivas
 
@@ -27,6 +35,7 @@ tabla_resumen %>%
   <img src="all/idx10_juventud_radar_PC1.png" width="300px" />
   <img src="all/idx10_juventud_radar_PC2.png" width="300px" />
   <img src="all/idx10_juventud_radar_PC3.png" width="300px" />
+  <img src="all/idx10_juventud_radar_PC4.png" width="300px" />
 </div>
 
 ```{r, fig.cap = 'Resultados completos en PNG'}

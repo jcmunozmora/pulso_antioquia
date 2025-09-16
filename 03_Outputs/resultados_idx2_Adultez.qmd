@@ -3,7 +3,12 @@ title: "Resultados IDX 2: Adultez"
 format: html
 ---
 
-# Resultados del Índice 2: Adultez
+**Resumen:**
+Este informe presenta el análisis y los resultados del Índice de Adultez para los municipios de Antioquia. Se describe la metodología utilizada, se muestran estadísticas descriptivas de las variables involucradas, se explica la construcción del índice mediante análisis de componentes principales (PCA) y se presentan los resultados numéricos y espaciales. Además, se facilita la descarga de la base de datos y los gráficos generados, así como el acceso al código fuente empleado en el estudio.
+
+## Resultados para toda Antioquia
+
+
 
 ## Estadísticas descriptivas
 
@@ -58,6 +63,11 @@ knitr::include_graphics("all/02_Imagenes/idx2_Adultez_map_pcall.png")
 ```
 
 ---
+
+## Descarga de datos
+
+Puedes descargar la base de datos asociada a este índice aquí:
+[Descargar base de datos IDX 2](/03_DS/idx2_Adultez.xlsx)
 
 ## Descarga de gráficos y acceso a código fuente
 

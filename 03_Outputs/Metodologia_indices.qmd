@@ -1,0 +1,13 @@
+---
+title: "Metodología de Índices – Pulso Social"
+author: "Equipo Pulso Antioquia (Juan Carlos Muñoz Mora & Laura Quintero)"
+---
+
+# Overview (qué es este documento y qué NO es)
+
+Este documento describe **con precisión operativa** cómo construir los **índices** del Marco Pulso Social (contexto y resultados por ciclo de vida).  
+Está pensado para que cualquier persona pueda **replicar** la metodología en Antioquia **sin cambiar** la estructura del repositorio.
+
+> **Enfoque**: aquí SOLO tratamos **índices** (selección de variables, preprocesamiento, PCA y post–procesamiento).  
+> Para mapas, clústeres y visualizaciones: ver el documento específico de resultados.
+

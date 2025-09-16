@@ -10,6 +10,8 @@ rm(list = ls())
 #### 00 - Loading packages
 #==============================
 # Load required packages using pacman::p_load for easier management
+
+# Load required packages using pacman::p_load for easier management
 library(haven)
 library(tidyr)
 library(dplyr)
@@ -228,8 +230,8 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
   output_dirs <- c(
     file.path("03_Outputs", path),
     file.path("03_Outputs", path, "01_TablasDescriptivas"),
-    file.path("03_Outputs", path, "02_Imagenes")
-    #file.path("03_Outputs", path, "03_DS")
+    file.path("03_Outputs", path, "02_Imagenes"),
+    file.path("03_Outputs", path, "03_DS")
   )
   for (dir in output_dirs) {
     if (!dir.exists(dir)) dir.create(dir, recursive = TRUE, showWarnings = FALSE)
@@ -515,7 +517,7 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
   ggsave(file=paste0("03_Outputs/",path,"/02_Imagenes/",nm,"_results.png"), g,
          height = h*0.8, width = w, dpi = d) 
   
-  
+
   #### 03 - Get the pca
   ###================================
   # Emparejar datos y mapas
@@ -543,6 +545,8 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
   ###================================
   k <- sum(grepl("^PC\\d+$", names(pca_bake)))   # cuántas PCs hay realmente
   names(pca_bake) <- c("ind_mpio", "nvl_label", paste0(nm, seq_len(k)))
+
+  write_xlsx(pca_bake, path = glue("03_Outputs/",path,"/03_DS/ds_", nm, ".xlsx"))
   
   
   return(pca_bake)
