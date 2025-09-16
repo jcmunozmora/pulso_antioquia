@@ -354,6 +354,15 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
   # 1) LOADINGS por variable y componente (desde el step_pca)
   pca_loadings <- recipes::tidy(pca_prep, id = "pca") %>%   # cols: terms, component, value
     dplyr::transmute(variable = terms, component, loading = value)
+
+  # Agregar peso relativo y porcentaje
+  pca_loadings <- pca_loadings %>%
+    dplyr::group_by(component) %>%
+    dplyr::mutate(
+      peso_relativo = abs(loading) / sum(abs(loading)),
+      peso_relativo_pct = round(100 * peso_relativo, 1)
+    ) %>%
+    dplyr::ungroup()
   
   
   if (trans == 1) {
@@ -401,10 +410,10 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
   # Guardar tablas a Excel 
   writexl::write_xlsx(
     list(loadings = pca_loadings,
-      variance = pca_var,
-      top_PC1 = top_PC1,
-      top_PC2 = top_PC2),
-    path = glue::glue("www/out/",nm,"_loadings_y_tops.xlsx")
+         variance = pca_var,
+         top_PC1 = top_PC1,
+         top_PC2 = top_PC2),
+    path = glue::glue("03_Outputs/",path,"/{nm}_loadings_y_tops.xlsx")
   )
   
   # 4) TELARAÑAS: una imagen por componente (hasta K = los definidos en step_pca)
@@ -412,8 +421,7 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
   for (k in seq_len(K)) {
     g <- plot_radar_pc_tbl(pca_loadings, pca_var, comp = k)
     ggsave(glue::glue("03_Outputs/",path,"/{nm}_radar_PC{k}.png"),
-      g, width = 8, height = 6, dpi = 300)
-    file.copy(glue::glue("03_Outputs/",path,"/{nm}_radar_PC{k}.png"), glue::glue("www/out/",nm,"_radar_PC",k,".png"), overwrite = TRUE)
+           g, width = 8, height = 6, dpi = 300)
   }
 
   
