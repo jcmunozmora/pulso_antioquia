@@ -1,0 +1,11 @@
+---
+title: "Antioquia"
+format: html
+---
+
+## Panel de resultados
+
+> Aquí se presentarán los indicadores, índices por dimensión, y comparativos de Antioquia frente al promedio nacional y/o su grupo de clúster.
+
+- Descargas (CSV): próximamente.
+- Gráficos (PNG): próximamente.

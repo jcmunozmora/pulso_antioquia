@@ -266,6 +266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Este reporte presenta los principales outputs generados por la función <code>reduc_dim</code> para el primer índice temático del análisis regional de Antioquia.</p>
 <section id="estadísticas-descriptivas" class="level2">
 <h2 class="anchored" data-anchor-id="estadísticas-descriptivas">Estadísticas descriptivas</h2>
+<p>Aquí se encuentra una revisión de las estadísticas descriptivas de las variables que componen el componente:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -274,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr) <span class="co"># &lt;- Esto habilita %&gt;%</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ruta al archivo exportado por AUX_Functions</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ruta_excel <span class="ot">&lt;-</span> <span class="st">"../03_Outputs/all/01_TablasDescriptivas/idx1_servicio_summary_labels.xlsx"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ruta_excel <span class="ot">&lt;-</span> <span class="st">"all/01_TablasDescriptivas/idx1_servicio_summary_labels.xlsx"</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>tabla_resumen <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(ruta_excel)</span>
@@ -337,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="imágenes-radar-de-componentes-principales">Imágenes radar de componentes principales</h2>
 <p>En esta sección se presentan los principales componentes extraídos mediante análisis de componentes principales (PCA). Se muestran las variables más relevantes que conforman cada componente, junto con sus respectivas cargas, lo que permite identificar cuáles factores tienen mayor influencia en el índice de acceso a servicios de agua potable y saneamiento.</p>
 <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
-<p><img src="../03_Outputs/all/idx1_servicio_radar_PC1.png" width="270px"> <img src="../03_Outputs/all/idx1_servicio_radar_PC2.png" width="270px"> <img src="../03_Outputs/all/idx1_servicio_radar_PC3.png" width="270px"></p>
+<p><img src="all/idx1_servicio_radar_PC1.png" width="270px"> <img src="all/idx1_servicio_radar_PC2.png" width="270px"> <img src="all/idx1_servicio_radar_PC3.png" width="270px"></p>
 </div>
 <hr>
 </section>
@@ -346,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="mapa-pc1" class="level3">
 <h3 class="anchored" data-anchor-id="mapa-pc1">Mapa PC1</h3>
 <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
-<pre><code>&lt;img src="../03_Outputs/all/02_Imagenes/idx1_servicio_map_pc1.png" width="300px" /&gt;</code></pre>
+<p><img src="out/idx1_servicio_map_pc1.png" width="300px"></p>
 </div>
 </section>
 <section id="mapa-combinado-de-componentes-principales" class="level3">
@@ -354,12 +355,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"../03_Outputs/all/02_Imagenes/idx1_servicio_map_pcall.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"all/02_Imagenes/idx1_servicio_map_pcall.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../03_Outputs/all/02_Imagenes/idx1_servicio_map_pcall.png" class="img-fluid figure-img" width="8100"></p>
+<p><img src="all/02_Imagenes/idx1_servicio_map_pcall.png" class="img-fluid figure-img" width="8100"></p>
 <figcaption>Mapa combinado de componentes principales</figcaption>
 </figure>
 </div>
@@ -371,13 +372,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"../03_Outputs/all/02_Imagenes/idx1_servicio_results.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"all/02_Imagenes/idx1_servicio_results.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../03_Outputs/all/02_Imagenes/idx1_servicio_results.png" class="img-fluid figure-img" width="5062"></p>
-<figcaption>Resultados completos en PDF</figcaption>
+<p><img src="all/02_Imagenes/idx1_servicio_results.png" class="img-fluid figure-img" width="5062"></p>
+<figcaption>Resultados completos en PNG</figcaption>
 </figure>
 </div>
 </div>
@@ -388,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="archivos-excel-de-cargas-y-variables-principales">Archivos Excel de cargas y variables principales</h2>
 <p>Puedes descargar el archivo Excel con los resultados de cargas y variables principales:</p>
 <ul>
-<li><a href="../03_Outputs/all/idx1_servicio_loadings_y_tops.xlsx">idx1_servicio_loadings_y_tops.xlsx</a></li>
+<li><a href="out/idx1_servicio_loadings_y_tops.xlsx">idx1_servicio_loadings_y_tops.xlsx</a></li>
 </ul>
 <hr>
 <blockquote class="blockquote">
