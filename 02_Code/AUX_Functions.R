@@ -223,13 +223,13 @@ reduc_dim <- function(ds_raw,trans,label,nm,path) {
 ###
 dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE)
 
-
 #### 00 - Normalize the data
   # Ensure all required output directories exist
   output_dirs <- c(
     file.path("03_Outputs", path),
     file.path("03_Outputs", path, "01_TablasDescriptivas"),
     file.path("03_Outputs", path, "02_Imagenes")
+    #file.path("03_Outputs", path, "03_DS")
   )
   for (dir in output_dirs) {
     if (!dir.exists(dir)) dir.create(dir, recursive = TRUE, showWarnings = FALSE)
@@ -247,15 +247,50 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
   ### 00 a- Sumary stats
   ###================================
   lb <- label[label$terms %in% names(ds_raw),]
-  res <- stargazer(ds_raw[,lb$terms],
-                   font.size = "small",
-                   align = TRUE,
-                   covariate.labels=lb$lab,
-                   summary.stat = c("n", "mean", "sd","min","max"))
-  
-  res <- res[12:length(res)-2]
-  
-  cat(res, file=glue("03_Outputs/",path,"/01_TablasDescriptivas/",nm,".tex", sep="\n"))
+  vars <- lb$terms
+  df_num <- ds_raw[,vars]
+  df_num <- df_num[,sapply(df_num, is.numeric), drop=FALSE] # Solo numéricas
+  if (ncol(df_num) == 0) {
+
+    message("No hay variables numéricas válidas para mostrar en stargazer. No se genera tabla descriptiva.")
+    res <- NULL
+  } else {
+    # Filtrar columnas que tengan al menos un valor no NA
+    valid_cols <- names(df_num)[colSums(!is.na(df_num)) > 0]
+    df_num_valid <- df_num[, valid_cols, drop=FALSE]
+    # Exportar datos con etiquetas para Quarto
+    summary_export <- data.frame(
+      Variable = names(df_num_valid),
+      Etiqueta = lb$lab[match(names(df_num_valid), lb$terms)],
+      N = sapply(df_num_valid, function(x) sum(!is.na(x))),
+      Media = sapply(df_num_valid, mean, na.rm = TRUE),
+      SD = sapply(df_num_valid, sd, na.rm = TRUE),
+      Min = sapply(df_num_valid, min, na.rm = TRUE),
+      Max = sapply(df_num_valid, max, na.rm = TRUE)
+    )
+    write_xlsx(summary_export, path = glue("03_Outputs/",path,"/01_TablasDescriptivas/", nm, "_summary_labels.xlsx"))
+    
+    # Exportar datos con etiquetas para Quarto
+    if (ncol(df_num_valid) == 0) {
+      message("Las variables numéricas existen pero todas son NA. No se genera tabla descriptiva.")
+      res <- NULL
+    } else {
+      idx_lab <- match(names(df_num_valid), lb$terms)
+  res <- stargazer(df_num_valid,
+           font.size = "small",
+           align = TRUE,
+           covariate.labels=lb$lab[idx_lab],
+           summary.stat = c("n", "mean", "sd","min","max"),
+           na.omit = TRUE)
+      res <- res[12:length(res)-2]
+      # Solo guardar si hay filas de variables en la tabla
+      if (length(res) > 0 && any(grepl("Statistic", res))) {
+        cat(res, file=glue("03_Outputs/",path,"/01_TablasDescriptivas/",nm,".tex", sep="\n"))
+      } else {
+        message("La tabla generada por stargazer está vacía. No se guarda el archivo.")
+      }
+    }
+  }
   
   res_tbl <- data.frame(Variable = lb$lab,
                         N = sapply(ds_raw[,lb$terms], function(x) sum(!is.na(x))),
@@ -468,7 +503,7 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
   #save
   g <- arrangeGrob(g2,g1_pca,g2_pca, ncol=2,
                    layout_matrix = cbind(c(1,2), c(1,3)))
-  ggsave(file=paste0("03_Outputs/",path,"/02_Imagenes/",nm,"_results.pdf"), g,
+  ggsave(file=paste0("03_Outputs/",path,"/02_Imagenes/",nm,"_results.png"), g,
          height = h*0.8, width = w, dpi = d) 
   
   
@@ -483,15 +518,15 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
   mp1 <- mk_map(data_map,"PC1",ann)
   mp2 <- mk_map(data_map,"PC2",ann)
   
-  ggsave(file=paste0("03_Outputs/",path,"/02_Imagenes/",nm,"_map_pc1.pdf"), 
+  ggsave(file=paste0("03_Outputs/",path,"/02_Imagenes/",nm,"_map_pc1.png"), 
          mp1,height = h, width = w*0.8, dpi = d)
   
-  ggsave(file=paste0("03_Outputs/",path,"/02_Imagenes/",nm,"_map_pc2.pdf"), 
+  ggsave(file=paste0("03_Outputs/",path,"/02_Imagenes/",nm,"_map_pc2.png"), 
          mp2 ,height = h, width = w*0.8, dpi = d)
   
   g <- arrangeGrob(mp1,mp2, ncol=2)
   
-  ggsave(file=paste0("03_Outputs/",path,"/02_Imagenes/",nm,"_map_pcall.pdf"), 
+  ggsave(file=paste0("03_Outputs/",path,"/02_Imagenes/",nm,"_map_pcall.png"), 
          g ,height = h*2, width = w*2*0.8, dpi = d)
   
   

@@ -7,14 +7,40 @@ format: html
 
 Este reporte presenta los principales outputs generados por la función `reduc_dim` para el primer índice temático del análisis regional de Antioquia.
 
+## Estadísticas descriptivas
+
+```{r}
+library(readxl)
+library(knitr)
+library(magrittr) # <- Esto habilita %>%
+
+# Ruta al archivo exportado por AUX_Functions
+ruta_excel <- "../03_Outputs/all/01_TablasDescriptivas/idx1_servicio_summary_labels.xlsx"
+
+# Leer el archivo
+tabla_resumen <- read_xlsx(ruta_excel)
+
+# Mostrar la tabla con etiquetas legibles y tres decimales
+tabla_resumen %>%
+  dplyr::select(Etiqueta, N, Media, SD, Min, Max) %>%
+  dplyr::mutate(
+    Media = round(Media, 3),
+    SD = round(SD, 3),
+    Min = round(Min, 3),
+    Max = round(Max, 3)
+  ) %>%
+  kable(caption = "Resumen de variables numéricas válidas")
+```
+
+
 ## Imágenes radar de componentes principales
 
-Puedes visualizar los gráficos radar de los tres primeros componentes principales a continuación:
+En esta sección se presentan los principales componentes extraídos mediante análisis de componentes principales (PCA). Se muestran las variables más relevantes que conforman cada componente, junto con sus respectivas cargas, lo que permite identificar cuáles factores tienen mayor influencia en el índice de acceso a servicios de agua potable y saneamiento.
 
 <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
-  <img src="../03_Outputs/all/idx1_servicio_radar_PC1.png" width="250px" />
-  <img src="../03_Outputs/all/idx1_servicio_radar_PC2.png" width="250px" />
-  <img src="../03_Outputs/all/idx1_servicio_radar_PC3.png" width="250px" />
+  <img src="../03_Outputs/all/idx1_servicio_radar_PC1.png" width="270px" />
+  <img src="../03_Outputs/all/idx1_servicio_radar_PC2.png" width="270px" />
+  <img src="../03_Outputs/all/idx1_servicio_radar_PC3.png" width="270px" />
 </div>
 
 ---
@@ -22,18 +48,18 @@ Puedes visualizar los gráficos radar de los tres primeros componentes principal
 ## Mapas de componentes principales
 
 ### Mapa PC1
-```{r}
-knitr::include_graphics("../03_Outputs/all/02_Imagenes/idx1_servicio_map_pc1.pdf")
-```
+<div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+    <img src="../03_Outputs/all/02_Imagenes/idx1_servicio_map_pc1.png" width="300px" />
+</div>
 
 ### Mapa combinado de componentes principales
-```{r}
-knitr::include_graphics("../03_Outputs/all/02_Imagenes/idx1_servicio_map_pcall.pdf")
+```{r, fig.cap = 'Mapa combinado de componentes principales'}
+knitr::include_graphics("../03_Outputs/all/02_Imagenes/idx1_servicio_map_pcall.png")
 ```
 
 ### Resultados completos en PDF
-```{r}
-knitr::include_graphics("../03_Outputs/all/02_Imagenes/idx1_servicio_results.pdf")
+```{r, fig.cap = 'Resultados completos en PDF'}
+knitr::include_graphics("../03_Outputs/all/02_Imagenes/idx1_servicio_results.png")
 ```
 
 ## Archivos Excel de cargas y variables principales

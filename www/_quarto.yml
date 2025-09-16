@@ -23,34 +23,34 @@ website:
         menu:
             - href: resultados_idx1_servicio.qmd
               text: IDX 1 - Servicios
-            - href: result_idx2.qmd
+            - href: resultados_idx2_educacion.qmd
               text: IDX 2 - Educación
-            - href: result_idx3.qmd
+            - href: resultados_idx3_salud.qmd
               text: IDX 3 - Salud
-            - href: result_idx4.qmd
+            - href: resultados_idx4_vivienda.qmd
               text: IDX 4 - Vivienda
-            - href: result_idx5.qmd
+            - href: resultados_idx5_empleo.qmd
               text: IDX 5 - Empleo
-            - href: result_idx6.qmd
+            - href: resultados_idx6_seguridad.qmd
               text: IDX 6 - Seguridad
-            - href: result_idx7.qmd
+            - href: resultados_idx7_medioambiente.qmd
               text: IDX 7 - Medio Ambiente
-            - href: result_idx8.qmd
-              text: IDX 8 - Participación
-            - href: result_idx9.qmd
-              text: IDX 9 - Cultura
-            - href: result_idx10.qmd
-              text: IDX 10 - Infraestructura
-            - href: result_idx11.qmd
-              text: IDX 11 - Movilidad
-            - href: result_idx12.qmd
-              text: IDX 12 - Tecnología
-            - href: result_idx13.qmd
-              text: IDX 13 - Inclusión
-            - href: result_idx14.qmd
-              text: IDX 14 - Gobernanza
-            - href: result_idx15.qmd
-              text: IDX 15 - Economía
+            - href: resultados_idx8_demografica.qmd
+              text: IDX 8 - Demografía
+            - href: resultados_idx9_infnin.qmd
+              text: IDX 9 - Infancia y Niñez
+            - href: resultados_idx10_juventud.qmd
+              text: IDX 10 - Juventud
+            - href: resultados_idx11_salud.qmd
+              text: IDX 11 - Salud
+            - href: resultados_idx12_discapacidad.qmd
+              text: IDX 12 - Discapacidad
+            - href: resultados_idx13_seguridad.qmd
+              text: IDX 13 - Seguridad
+            - href: resultados_idx14_alimentaria.qmd
+              text: IDX 14 - Seguridad Alimentaria
+            - href: resultados_idx15_social.qmd
+              text: IDX 15 - Seguridad Social
 
 format:
   html:
