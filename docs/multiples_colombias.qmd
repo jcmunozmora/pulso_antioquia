@@ -1,6 +1,0 @@
----
-title: "Múltiples Colombias"
-format: html
----
-
-Descripción de la tipología y sus principales brechas/fortalezas por grupo. Visualizaciones de apoyo (dendrograma, mapa y radar de dimensiones).
