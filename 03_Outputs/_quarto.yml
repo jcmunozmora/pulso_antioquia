@@ -2,7 +2,7 @@ project:
   type: website
   output-dir: ../docs
 website:
-  title: "Pulso Social – Antioquia"
+  title: "Las Antioquias"
   navbar:
     tools:
       - icon: house
@@ -13,8 +13,16 @@ website:
     left:
       - href: index.qmd
         text: Inicio
-      - href: antioquia.qmd
-        text: Resultados
+      - text: Resultados
+        menu: 
+          - href: resultados_cluster_antioquia.qmd
+            text: Las Antioquias
+          - href: resultados_cluster_consolidada.qmd
+            text: La Antioquia consolidada
+          - href: resultados_cluster_transicion.qmd
+            text: La Antioquia en transición
+          - href: resultados_cluster_vulnerable.qmd
+            text: La Antioquia vulnerable
       - text: Clusters
         menu:
           - href: cluster_antioquias.qmd
@@ -24,7 +32,7 @@ website:
           - href: cluster_transicion.qmd
             text: La Antioquia en transición - Metodología
           - href: cluster_vulnerable.qmd
-            text: La Antioquia en vulnerable - Metodología
+            text: La Antioquia vulnerable - Metodología
       - text: Indicadores
         menu:
           - href: Metodologia_indices.qmd
@@ -59,6 +67,8 @@ website:
             text: "IDX 14: Seguridad"
           - href: resultados_idx15_vejez.qmd
             text: "IDX 15: Vejez"
+      - text: "Autores"
+        href: autores_about.qmd
           
 
 format:

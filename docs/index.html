@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -32,14 +52,15 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -54,17 +75,17 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
@@ -78,12 +99,14 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Pulso Social – Antioquia</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -93,17 +116,32 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Inicio</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./metodologia.qmd"> 
-<span class="menu-text">Metodología</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./antioquia.html"> 
-<span class="menu-text">Antioquia</span></a>
+<span class="menu-text">Resultados</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./multiples_colombias.html"> 
-<span class="menu-text">Multiples Colombias</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clusters" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Clusters</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-clusters">    
+        <li>
+    <a class="dropdown-item" href="./cluster_antioquias.html">
+ <span class="dropdown-text">Las Antioquias - Metodología</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./cluster_consolidada.html">
+ <span class="dropdown-text">La Antioquia consolidada - Metodología</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cluster_transicion.html">
+ <span class="dropdown-text">La Antioquia en transición - Metodología</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cluster_vulnerable.html">
+ <span class="dropdown-text">La Antioquia en vulnerable - Metodología</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-indicadores" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Indicadores</span>
@@ -175,17 +213,6 @@ ul.task-list li input[type="checkbox"] {
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ndices" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Índices</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-ndices">    
-        <li>
-    <a class="dropdown-item" href="./Metodologia_indices.html">
- <span class="dropdown-text">Metodología Índices</span></a>
-  </li>  
-    </ul>
-  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -199,8 +226,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#infraestructura-de-datos" id="toc-infraestructura-de-datos" class="nav-link active" data-scroll-target="#infraestructura-de-datos">Infraestructura de datos</a></li>
+  <li><a href="#enfoque-analítico-las-múltiples-antioquias" id="toc-enfoque-analítico-las-múltiples-antioquias" class="nav-link" data-scroll-target="#enfoque-analítico-las-múltiples-antioquias">Enfoque analítico: “las múltiples Antioquias”</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -224,19 +258,58 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Bienvenido/a al sitio de resultados de la réplica metodológica para <strong>Antioquia</strong>.</p>
+<p>A continuación se presenta la aplicación de la metodología de <em>brechas territoriales</em> para Antioquia, la cual ofrece una nueva lectura de <strong>oportunidades</strong> y <strong>desafíos sociales</strong> desde una <strong>visión territorial</strong> y con <strong>enfoque diferencial</strong>. A partir de la metodología <em>Pulso Social</em> del <strong>Banco Interamericano de Desarrollo (BID)</strong> <span class="citation" data-cites="Duryea2016Pulso2016">(<a href="#ref-Duryea2016Pulso2016" role="doc-biblioref">Duryea y Robles 2016</a>)</span>, se asume que la política social debe <strong>centrarse en las personas</strong> a lo largo del <strong>ciclo de vida</strong> (niñez, infancia, juventud, adultez y vejez), con el fin de identificar <strong>brechas</strong> y <strong>cuellos de botella</strong> en la formación de capital humano.</p>
+<p>Para ello se realiza una <strong>revisión sistemática</strong> de indicadores sociales, agrupados en dos categorías:</p>
 <ul>
-<li><strong>Metodología.</strong> Resumen del pipeline (datos → estandarización → PCA → clustering).</li>
-<li><strong>Antioquia.</strong> Panel con fichas y comparativos.</li>
-<li><strong>Múltiples Colombias.</strong> Explicación de la tipología y visualizaciones.</li>
+<li><strong>Contexto</strong>: condiciones generales del hogar y entorno (esenciales para comprender el marco en el que se diseñan políticas).
+<ul>
+<li><a href="03_Outputs/resultados_idx1_servicio.qmd">Agua potable y saneamiento</a></li>
+<li><a href="03_Outputs/resultados_idx6_crecimiento.qmd">Crecimiento económico</a></li>
+<li><a href="03_Outputs/resultados_idx3_climatico.qmd">Cambio climático</a></li>
+<li><a href="03_Outputs/resultados_idx11_pobreza.qmd">Pobreza</a></li>
+<li><a href="03_Outputs/resultados_idx5_viviendas.qmd">Características de la vivienda</a></li>
+<li><a href="03_Outputs/resultados_idx4_Capacidad.qmd">Capacidad fiscal</a></li>
+<li><a href="03_Outputs/resultados_idx7_gini.qmd">Desigualdad</a></li>
+<li><a href="03_Outputs/resultados_idx8_demografica.qmd">Estructura demográfica</a></li>
+<li><a href="03_Outputs/resultados_idx12_salud.qmd">Salud</a></li>
+<li><a href="03_Outputs/resultados_idx13_saludmental.qmd">Salud Mental</a></li>
+<li><a href="03_Outputs/resultados_idx14_seguridad.qmd">Seguridad</a></li>
+</ul></li>
+<li></li>
+<li><strong>Resultados</strong>: situaciones sociales específicas <strong>a lo largo del ciclo de vida</strong>; reflejan el contexto e impactos en bienestar <span class="citation" data-cites="Duryea2016Pulso2016">(<a href="#ref-Duryea2016Pulso2016" role="doc-biblioref">Duryea y Robles 2016</a>)</span>.
+<ul>
+<li><a href="03_Outputs/resultados_idx9_infnin.qmd">Infancia y niñez</a></li>
+<li><a href="03_Outputs/resultados_idx10_juventud.qmd">Juventud</a></li>
+<li><a href="03_Outputs/resultados_idx2_Adultez.qmd">Adultez</a></li>
+<li><a href="03_Outputs/resultados_idx15_vejez.qmd">Vejez</a></li>
+</ul></li>
 </ul>
+<section id="infraestructura-de-datos" class="level1">
+<h1>Infraestructura de datos</h1>
+<p>La aplicación de la metodología partió de la consolidación del programa <em>Antioquia como vamos</em>, el cual es la base de la <strong>infraestructura de datos abiertos</strong> que habilita un análisis <strong>flexible</strong>, con <strong>enfoque territorial</strong> y <strong>diferencial</strong>. La infraestructura incluye la revisión de <strong>404 indicadores</strong> provenientes de <strong>22 bases de datos</strong>, con corte a <strong>diciembre de 2021</strong>. El <strong>anexo técnico</strong> describe en detalle la arquitectura de datos, fuentes, coberturas y reglas de tratamiento.</p>
+</section>
+<section id="enfoque-analítico-las-múltiples-antioquias" class="level1">
+<h1>Enfoque analítico: “las múltiples Antioquias”</h1>
+<p>La estructura de datos permite una lectura <strong>comprensiva</strong> de la realidad social del país y una propuesta basada en la <strong>caracterización de tipologías territoriales</strong> (las <em>múltiples Colombias</em>).</p>
+<ol type="1">
+<li><strong>Índices por dimensión</strong>: primero se construyen <strong>índices</strong> para cada dimensión de <em>Pulso Social</em>, que <strong>resumen</strong> las características comunes de los indicadores que la componen.<br>
+</li>
+<li><strong>Agrupamiento por similitud</strong>: luego, a partir de <strong>patrones comunes</strong> y <strong>similitudes</strong> entre <strong>todas las dimensiones</strong>, se generan <strong>agrupaciones</strong> de territorios <strong>más homogéneos</strong>.</li>
+</ol>
+<p>A este análisis lo denominamos <strong>“las múltiples Colombias”</strong>, porque hace visible la <strong>diversidad de trayectorias</strong> territoriales desde una lectura sistemática de las dimensiones por <strong>ciclo de vida</strong>.</p>
 <hr>
-<p>El estudio original <a href="./pdf/Desigualdades-territoriales-en-Colombia-realidades.pdf">Descargar</a></p>
+<p>El estudio original puede accederse <a href="./pdf/Desigualdades-territoriales-en-Colombia-realidades.pdf">Descargar</a></p>
 <p>Descripción detallada de la metodología explicada <a href="./pdf/Anexo_Metodologico_PulsoSocial.pdf">Descargar</a></p>
 
 
 
-</main> <!-- /main -->
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Duryea2016Pulso2016" class="csl-entry" role="listitem">
+Duryea, Suzanne, y Marcos Robles. 2016. <span>«<span>Pulso Social de Am<span>é</span>rica Latina y el Caribe 2016</span>»</span>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -262,12 +335,12 @@ ul.task-list li input[type="checkbox"] {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiado");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiado");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -288,13 +361,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

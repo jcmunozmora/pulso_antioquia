@@ -60,7 +60,7 @@ Dado que existen distintos criterios de **enlace** (linkage), se realizó una co
 
 | average | single | complete | ward |
 |:------:|:------:|:--------:|:----:|
-|  0.51  |  0.37  |   0.72   | 0.83 |
+|  0.64  |  0.62  |   0.72   | 0.84 |
 
 Conclusión: el **enlace Ward** es el más apropiado en este caso.
 

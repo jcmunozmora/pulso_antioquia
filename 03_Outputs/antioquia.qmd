@@ -1,11 +1,81 @@
 ---
-title: "Antioquia"
+title: "Las Antioquias"
 format: html
 ---
 
-## Panel de resultados
+Los resultados confirman la consolidación 
 
-> Aquí se presentarán los indicadores, índices por dimensión, y comparativos de Antioquia frente al promedio nacional y/o su grupo de clúster.
+![](all/04_Cluster/cluster_map.png){fig-alt="Mapa de clústeres: Las Antioquias" fig-cap="Representación filogenética de la agrupación por clústeres" width="80%"}
 
-- Descargas (CSV): próximamente.
-- Gráficos (PNG): próximamente.
+*Indicadores Contexto*
+
+<div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+  <img src="all/04_Cluster/cluster_variables_contexto_1.png" width="400px" />
+  <img src="all/04_Cluster/cluster_variables_contexto_2.png" width="400px" />
+</div>
+
+*Indicadores Resultados*
+
+<div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+  <img src="all/04_Cluster/cluster_variables_res_1.png" width="400px" />
+</div>
+
+[(detalles metodológicos) ](03_Outputs/cluster_antioquias.qmd )
+
+## La Antioquia consolidada
+
+![](Consolidada/04_Cluster/cluster_map.png){fig-alt="La Antioquia Consolidada" fig-cap="Representación filogenética de la agrupación por clústeres" width="80%"}
+
+*Indicadores Contexto*
+
+<div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+  <img src="Consolidada/04_Cluster/cluster_variables_contexto_1.png" width="400px" />
+  <img src="Consolidada/04_Cluster/cluster_variables_contexto_2.png" width="400px" />
+</div>
+
+*Indicadores Resultados*
+
+<div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+  <img src="Consolidada/04_Cluster/cluster_variables_res_1.png" width="400px" />
+</div>
+
+[(detalles metodológicos) ](03_Outputs/cluster_consolidada.qmd )
+
+## La Antioquia en transición
+
+![](Transición/04_Cluster/cluster_map.png){fig-alt="La Antioquia en transición" fig-cap="Representación filogenética de la agrupación por clústeres" width="80%"}
+
+*Indicadores Contexto*
+
+<div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+  <img src="Transición/04_Cluster/cluster_variables_contexto_1.png" width="400px" />
+  <img src="Transición/04_Cluster/cluster_variables_contexto_2.png" width="400px" />
+</div>
+
+*Indicadores Resultados*
+
+<div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+  <img src="Transición/04_Cluster/cluster_variables_res_1.png" width="400px" />
+</div>
+
+[(detalles metodológicos) ](03_Outputs/cluster_transicion.qmd )
+
+## La Antioquia vulnerable
+
+![](Vulnerable/04_Cluster/cluster_map.png){fig-alt="La Antioquia Vulnerable" fig-cap="Representación filogenética de la agrupación por clústeres" width="80%"}
+
+*Indicadores Contexto*
+
+<div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+  <img src="Vulnerable/04_Cluster/cluster_variables_contexto_1.png" width="400px" />
+  <img src="Vulnerable/04_Cluster/cluster_variables_contexto_2.png" width="400px" />
+</div>
+
+*Indicadores Resultados*
+
+<div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+  <img src="Vulnerable/04_Cluster/cluster_variables_res_1.png" width="400px" />
+</div>
+
+[(detalles metodológicos) ](03_Outputs/cluster_vulnerable.qmd )
+

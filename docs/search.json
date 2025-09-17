@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Desigualdades Territorriales – Antioquia",
     "section": "",
-    "text": "Bienvenido/a al sitio de resultados de la réplica metodológica para Antioquia.\n\nMetodología. Resumen del pipeline (datos → estandarización → PCA → clustering).\nAntioquia. Panel con fichas y comparativos.\nMúltiples Colombias. Explicación de la tipología y visualizaciones.\n\n\nEl estudio original Descargar\nDescripción detallada de la metodología explicada Descargar"
+    "text": "A continuación se presenta la aplicación de la metodología de brechas territoriales para Antioquia, la cual ofrece una nueva lectura de oportunidades y desafíos sociales desde una visión territorial y con enfoque diferencial. A partir de la metodología Pulso Social del Banco Interamericano de Desarrollo (BID) (Duryea y Robles 2016), se asume que la política social debe centrarse en las personas a lo largo del ciclo de vida (niñez, infancia, juventud, adultez y vejez), con el fin de identificar brechas y cuellos de botella en la formación de capital humano.\nPara ello se realiza una revisión sistemática de indicadores sociales, agrupados en dos categorías:\n\nContexto: condiciones generales del hogar y entorno (esenciales para comprender el marco en el que se diseñan políticas).\n\nAgua potable y saneamiento\nCrecimiento económico\nCambio climático\nPobreza\nCaracterísticas de la vivienda\nCapacidad fiscal\nDesigualdad\nEstructura demográfica\nSalud\nSalud Mental\nSeguridad\n\n\nResultados: situaciones sociales específicas a lo largo del ciclo de vida; reflejan el contexto e impactos en bienestar (Duryea y Robles 2016).\n\nInfancia y niñez\nJuventud\nAdultez\nVejez\n\n\n\nInfraestructura de datos\nLa aplicación de la metodología partió de la consolidación del programa Antioquia como vamos, el cual es la base de la infraestructura de datos abiertos que habilita un análisis flexible, con enfoque territorial y diferencial. La infraestructura incluye la revisión de 404 indicadores provenientes de 22 bases de datos, con corte a diciembre de 2021. El anexo técnico describe en detalle la arquitectura de datos, fuentes, coberturas y reglas de tratamiento.\n\n\nEnfoque analítico: “las múltiples Antioquias”\nLa estructura de datos permite una lectura comprensiva de la realidad social del país y una propuesta basada en la caracterización de tipologías territoriales (las múltiples Colombias).\n\nÍndices por dimensión: primero se construyen índices para cada dimensión de Pulso Social, que resumen las características comunes de los indicadores que la componen.\n\nAgrupamiento por similitud: luego, a partir de patrones comunes y similitudes entre todas las dimensiones, se generan agrupaciones de territorios más homogéneos.\n\nA este análisis lo denominamos “las múltiples Colombias”, porque hace visible la diversidad de trayectorias territoriales desde una lectura sistemática de las dimensiones por ciclo de vida.\n\nEl estudio original puede accederse Descargar\nDescripción detallada de la metodología explicada Descargar\n\n\n\n\n\nReferencias\n\nDuryea, Suzanne, y Marcos Robles. 2016. «Pulso Social de América Latina y el Caribe 2016»."
   },
   {
     "objectID": "result_idx1.html",
@@ -100,9 +100,9 @@
   {
     "objectID": "antioquia.html",
     "href": "antioquia.html",
-    "title": "Antioquia",
+    "title": "Las Antioquias",
     "section": "",
-    "text": "Aquí se presentarán los indicadores, índices por dimensión, y comparativos de Antioquia frente al promedio nacional y/o su grupo de clúster.\n\n\nDescargas (CSV): próximamente.\nGráficos (PNG): próximamente."
+    "text": "Los resultados confirman la consolidación\nIndicadores Contexto\nIndicadores Resultados\n(detalles metodológicos)"
   },
   {
     "objectID": "antioquia.html#panel-de-resultados",
@@ -635,5 +635,341 @@
     "title": "Resultados IDX 5: Características de las viviendas",
     "section": "Descarga de datos",
     "text": "Descarga de datos\nPuedes descargar la base de datos asociada a este índice aquí: Descargar base de datos IDX 5"
+  },
+  {
+    "objectID": "cluster_antioquias.html",
+    "href": "cluster_antioquias.html",
+    "title": "Las Antioquias - Metodología",
+    "section": "",
+    "text": "Una vez construida una aproximación simple para cada una de las subdimensiones, se realizó el último paso del análisis: identificar las realidades territoriales a partir del análisis sistemático de la información disponible. Para esto, se aplicó un método de aprendizaje no supervisado para dividir las observaciones en grupos que cumplan los siguientes principios (Anderson 2003):\n\nPrincipio de cohesión: cada grupo debe ser homogéneo internamente en las variables utilizadas. En el presente proyecto, se busca que las regiones o departamentos sean altamente parecidos en las 13 dimensiones de la metodología Pulso Social.\nPrincipio de separación: se debe garantizar que las diferencias entre grupos estén claramente definidas, es decir, que cada grupo presente condiciones que lo distingan de los demás.\n\nEn el marco de Pulso Social, el análisis de conglomerados ofrece una lectura de las brechas territoriales en Antioquia a partir de un análisis sistemático de las dimensiones que componen la metodología. A continuación, se presentan estadísticas descriptivas de los índices empleados en el análisis (resultado del ACP).\n\n\n\n\nCódigo\nlibrary(readxl)\nlibrary(knitr)\nlibrary(magrittr)\nruta_excel &lt;- \"all/04_Cluster/Summary_Stats.xlsx\"\ntabla_resumen &lt;- read_xlsx(ruta_excel)\ntabla_resumen %&gt;%\n  dplyr::select(Etiqueta, N, Media, SD, Min, Max) %&gt;%\n  dplyr::mutate(Media = round(Media, 3), SD = round(SD, 3), Min = round(Min, 3), Max = round(Max, 3)) %&gt;%\n  kable(caption = \"Resumen de variables numéricas válidas\")\n\n\n\nResumen de variables numéricas válidas\n\n\n\n\n\n\n\n\n\n\nEtiqueta\nN\nMedia\nSD\nMin\nMax\n\n\n\n\nAcceso a servicio de agua potable y saneamiento - 1\n125\n0\n1\n-8.737\n0.570\n\n\nAdultez - 1\n125\n0\n1\n-1.793\n3.275\n\n\nAdultez - 2\n125\n0\n1\n-2.568\n2.339\n\n\nAdultez - 3\n125\n0\n1\n-2.676\n2.989\n\n\nCambio climatico - 1\n125\n0\n1\n-3.378\n2.718\n\n\nCambio climatico - 2\n125\n0\n1\n-3.250\n2.803\n\n\nCapacidad fiscal - 1\n125\n0\n1\n-3.471\n4.172\n\n\nCapacidad fiscal - 2\n125\n0\n1\n-1.335\n10.156\n\n\nCaracterísticas de las viviendas - 1\n125\n0\n1\n-4.217\n1.415\n\n\nCaracterísticas de las viviendas - 2\n125\n0\n1\n-2.688\n3.149\n\n\nDesarrollo económico - 1\n125\n0\n1\n-1.956\n3.968\n\n\nDesarrollo económico - 2\n125\n0\n1\n-2.529\n3.362\n\n\nDesarrollo económico - 3\n125\n0\n1\n-1.852\n5.872\n\n\nDesigualdad - 1\n125\n0\n1\n-1.766\n3.081\n\n\nEstructura demográfica - 1\n125\n0\n1\n-3.484\n2.346\n\n\nInfancia y Niñez - 1\n125\n0\n1\n-2.456\n4.665\n\n\nInfancia y Niñez - 2\n125\n0\n1\n-2.799\n2.913\n\n\nInfancia y Niñez - 3\n125\n0\n1\n-5.091\n2.507\n\n\nInfancia y Niñez - 4\n125\n0\n1\n-3.537\n2.782\n\n\nJuventud - 1\n125\n0\n1\n-3.812\n2.828\n\n\nJuventud - 2\n125\n0\n1\n-4.055\n2.177\n\n\nJuventud - 3\n125\n0\n1\n-2.359\n2.861\n\n\nJuventud - 4\n125\n0\n1\n-3.379\n2.811\n\n\nPobreza - 1\n125\n0\n1\n-2.961\n1.857\n\n\nPobreza - 2\n125\n0\n1\n-2.055\n2.461\n\n\nSalud - 1\n125\n0\n1\n-5.537\n0.674\n\n\nSalud - 2\n125\n0\n1\n-3.896\n3.474\n\n\nSalud mental - 1\n125\n0\n1\n-1.898\n3.402\n\n\nSalud mental - 2\n125\n0\n1\n-3.607\n2.347\n\n\nSeguridad - 1\n125\n0\n1\n-3.955\n1.525\n\n\nSeguridad - 2\n125\n0\n1\n-1.590\n3.057\n\n\nVejez - 1\n125\n0\n1\n-2.522\n1.770"
+  },
+  {
+    "objectID": "cluster_antioquias.html#estadísticas-descriptivas-de-los-índices",
+    "href": "cluster_antioquias.html#estadísticas-descriptivas-de-los-índices",
+    "title": "Las Antioquias - Metodología",
+    "section": "",
+    "text": "Código\nlibrary(readxl)\nlibrary(knitr)\nlibrary(magrittr)\nruta_excel &lt;- \"all/04_Cluster/Summary_Stats.xlsx\"\ntabla_resumen &lt;- read_xlsx(ruta_excel)\ntabla_resumen %&gt;%\n  dplyr::select(Etiqueta, N, Media, SD, Min, Max) %&gt;%\n  dplyr::mutate(Media = round(Media, 3), SD = round(SD, 3), Min = round(Min, 3), Max = round(Max, 3)) %&gt;%\n  kable(caption = \"Resumen de variables numéricas válidas\")\n\n\n\nResumen de variables numéricas válidas\n\n\n\n\n\n\n\n\n\n\nEtiqueta\nN\nMedia\nSD\nMin\nMax\n\n\n\n\nAcceso a servicio de agua potable y saneamiento - 1\n125\n0\n1\n-8.737\n0.570\n\n\nAdultez - 1\n125\n0\n1\n-1.793\n3.275\n\n\nAdultez - 2\n125\n0\n1\n-2.568\n2.339\n\n\nAdultez - 3\n125\n0\n1\n-2.676\n2.989\n\n\nCambio climatico - 1\n125\n0\n1\n-3.378\n2.718\n\n\nCambio climatico - 2\n125\n0\n1\n-3.250\n2.803\n\n\nCapacidad fiscal - 1\n125\n0\n1\n-3.471\n4.172\n\n\nCapacidad fiscal - 2\n125\n0\n1\n-1.335\n10.156\n\n\nCaracterísticas de las viviendas - 1\n125\n0\n1\n-4.217\n1.415\n\n\nCaracterísticas de las viviendas - 2\n125\n0\n1\n-2.688\n3.149\n\n\nDesarrollo económico - 1\n125\n0\n1\n-1.956\n3.968\n\n\nDesarrollo económico - 2\n125\n0\n1\n-2.529\n3.362\n\n\nDesarrollo económico - 3\n125\n0\n1\n-1.852\n5.872\n\n\nDesigualdad - 1\n125\n0\n1\n-1.766\n3.081\n\n\nEstructura demográfica - 1\n125\n0\n1\n-3.484\n2.346\n\n\nInfancia y Niñez - 1\n125\n0\n1\n-2.456\n4.665\n\n\nInfancia y Niñez - 2\n125\n0\n1\n-2.799\n2.913\n\n\nInfancia y Niñez - 3\n125\n0\n1\n-5.091\n2.507\n\n\nInfancia y Niñez - 4\n125\n0\n1\n-3.537\n2.782\n\n\nJuventud - 1\n125\n0\n1\n-3.812\n2.828\n\n\nJuventud - 2\n125\n0\n1\n-4.055\n2.177\n\n\nJuventud - 3\n125\n0\n1\n-2.359\n2.861\n\n\nJuventud - 4\n125\n0\n1\n-3.379\n2.811\n\n\nPobreza - 1\n125\n0\n1\n-2.961\n1.857\n\n\nPobreza - 2\n125\n0\n1\n-2.055\n2.461\n\n\nSalud - 1\n125\n0\n1\n-5.537\n0.674\n\n\nSalud - 2\n125\n0\n1\n-3.896\n3.474\n\n\nSalud mental - 1\n125\n0\n1\n-1.898\n3.402\n\n\nSalud mental - 2\n125\n0\n1\n-3.607\n2.347\n\n\nSeguridad - 1\n125\n0\n1\n-3.955\n1.525\n\n\nSeguridad - 2\n125\n0\n1\n-1.590\n3.057\n\n\nVejez - 1\n125\n0\n1\n-2.522\n1.770"
+  },
+  {
+    "objectID": "cluster_antioquias.html#selección-del-método-de-enlace",
+    "href": "cluster_antioquias.html#selección-del-método-de-enlace",
+    "title": "Las Antioquias - Metodología",
+    "section": "3.1 Selección del método de enlace",
+    "text": "3.1 Selección del método de enlace\nDado que existen distintos criterios de enlace (linkage), se realizó una comparación mediante el coeficiente de aglomeración, que indica el poder de explicación de la estructura de agrupación para un enlace dado. Cuanto más cercano a 1, mejor la agrupación (Anderson 2003).\nResultados:\n\n\n\naverage\nsingle\ncomplete\nward\n\n\n\n\n0.64\n0.62\n0.72\n0.84\n\n\n\nConclusión: el enlace Ward es el más apropiado en este caso."
+  },
+  {
+    "objectID": "cluster_antioquias.html#determinación-del-número-de-clústeres-k",
+    "href": "cluster_antioquias.html#determinación-del-número-de-clústeres-k",
+    "title": "Las Antioquias - Metodología",
+    "section": "3.2 Determinación del número de clústeres (k)",
+    "text": "3.2 Determinación del número de clústeres (k)\nTras elegir el enlace, se determina el número óptimo de clústeres. Aunque no existe un criterio único, el más usado es el método del codo (elbow), que busca el (k) que minimiza la variación intra–clúster (WSS):\n\\[\n\\arg\\min_{k}\\ \\sum_{j=1}^{k} W(C_j)\\,,\n\\]\ndonde (C_j) es el clúster (j)-ésimo y (W(C_j)) su variación intra. La WSS mide la compacidad de la agrupación; se desea que sea lo más pequeña posible. Los resultados se muestran a continuación.\n\nA partir de la evidencia y la discusión técnica, se concluye que el número óptimo de clústeres es tres (3)."
+  },
+  {
+    "objectID": "cluster_antioquias.html#dendrograma-y-representación-de-clústeres",
+    "href": "cluster_antioquias.html#dendrograma-y-representación-de-clústeres",
+    "title": "Las Antioquias - Metodología",
+    "section": "3.3 Dendrograma y representación de clústeres",
+    "text": "3.3 Dendrograma y representación de clústeres\nUna vez definido el enlace y (k) óptimo, se presenta la salida gráfica del análisis."
+  },
+  {
+    "objectID": "cluster_antioquias.html#footnotes",
+    "href": "cluster_antioquias.html#footnotes",
+    "title": "Las Antioquias - Metodología",
+    "section": "Notas",
+    "text": "Notas\n\n\nEntre los métodos alternativos para la matriz de distancia: Manhattan, correlación de Pearson, entre otros.↩︎"
+  },
+  {
+    "objectID": "cluster_vulnerable.html",
+    "href": "cluster_vulnerable.html",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "",
+    "text": "Una vez construida una aproximación simple para cada una de las subdimensiones, se realizó el último paso del análisis: identificar las realidades territoriales a partir del análisis sistemático de la información disponible. Para esto, se aplicó un método de aprendizaje no supervisado para dividir las observaciones en grupos que cumplan los siguientes principios (Anderson 2003):\n\nPrincipio de cohesión: cada grupo debe ser homogéneo internamente en las variables utilizadas. En el presente proyecto, se busca que las regiones o departamentos sean altamente parecidos en las 13 dimensiones de la metodología Pulso Social.\nPrincipio de separación: se debe garantizar que las diferencias entre grupos estén claramente definidas, es decir, que cada grupo presente condiciones que lo distingan de los demás.\n\nEn el marco de Pulso Social, el análisis de conglomerados ofrece una lectura de las brechas territoriales en Antioquia a partir de un análisis sistemático de las dimensiones que componen la metodología. A continuación, se presentan estadísticas descriptivas de los índices empleados en el análisis (resultado del ACP).\n\n\n\n\nCódigo\nlibrary(readxl)\nlibrary(knitr)\nlibrary(magrittr)\nruta_excel &lt;- \"Vulnerable/04_Cluster/Summary_Stats.xlsx\"\ntabla_resumen &lt;- read_xlsx(ruta_excel)\ntabla_resumen %&gt;%\n  dplyr::select(Etiqueta, N, Media, SD, Min, Max) %&gt;%\n  dplyr::mutate(Media = round(Media, 3), SD = round(SD, 3), Min = round(Min, 3), Max = round(Max, 3)) %&gt;%\n  kable(caption = \"Resumen de variables numéricas válidas\")\n\n\n\nResumen de variables numéricas válidas\n\n\n\n\n\n\n\n\n\n\nEtiqueta\nN\nMedia\nSD\nMin\nMax\n\n\n\n\nAcceso a servicio de agua potable y saneamiento - 1\n27\n0\n1\n-4.938\n0.371\n\n\nAdultez - 1\n27\n0\n1\n-1.499\n2.098\n\n\nAdultez - 2\n27\n0\n1\n-1.805\n2.250\n\n\nAdultez - 3\n27\n0\n1\n-2.518\n1.721\n\n\nCambio climatico - 1\n27\n0\n1\n-2.209\n1.905\n\n\nCambio climatico - 2\n27\n0\n1\n-2.035\n1.514\n\n\nCapacidad fiscal - 1\n27\n0\n1\n-2.064\n1.535\n\n\nCapacidad fiscal - 2\n27\n0\n1\n-2.991\n1.924\n\n\nCaracterísticas de las viviendas - 1\n27\n0\n1\n-2.424\n1.464\n\n\nCaracterísticas de las viviendas - 2\n27\n0\n1\n-1.982\n2.148\n\n\nDesarrollo económico - 1\n27\n0\n1\n-2.367\n1.861\n\n\nDesarrollo económico - 2\n27\n0\n1\n-1.743\n2.284\n\n\nDesarrollo económico - 3\n27\n0\n1\n-2.068\n1.500\n\n\nDesigualdad - 1\n27\n0\n1\n-1.501\n2.494\n\n\nEstructura demográfica - 1\n27\n0\n1\n-2.805\n1.818\n\n\nInfancia y Niñez - 1\n27\n0\n1\n-1.117\n2.781\n\n\nInfancia y Niñez - 2\n27\n0\n1\n-1.732\n2.607\n\n\nInfancia y Niñez - 3\n27\n0\n1\n-2.285\n2.926\n\n\nInfancia y Niñez - 4\n27\n0\n1\n-2.744\n1.624\n\n\nJuventud - 1\n27\n0\n1\n-3.195\n1.949\n\n\nJuventud - 2\n27\n0\n1\n-2.886\n1.584\n\n\nJuventud - 3\n27\n0\n1\n-1.850\n2.562\n\n\nJuventud - 4\n27\n0\n1\n-2.398\n2.069\n\n\nPobreza - 1\n27\n0\n1\n-1.732\n2.064\n\n\nPobreza - 2\n27\n0\n1\n-1.539\n1.805\n\n\nSalud - 1\n27\n0\n1\n-3.058\n1.338\n\n\nSalud - 2\n27\n0\n1\n-2.411\n2.022\n\n\nSalud mental - 1\n27\n0\n1\n-1.955\n2.532\n\n\nSalud mental - 2\n27\n0\n1\n-2.474\n1.409\n\n\nSeguridad - 1\n27\n0\n1\n-2.427\n1.413\n\n\nSeguridad - 2\n27\n0\n1\n-1.337\n1.969\n\n\nVejez - 1\n27\n0\n1\n-1.844\n2.945"
+  },
+  {
+    "objectID": "cluster_vulnerable.html#estadísticas-descriptivas-de-los-índices",
+    "href": "cluster_vulnerable.html#estadísticas-descriptivas-de-los-índices",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "",
+    "text": "Código\nlibrary(readxl)\nlibrary(knitr)\nlibrary(magrittr)\nruta_excel &lt;- \"Vulnerable/04_Cluster/Summary_Stats.xlsx\"\ntabla_resumen &lt;- read_xlsx(ruta_excel)\ntabla_resumen %&gt;%\n  dplyr::select(Etiqueta, N, Media, SD, Min, Max) %&gt;%\n  dplyr::mutate(Media = round(Media, 3), SD = round(SD, 3), Min = round(Min, 3), Max = round(Max, 3)) %&gt;%\n  kable(caption = \"Resumen de variables numéricas válidas\")\n\n\n\nResumen de variables numéricas válidas\n\n\n\n\n\n\n\n\n\n\nEtiqueta\nN\nMedia\nSD\nMin\nMax\n\n\n\n\nAcceso a servicio de agua potable y saneamiento - 1\n27\n0\n1\n-4.938\n0.371\n\n\nAdultez - 1\n27\n0\n1\n-1.499\n2.098\n\n\nAdultez - 2\n27\n0\n1\n-1.805\n2.250\n\n\nAdultez - 3\n27\n0\n1\n-2.518\n1.721\n\n\nCambio climatico - 1\n27\n0\n1\n-2.209\n1.905\n\n\nCambio climatico - 2\n27\n0\n1\n-2.035\n1.514\n\n\nCapacidad fiscal - 1\n27\n0\n1\n-2.064\n1.535\n\n\nCapacidad fiscal - 2\n27\n0\n1\n-2.991\n1.924\n\n\nCaracterísticas de las viviendas - 1\n27\n0\n1\n-2.424\n1.464\n\n\nCaracterísticas de las viviendas - 2\n27\n0\n1\n-1.982\n2.148\n\n\nDesarrollo económico - 1\n27\n0\n1\n-2.367\n1.861\n\n\nDesarrollo económico - 2\n27\n0\n1\n-1.743\n2.284\n\n\nDesarrollo económico - 3\n27\n0\n1\n-2.068\n1.500\n\n\nDesigualdad - 1\n27\n0\n1\n-1.501\n2.494\n\n\nEstructura demográfica - 1\n27\n0\n1\n-2.805\n1.818\n\n\nInfancia y Niñez - 1\n27\n0\n1\n-1.117\n2.781\n\n\nInfancia y Niñez - 2\n27\n0\n1\n-1.732\n2.607\n\n\nInfancia y Niñez - 3\n27\n0\n1\n-2.285\n2.926\n\n\nInfancia y Niñez - 4\n27\n0\n1\n-2.744\n1.624\n\n\nJuventud - 1\n27\n0\n1\n-3.195\n1.949\n\n\nJuventud - 2\n27\n0\n1\n-2.886\n1.584\n\n\nJuventud - 3\n27\n0\n1\n-1.850\n2.562\n\n\nJuventud - 4\n27\n0\n1\n-2.398\n2.069\n\n\nPobreza - 1\n27\n0\n1\n-1.732\n2.064\n\n\nPobreza - 2\n27\n0\n1\n-1.539\n1.805\n\n\nSalud - 1\n27\n0\n1\n-3.058\n1.338\n\n\nSalud - 2\n27\n0\n1\n-2.411\n2.022\n\n\nSalud mental - 1\n27\n0\n1\n-1.955\n2.532\n\n\nSalud mental - 2\n27\n0\n1\n-2.474\n1.409\n\n\nSeguridad - 1\n27\n0\n1\n-2.427\n1.413\n\n\nSeguridad - 2\n27\n0\n1\n-1.337\n1.969\n\n\nVejez - 1\n27\n0\n1\n-1.844\n2.945"
+  },
+  {
+    "objectID": "cluster_vulnerable.html#selección-del-método-de-enlace",
+    "href": "cluster_vulnerable.html#selección-del-método-de-enlace",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "3.1 Selección del método de enlace",
+    "text": "3.1 Selección del método de enlace\nDado que existen distintos criterios de enlace (linkage), se realizó una comparación mediante el coeficiente de aglomeración, que indica el poder de explicación de la estructura de agrupación para un enlace dado. Cuanto más cercano a 1, mejor la agrupación (Anderson 2003).\nResultados:\n\n\n\naverage\nsingle\ncomplete\nward\n\n\n\n\n0.45\n0.30\n0.60\n0.65\n\n\n\nConclusión: el enlace Ward es el más apropiado en este caso."
+  },
+  {
+    "objectID": "cluster_vulnerable.html#determinación-del-número-de-clústeres-k",
+    "href": "cluster_vulnerable.html#determinación-del-número-de-clústeres-k",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "3.2 Determinación del número de clústeres (k)",
+    "text": "3.2 Determinación del número de clústeres (k)\nTras elegir el enlace, se determina el número óptimo de clústeres. Aunque no existe un criterio único, el más usado es el método del codo (elbow), que busca el (k) que minimiza la variación intra–clúster (WSS):\n\\[\n\\arg\\min_{k}\\ \\sum_{j=1}^{k} W(C_j)\\,,\n\\]\ndonde (C_j) es el clúster (j)-ésimo y (W(C_j)) su variación intra. La WSS mide la compacidad de la agrupación; se desea que sea lo más pequeña posible. Los resultados se muestran a continuación.\n\nA partir de la evidencia y la discusión técnica, se concluye que el número óptimo de clústeres es tres (3)."
+  },
+  {
+    "objectID": "cluster_vulnerable.html#dendrograma-y-representación-de-clústeres",
+    "href": "cluster_vulnerable.html#dendrograma-y-representación-de-clústeres",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "3.3 Dendrograma y representación de clústeres",
+    "text": "3.3 Dendrograma y representación de clústeres\nUna vez definido el enlace y (k) óptimo, se presenta la salida gráfica del análisis."
+  },
+  {
+    "objectID": "cluster_vulnerable.html#footnotes",
+    "href": "cluster_vulnerable.html#footnotes",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "Notas",
+    "text": "Notas\n\n\nEntre los métodos alternativos para la matriz de distancia: Manhattan, correlación de Pearson, entre otros.↩︎"
+  },
+  {
+    "objectID": "cluster_consolidada.html",
+    "href": "cluster_consolidada.html",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "",
+    "text": "Una vez construida una aproximación simple para cada una de las subdimensiones, se realizó el último paso del análisis: identificar las realidades territoriales a partir del análisis sistemático de la información disponible. Para esto, se aplicó un método de aprendizaje no supervisado para dividir las observaciones en grupos que cumplan los siguientes principios (Anderson 2003):\n\nPrincipio de cohesión: cada grupo debe ser homogéneo internamente en las variables utilizadas. En el presente proyecto, se busca que las regiones o departamentos sean altamente parecidos en las 13 dimensiones de la metodología Pulso Social.\nPrincipio de separación: se debe garantizar que las diferencias entre grupos estén claramente definidas, es decir, que cada grupo presente condiciones que lo distingan de los demás.\n\nEn el marco de Pulso Social, el análisis de conglomerados ofrece una lectura de las brechas territoriales en Antioquia a partir de un análisis sistemático de las dimensiones que componen la metodología. A continuación, se presentan estadísticas descriptivas de los índices empleados en el análisis (resultado del ACP).\n\n\n\n\nCódigo\nlibrary(readxl)\nlibrary(knitr)\nlibrary(magrittr)\nruta_excel &lt;- \"Consolidada/04_Cluster/Summary_Stats.xlsx\"\ntabla_resumen &lt;- read_xlsx(ruta_excel)\ntabla_resumen %&gt;%\n  dplyr::select(Etiqueta, N, Media, SD, Min, Max) %&gt;%\n  dplyr::mutate(Media = round(Media, 3), SD = round(SD, 3), Min = round(Min, 3), Max = round(Max, 3)) %&gt;%\n  kable(caption = \"Resumen de variables numéricas válidas\")\n\n\n\nResumen de variables numéricas válidas\n\n\n\n\n\n\n\n\n\n\nEtiqueta\nN\nMedia\nSD\nMin\nMax\n\n\n\n\nAcceso a servicio de agua potable y saneamiento - 1\n22\n0\n1\n-2.426\n1.192\n\n\nAdultez - 1\n22\n0\n1\n-1.465\n2.516\n\n\nAdultez - 2\n22\n0\n1\n-1.885\n1.672\n\n\nAdultez - 3\n22\n0\n1\n-2.245\n2.088\n\n\nCambio climatico - 1\n22\n0\n1\n-1.430\n2.376\n\n\nCambio climatico - 2\n22\n0\n1\n-1.902\n2.171\n\n\nCapacidad fiscal - 1\n22\n0\n1\n-1.615\n2.931\n\n\nCapacidad fiscal - 2\n22\n0\n1\n-0.511\n4.415\n\n\nCaracterísticas de las viviendas - 1\n22\n0\n1\n-2.299\n1.955\n\n\nCaracterísticas de las viviendas - 2\n22\n0\n1\n-1.657\n1.532\n\n\nDesarrollo económico - 1\n22\n0\n1\n-1.248\n2.329\n\n\nDesarrollo económico - 2\n22\n0\n1\n-1.620\n1.853\n\n\nDesarrollo económico - 3\n22\n0\n1\n-2.219\n1.323\n\n\nDesigualdad - 1\n22\n0\n1\n-1.570\n1.529\n\n\nEstructura demográfica - 1\n22\n0\n1\n-2.569\n1.635\n\n\nInfancia y Niñez - 1\n22\n0\n1\n-1.547\n2.319\n\n\nInfancia y Niñez - 2\n22\n0\n1\n-2.538\n1.310\n\n\nInfancia y Niñez - 3\n22\n0\n1\n-2.427\n1.569\n\n\nInfancia y Niñez - 4\n22\n0\n1\n-2.270\n1.515\n\n\nJuventud - 1\n22\n0\n1\n-1.738\n2.074\n\n\nJuventud - 2\n22\n0\n1\n-1.924\n2.039\n\n\nJuventud - 3\n22\n0\n1\n-1.869\n1.856\n\n\nJuventud - 4\n22\n0\n1\n-3.054\n1.743\n\n\nPobreza - 1\n22\n0\n1\n-1.364\n1.919\n\n\nPobreza - 2\n22\n0\n1\n-2.065\n1.624\n\n\nSalud - 1\n22\n0\n1\n-1.437\n2.361\n\n\nSalud - 2\n22\n0\n1\n-1.013\n2.267\n\n\nSalud mental - 1\n22\n0\n1\n-1.449\n2.174\n\n\nSalud mental - 2\n22\n0\n1\n-1.814\n3.200\n\n\nSeguridad - 1\n22\n0\n1\n-1.653\n1.745\n\n\nSeguridad - 2\n22\n0\n1\n-1.451\n2.066\n\n\nVejez - 1\n22\n0\n1\n-1.835\n1.960"
+  },
+  {
+    "objectID": "cluster_consolidada.html#estadísticas-descriptivas-de-los-índices",
+    "href": "cluster_consolidada.html#estadísticas-descriptivas-de-los-índices",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "",
+    "text": "Código\nlibrary(readxl)\nlibrary(knitr)\nlibrary(magrittr)\nruta_excel &lt;- \"Consolidada/04_Cluster/Summary_Stats.xlsx\"\ntabla_resumen &lt;- read_xlsx(ruta_excel)\ntabla_resumen %&gt;%\n  dplyr::select(Etiqueta, N, Media, SD, Min, Max) %&gt;%\n  dplyr::mutate(Media = round(Media, 3), SD = round(SD, 3), Min = round(Min, 3), Max = round(Max, 3)) %&gt;%\n  kable(caption = \"Resumen de variables numéricas válidas\")\n\n\n\nResumen de variables numéricas válidas\n\n\n\n\n\n\n\n\n\n\nEtiqueta\nN\nMedia\nSD\nMin\nMax\n\n\n\n\nAcceso a servicio de agua potable y saneamiento - 1\n22\n0\n1\n-2.426\n1.192\n\n\nAdultez - 1\n22\n0\n1\n-1.465\n2.516\n\n\nAdultez - 2\n22\n0\n1\n-1.885\n1.672\n\n\nAdultez - 3\n22\n0\n1\n-2.245\n2.088\n\n\nCambio climatico - 1\n22\n0\n1\n-1.430\n2.376\n\n\nCambio climatico - 2\n22\n0\n1\n-1.902\n2.171\n\n\nCapacidad fiscal - 1\n22\n0\n1\n-1.615\n2.931\n\n\nCapacidad fiscal - 2\n22\n0\n1\n-0.511\n4.415\n\n\nCaracterísticas de las viviendas - 1\n22\n0\n1\n-2.299\n1.955\n\n\nCaracterísticas de las viviendas - 2\n22\n0\n1\n-1.657\n1.532\n\n\nDesarrollo económico - 1\n22\n0\n1\n-1.248\n2.329\n\n\nDesarrollo económico - 2\n22\n0\n1\n-1.620\n1.853\n\n\nDesarrollo económico - 3\n22\n0\n1\n-2.219\n1.323\n\n\nDesigualdad - 1\n22\n0\n1\n-1.570\n1.529\n\n\nEstructura demográfica - 1\n22\n0\n1\n-2.569\n1.635\n\n\nInfancia y Niñez - 1\n22\n0\n1\n-1.547\n2.319\n\n\nInfancia y Niñez - 2\n22\n0\n1\n-2.538\n1.310\n\n\nInfancia y Niñez - 3\n22\n0\n1\n-2.427\n1.569\n\n\nInfancia y Niñez - 4\n22\n0\n1\n-2.270\n1.515\n\n\nJuventud - 1\n22\n0\n1\n-1.738\n2.074\n\n\nJuventud - 2\n22\n0\n1\n-1.924\n2.039\n\n\nJuventud - 3\n22\n0\n1\n-1.869\n1.856\n\n\nJuventud - 4\n22\n0\n1\n-3.054\n1.743\n\n\nPobreza - 1\n22\n0\n1\n-1.364\n1.919\n\n\nPobreza - 2\n22\n0\n1\n-2.065\n1.624\n\n\nSalud - 1\n22\n0\n1\n-1.437\n2.361\n\n\nSalud - 2\n22\n0\n1\n-1.013\n2.267\n\n\nSalud mental - 1\n22\n0\n1\n-1.449\n2.174\n\n\nSalud mental - 2\n22\n0\n1\n-1.814\n3.200\n\n\nSeguridad - 1\n22\n0\n1\n-1.653\n1.745\n\n\nSeguridad - 2\n22\n0\n1\n-1.451\n2.066\n\n\nVejez - 1\n22\n0\n1\n-1.835\n1.960"
+  },
+  {
+    "objectID": "cluster_consolidada.html#selección-del-método-de-enlace",
+    "href": "cluster_consolidada.html#selección-del-método-de-enlace",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "3.1 Selección del método de enlace",
+    "text": "3.1 Selección del método de enlace\nDado que existen distintos criterios de enlace (linkage), se realizó una comparación mediante el coeficiente de aglomeración, que indica el poder de explicación de la estructura de agrupación para un enlace dado. Cuanto más cercano a 1, mejor la agrupación (Anderson 2003).\nResultados:\n\n\n\naverage\nsingle\ncomplete\nward\n\n\n\n\n0.32\n0.26\n0.47\n0.55\n\n\n\nConclusión: el enlace Ward es el más apropiado en este caso."
+  },
+  {
+    "objectID": "cluster_consolidada.html#determinación-del-número-de-clústeres-k",
+    "href": "cluster_consolidada.html#determinación-del-número-de-clústeres-k",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "3.2 Determinación del número de clústeres (k)",
+    "text": "3.2 Determinación del número de clústeres (k)\nTras elegir el enlace, se determina el número óptimo de clústeres. Aunque no existe un criterio único, el más usado es el método del codo (elbow), que busca el (k) que minimiza la variación intra–clúster (WSS):\n\\[\n\\arg\\min_{k}\\ \\sum_{j=1}^{k} W(C_j)\\,,\n\\]\ndonde (C_j) es el clúster (j)-ésimo y (W(C_j)) su variación intra. La WSS mide la compacidad de la agrupación; se desea que sea lo más pequeña posible. Los resultados se muestran a continuación.\n\nA partir de la evidencia y la discusión técnica, se concluye que el número óptimo de clústeres es tres (3)."
+  },
+  {
+    "objectID": "cluster_consolidada.html#dendrograma-y-representación-de-clústeres",
+    "href": "cluster_consolidada.html#dendrograma-y-representación-de-clústeres",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "3.3 Dendrograma y representación de clústeres",
+    "text": "3.3 Dendrograma y representación de clústeres\nUna vez definido el enlace y (k) óptimo, se presenta la salida gráfica del análisis."
+  },
+  {
+    "objectID": "cluster_consolidada.html#footnotes",
+    "href": "cluster_consolidada.html#footnotes",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "Notas",
+    "text": "Notas\n\n\nEntre los métodos alternativos para la matriz de distancia: Manhattan, correlación de Pearson, entre otros.↩︎"
+  },
+  {
+    "objectID": "cluster_transicion.html",
+    "href": "cluster_transicion.html",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "",
+    "text": "Una vez construida una aproximación simple para cada una de las subdimensiones, se realizó el último paso del análisis: identificar las realidades territoriales a partir del análisis sistemático de la información disponible. Para esto, se aplicó un método de aprendizaje no supervisado para dividir las observaciones en grupos que cumplan los siguientes principios (Anderson 2003):\n\nPrincipio de cohesión: cada grupo debe ser homogéneo internamente en las variables utilizadas. En el presente proyecto, se busca que las regiones o departamentos sean altamente parecidos en las 13 dimensiones de la metodología Pulso Social.\nPrincipio de separación: se debe garantizar que las diferencias entre grupos estén claramente definidas, es decir, que cada grupo presente condiciones que lo distingan de los demás.\n\nEn el marco de Pulso Social, el análisis de conglomerados ofrece una lectura de las brechas territoriales en Antioquia a partir de un análisis sistemático de las dimensiones que componen la metodología. A continuación, se presentan estadísticas descriptivas de los índices empleados en el análisis (resultado del ACP).\n\n\n\n\nCódigo\nlibrary(readxl)\nlibrary(knitr)\nlibrary(magrittr)\nruta_excel &lt;- \"Transición/04_Cluster/Summary_Stats.xlsx\"\ntabla_resumen &lt;- read_xlsx(ruta_excel)\ntabla_resumen %&gt;%\n  dplyr::select(Etiqueta, N, Media, SD, Min, Max) %&gt;%\n  dplyr::mutate(Media = round(Media, 3), SD = round(SD, 3), Min = round(Min, 3), Max = round(Max, 3)) %&gt;%\n  kable(caption = \"Resumen de variables numéricas válidas\")\n\n\n\nResumen de variables numéricas válidas\n\n\n\n\n\n\n\n\n\n\nEtiqueta\nN\nMedia\nSD\nMin\nMax\n\n\n\n\nAcceso a servicio de agua potable y saneamiento - 1\n76\n0\n1\n-5.625\n0.803\n\n\nAdultez - 1\n76\n0\n1\n-1.785\n3.087\n\n\nAdultez - 2\n76\n0\n1\n-2.981\n2.164\n\n\nAdultez - 3\n76\n0\n1\n-2.185\n2.378\n\n\nCambio climatico - 1\n76\n0\n1\n-3.219\n2.889\n\n\nCambio climatico - 2\n76\n0\n1\n-2.846\n3.256\n\n\nCapacidad fiscal - 1\n76\n0\n1\n-3.962\n1.702\n\n\nCapacidad fiscal - 2\n76\n0\n1\n-1.617\n3.901\n\n\nCaracterísticas de las viviendas - 1\n76\n0\n1\n-3.368\n1.426\n\n\nCaracterísticas de las viviendas - 2\n76\n0\n1\n-2.463\n1.886\n\n\nDesarrollo económico - 1\n76\n0\n1\n-2.551\n2.478\n\n\nDesarrollo económico - 2\n76\n0\n1\n-2.780\n2.777\n\n\nDesarrollo económico - 3\n76\n0\n1\n-1.869\n4.962\n\n\nDesigualdad - 1\n76\n0\n1\n-1.604\n3.062\n\n\nEstructura demográfica - 1\n76\n0\n1\n-2.845\n2.522\n\n\nInfancia y Niñez - 1\n76\n0\n1\n-2.832\n4.897\n\n\nInfancia y Niñez - 2\n76\n0\n1\n-2.642\n3.198\n\n\nInfancia y Niñez - 3\n76\n0\n1\n-4.547\n1.795\n\n\nInfancia y Niñez - 4\n76\n0\n1\n-3.027\n2.432\n\n\nJuventud - 1\n76\n0\n1\n-2.332\n2.731\n\n\nJuventud - 2\n76\n0\n1\n-2.710\n2.162\n\n\nJuventud - 3\n76\n0\n1\n-2.086\n2.665\n\n\nJuventud - 4\n76\n0\n1\n-2.943\n2.644\n\n\nPobreza - 1\n76\n0\n1\n-2.173\n2.145\n\n\nPobreza - 2\n76\n0\n1\n-1.716\n2.201\n\n\nSalud - 1\n76\n0\n1\n-3.390\n0.827\n\n\nSalud - 2\n76\n0\n1\n-4.248\n3.007\n\n\nSalud mental - 1\n76\n0\n1\n-1.753\n3.550\n\n\nSalud mental - 2\n76\n0\n1\n-3.082\n1.918\n\n\nSeguridad - 1\n76\n0\n1\n-3.529\n1.748\n\n\nSeguridad - 2\n76\n0\n1\n-1.534\n3.780\n\n\nVejez - 1\n76\n0\n1\n-2.071\n1.861"
+  },
+  {
+    "objectID": "cluster_transicion.html#estadísticas-descriptivas-de-los-índices",
+    "href": "cluster_transicion.html#estadísticas-descriptivas-de-los-índices",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "",
+    "text": "Código\nlibrary(readxl)\nlibrary(knitr)\nlibrary(magrittr)\nruta_excel &lt;- \"Transición/04_Cluster/Summary_Stats.xlsx\"\ntabla_resumen &lt;- read_xlsx(ruta_excel)\ntabla_resumen %&gt;%\n  dplyr::select(Etiqueta, N, Media, SD, Min, Max) %&gt;%\n  dplyr::mutate(Media = round(Media, 3), SD = round(SD, 3), Min = round(Min, 3), Max = round(Max, 3)) %&gt;%\n  kable(caption = \"Resumen de variables numéricas válidas\")\n\n\n\nResumen de variables numéricas válidas\n\n\n\n\n\n\n\n\n\n\nEtiqueta\nN\nMedia\nSD\nMin\nMax\n\n\n\n\nAcceso a servicio de agua potable y saneamiento - 1\n76\n0\n1\n-5.625\n0.803\n\n\nAdultez - 1\n76\n0\n1\n-1.785\n3.087\n\n\nAdultez - 2\n76\n0\n1\n-2.981\n2.164\n\n\nAdultez - 3\n76\n0\n1\n-2.185\n2.378\n\n\nCambio climatico - 1\n76\n0\n1\n-3.219\n2.889\n\n\nCambio climatico - 2\n76\n0\n1\n-2.846\n3.256\n\n\nCapacidad fiscal - 1\n76\n0\n1\n-3.962\n1.702\n\n\nCapacidad fiscal - 2\n76\n0\n1\n-1.617\n3.901\n\n\nCaracterísticas de las viviendas - 1\n76\n0\n1\n-3.368\n1.426\n\n\nCaracterísticas de las viviendas - 2\n76\n0\n1\n-2.463\n1.886\n\n\nDesarrollo económico - 1\n76\n0\n1\n-2.551\n2.478\n\n\nDesarrollo económico - 2\n76\n0\n1\n-2.780\n2.777\n\n\nDesarrollo económico - 3\n76\n0\n1\n-1.869\n4.962\n\n\nDesigualdad - 1\n76\n0\n1\n-1.604\n3.062\n\n\nEstructura demográfica - 1\n76\n0\n1\n-2.845\n2.522\n\n\nInfancia y Niñez - 1\n76\n0\n1\n-2.832\n4.897\n\n\nInfancia y Niñez - 2\n76\n0\n1\n-2.642\n3.198\n\n\nInfancia y Niñez - 3\n76\n0\n1\n-4.547\n1.795\n\n\nInfancia y Niñez - 4\n76\n0\n1\n-3.027\n2.432\n\n\nJuventud - 1\n76\n0\n1\n-2.332\n2.731\n\n\nJuventud - 2\n76\n0\n1\n-2.710\n2.162\n\n\nJuventud - 3\n76\n0\n1\n-2.086\n2.665\n\n\nJuventud - 4\n76\n0\n1\n-2.943\n2.644\n\n\nPobreza - 1\n76\n0\n1\n-2.173\n2.145\n\n\nPobreza - 2\n76\n0\n1\n-1.716\n2.201\n\n\nSalud - 1\n76\n0\n1\n-3.390\n0.827\n\n\nSalud - 2\n76\n0\n1\n-4.248\n3.007\n\n\nSalud mental - 1\n76\n0\n1\n-1.753\n3.550\n\n\nSalud mental - 2\n76\n0\n1\n-3.082\n1.918\n\n\nSeguridad - 1\n76\n0\n1\n-3.529\n1.748\n\n\nSeguridad - 2\n76\n0\n1\n-1.534\n3.780\n\n\nVejez - 1\n76\n0\n1\n-2.071\n1.861"
+  },
+  {
+    "objectID": "cluster_transicion.html#selección-del-método-de-enlace",
+    "href": "cluster_transicion.html#selección-del-método-de-enlace",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "3.1 Selección del método de enlace",
+    "text": "3.1 Selección del método de enlace\nDado que existen distintos criterios de enlace (linkage), se realizó una comparación mediante el coeficiente de aglomeración, que indica el poder de explicación de la estructura de agrupación para un enlace dado. Cuanto más cercano a 1, mejor la agrupación (Anderson 2003).\nResultados:\n\n\n\naverage\nsingle\ncomplete\nward\n\n\n\n\n0.47\n0.39\n0.58\n0.72\n\n\n\nConclusión: el enlace Ward es el más apropiado en este caso."
+  },
+  {
+    "objectID": "cluster_transicion.html#determinación-del-número-de-clústeres-k",
+    "href": "cluster_transicion.html#determinación-del-número-de-clústeres-k",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "3.2 Determinación del número de clústeres (k)",
+    "text": "3.2 Determinación del número de clústeres (k)\nTras elegir el enlace, se determina el número óptimo de clústeres. Aunque no existe un criterio único, el más usado es el método del codo (elbow), que busca el (k) que minimiza la variación intra–clúster (WSS):\n\\[\n\\arg\\min_{k}\\ \\sum_{j=1}^{k} W(C_j)\\,,\n\\]\ndonde (C_j) es el clúster (j)-ésimo y (W(C_j)) su variación intra. La WSS mide la compacidad de la agrupación; se desea que sea lo más pequeña posible. Los resultados se muestran a continuación.\n\nA partir de la evidencia y la discusión técnica, se concluye que el número óptimo de clústeres es tres (3)."
+  },
+  {
+    "objectID": "cluster_transicion.html#dendrograma-y-representación-de-clústeres",
+    "href": "cluster_transicion.html#dendrograma-y-representación-de-clústeres",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "3.3 Dendrograma y representación de clústeres",
+    "text": "3.3 Dendrograma y representación de clústeres\nUna vez definido el enlace y (k) óptimo, se presenta la salida gráfica del análisis."
+  },
+  {
+    "objectID": "cluster_transicion.html#footnotes",
+    "href": "cluster_transicion.html#footnotes",
+    "title": "La Antioquia Consolidada - Metodología",
+    "section": "Notas",
+    "text": "Notas\n\n\nEntre los métodos alternativos para la matriz de distancia: Manhattan, correlación de Pearson, entre otros.↩︎"
+  },
+  {
+    "objectID": "antioquia.html#la-antioquia-consolidada",
+    "href": "antioquia.html#la-antioquia-consolidada",
+    "title": "Las Antioquias",
+    "section": "La Antioquia consolidada",
+    "text": "La Antioquia consolidada\n\nIndicadores Contexto\n\n \n\nIndicadores Resultados\n\n\n\n(detalles metodológicos)"
+  },
+  {
+    "objectID": "antioquia.html#la-antioquia-en-transición",
+    "href": "antioquia.html#la-antioquia-en-transición",
+    "title": "Las Antioquias",
+    "section": "La Antioquia en transición",
+    "text": "La Antioquia en transición\n\nIndicadores Contexto\n\n \n\nIndicadores Resultados\n\n\n\n(detalles metodológicos)"
+  },
+  {
+    "objectID": "antioquia.html#la-antioquia-vulnerable",
+    "href": "antioquia.html#la-antioquia-vulnerable",
+    "title": "Las Antioquias",
+    "section": "La Antioquia vulnerable",
+    "text": "La Antioquia vulnerable\n\nIndicadores Contexto\n\n \n\nIndicadores Resultados\n\n\n\n(detalles metodológicos)"
+  },
+  {
+    "objectID": "resultados_cluster_antioquia.html",
+    "href": "resultados_cluster_antioquia.html",
+    "title": "Las Antioquias",
+    "section": "",
+    "text": "Antioquia es tri‑modal: un núcleo Consolidado (Valle de Aburrá y Oriente cercano), una corona en Transición (centro–sur y norte interior) y un anillo Vulnerable (Urabá, Bajo Cauca, Nordeste, Magdalena Medio y Occidente fluvial).\nBrechas más grandes (|z| ≳ 1)\n\nVulnerable: Vivienda, Salud (incl. vejez), Seguridad, Pobreza y exposición al cambio climático (comp. 2).\n\nConsolidada: Capacidad fiscal y Desarrollo económico sostenidamente por encima de la media; mejores resultados de Salud/Seguridad.\n\nTransición: valores cercanos a 0 con rezagos leves en vivienda/seguridad y algunas dimensiones sociales.\n\nImplicación: política diferenciada por territorio. Inversión dura y social en el anillo Vulnerable; consolidación de capital humano e innovación en el núcleo Consolidado; saltos de calidad en municipios en Transición.\n\n\n\n\n\n\n\nNota\n\n\n\nLeyenda de colores\nEl mapa y los gráficos adjuntos usan paletas distintas. En el texto se hace referencia a los nombres de clúster (Consolidada, Transición, Vulnerable)."
+  },
+  {
+    "objectID": "resultados_cluster_antioquia.html#vulnerable-periferias",
+    "href": "resultados_cluster_antioquia.html#vulnerable-periferias",
+    "title": "Las Antioquias",
+    "section": "5.1 Vulnerable (periferias)",
+    "text": "5.1 Vulnerable (periferias)\n\nInfraestructura y vivienda: agua/saneamiento rural, mejoramiento integral de barrios, reducción de hacinamiento.\n\nSalud primaria y vejez: redes integradas con énfasis rural disperso, tamizajes y manejo de crónicas; transporte sanitario.\n\nJuventud: terminar secundaria + ruta a superior/técnica y empleo joven; brecha digital.\n\nSeguridad y protección social: prevención focalizada, articulación con oferta nacional/territorial.\n\nAdaptación climática: gestión del riesgo, infraestructura natural, alertas tempranas."
+  },
+  {
+    "objectID": "resultados_cluster_antioquia.html#transición-corona-intermedia",
+    "href": "resultados_cluster_antioquia.html#transición-corona-intermedia",
+    "title": "Las Antioquias",
+    "section": "5.2 Transición (corona intermedia)",
+    "text": "5.2 Transición (corona intermedia)\n\nSaltos de calidad en vivienda/seguridad y cierre de brechas de juventud (finalización, STEM/tech, formación dual).\n\nEncadenamientos productivos con el núcleo y mejora fiscal (catastro, recaudo, compras públicas)."
+  },
+  {
+    "objectID": "resultados_cluster_antioquia.html#consolidada-núcleo-amva-oriente-cercano",
+    "href": "resultados_cluster_antioquia.html#consolidada-núcleo-amva-oriente-cercano",
+    "title": "Las Antioquias",
+    "section": "5.3 Consolidada (núcleo AMVA + Oriente cercano)",
+    "text": "5.3 Consolidada (núcleo AMVA + Oriente cercano)\n\nCapital humano avanzado e innovación (educación superior, I+D, clústeres pyme).\n\nConurbación y movilidad metropolitana (TOM, integración tarifaria).\n\nEfecto derrame hacia Transición (proveeduría, formación, empleo)."
+  },
+  {
+    "objectID": "resultados_cluster_consolidada.html",
+    "href": "resultados_cluster_consolidada.html",
+    "title": "La Antioquia consolidada",
+    "section": "",
+    "text": "La zona Consolidada de Antioquia no es homogénea: se identifican tres subtipos con perfiles diferenciados —Consolidada‑Alto, Consolidada‑Medio y Consolidada‑Bajo— que concentran sus brechas en dimensiones distintas.\n\nAlto: desempeño relativo fuerte y estable en la mayoría de dimensiones; algunas tensiones puntuales en vivienda/infancia según el indicador.\n\nMedio: perfil balanceado (z‑scores cercanos a 0) con pequeños rezagos en pobreza/seguridad o salud mental según el gráfico.\n\nBajo: mayores desviaciones absolutas (positivas o negativas) en varias dimensiones de contexto (vivienda, seguridad) y resultados (juventud), lo que sugiere heterogeneidad interna.\n\n\n\n\n\n\n\nNota\n\n\n\nCómo leer las barras\nLos gráficos muestran desviaciones estándar (z‑scores) respecto a la media departamental. Si tus índices están orientados a que ↑=mejor, entonces valores positivos implican mejor que el promedio y negativos, peor. Si no, invierte esa lectura para las dimensiones con signo adverso.\nSugerencia: añade en los .qmd una nota fija “+z = mejor” cuando corresponda."
+  },
+  {
+    "objectID": "resultados_cluster_consolidada.html#consolidada-alto",
+    "href": "resultados_cluster_consolidada.html#consolidada-alto",
+    "title": "La Antioquia consolidada",
+    "section": "5.1 Consolidada – Alto",
+    "text": "5.1 Consolidada – Alto\n\nCapital humano avanzado: mayor énfasis en educación superior, I+D y ecosistemas de innovación.\n\nSalud: consolidar prevención secundaria (crónicas) y salud mental.\n\nVivienda/calidad urbana: renovación y hábitat (densificación equilibrada, espacio público)."
+  },
+  {
+    "objectID": "resultados_cluster_consolidada.html#consolidada-medio",
+    "href": "resultados_cluster_consolidada.html#consolidada-medio",
+    "title": "La Antioquia consolidada",
+    "section": "5.2 Consolidada – Medio",
+    "text": "5.2 Consolidada – Medio\n\nCierres selectivos: puntual en vivienda y seguridad donde aparezcan brechas; mantener desempeño económico.\n\nMovilidad/metrópolis: integración con el núcleo (TOM, intermodalidad) y gobernanza metropolitana."
+  },
+  {
+    "objectID": "resultados_cluster_consolidada.html#consolidada-bajo",
+    "href": "resultados_cluster_consolidada.html#consolidada-bajo",
+    "title": "La Antioquia consolidada",
+    "section": "5.3 Consolidada – Bajo",
+    "text": "5.3 Consolidada – Bajo\n\nVivienda y entorno: mejoramiento integral, servicios públicos, reducción de hacinamiento.\n\nJuventud: terminación de secundaria, ruta a técnica/superior, empleabilidad.\n\nSeguridad y salud: refuerzo de APS, salud mental comunitaria y enfoque preventivo en seguridad.\n\nCapacidad fiscal: catastro multipropósito, recaudo y compras públicas para ampliar margen de inversión.\n\n\n(detalles metodológicos)"
+  },
+  {
+    "objectID": "resultados_cluster_vulnerable.html",
+    "href": "resultados_cluster_vulnerable.html",
+    "title": "Antioquia (Zona Vulnerable): Subtipos y Brechas",
+    "section": "",
+    "text": "La zona Vulnerable de Antioquia se desagrega en tres subtipos —Vulnerable‑Alto, Vulnerable‑Medio y Vulnerable‑Bajo— con heterogeneidad marcada entre contexto y resultados por ciclo de vida.\n\nVulnerable‑Bajo: alta varianza; combina rezagos severos en Cambio climático 1, Estructura demográfica 1, Pobreza 2, Seguridad 2 y Vejez 1, con mejoras puntuales fuertes en Infancia/Niñez (2–4) y Salud mental 2.\n\nVulnerable‑Medio: desempeño intermedio; mejora relativa en Capacidad fiscal 2 y Seguridad 1, pero rezagos en Pobreza 1 y Salud 2.\n\nVulnerable‑Alto: valores moderadamente positivos en Desarrollo económico y Pobreza 1, con negativos leves en Cambio climático 1, Capacidad fiscal 1 y algunos componentes de Juventud.\n\n\n\n\n\n\n\nNota\n\n\n\nCómo leer las barras\nLos gráficos muestran z‑scores (desviaciones estándar) respecto a la media departamental. Si tus índices están orientados a que ↑ = mejor, entonces z&gt;0 implica mejor y z&lt;0 peor; si alguna dimensión es adversa, invierte esa lectura."
+  },
+  {
+    "objectID": "resultados_cluster_vulnerable.html#vulnerable-alto",
+    "href": "resultados_cluster_vulnerable.html#vulnerable-alto",
+    "title": "Antioquia (Zona Vulnerable): Subtipos y Brechas",
+    "section": "5.1 Vulnerable – Alto",
+    "text": "5.1 Vulnerable – Alto\n\nConsolidación de APS y continuidad de cuidados; mantener avances en seguridad y desarrollo económico.\n\nCapacidad fiscal 1: fortalecer recaudo y catastro para ampliar margen de inversión.\n\nEn pobreza y juventud, reforzar transición escuela‑trabajo y formación técnica."
+  },
+  {
+    "objectID": "resultados_cluster_vulnerable.html#vulnerable-medio",
+    "href": "resultados_cluster_vulnerable.html#vulnerable-medio",
+    "title": "Antioquia (Zona Vulnerable): Subtipos y Brechas",
+    "section": "5.2 Vulnerable – Medio",
+    "text": "5.2 Vulnerable – Medio\n\nPobreza 1 y Salud 2: paquetes de protección social y mejora en oferta hospitalaria/traslados.\n\nEconomía: productividad MIPYME, encadenamientos agroindustriales y logísticos.\n\nSeguridad 1: mantener y escalar acciones que funcionan (iluminación, control situacional)."
+  },
+  {
+    "objectID": "resultados_cluster_vulnerable.html#vulnerable-bajo",
+    "href": "resultados_cluster_vulnerable.html#vulnerable-bajo",
+    "title": "Antioquia (Zona Vulnerable): Subtipos y Brechas",
+    "section": "5.3 Vulnerable – Bajo",
+    "text": "5.3 Vulnerable – Bajo\n\nSalud 1 y Vejez 1: RISS con enfoque rural disperso, tamizajes y manejo de crónicas.\n\nPobreza 2: inclusión productiva + transferencias focalizadas.\n\nVivienda 1: mejoramiento integral, agua/saneamiento, reducción de hacinamiento.\n\nSeguridad 2: prevención focalizada, participación comunitaria, espacio público seguro.\n\nCambio climático 1: gestión del riesgo, soluciones basadas en naturaleza y alertas tempranas.\n\n\n(detalles metodológicos)"
+  },
+  {
+    "objectID": "autores_about.html",
+    "href": "autores_about.html",
+    "title": "Autores",
+    "section": "",
+    "text": "Equipo CVP — Pulso Antioquia\nEste sitio presenta a los autores y sus roles. Las fotos van en www/img/."
+  },
+  {
+    "objectID": "autores_about.html#contribuciones-credit",
+    "href": "autores_about.html#contribuciones-credit",
+    "title": "Autores",
+    "section": "Contribuciones (CRediT)",
+    "text": "Contribuciones (CRediT)\n\nUn ✓ indica responsabilidad principal; un • contribución de apoyo.\n\n\n\n\nRol (CRediT)\nJuan Carlos\nLaura\n\n\n\n\nConceptualización\n✓\n✓\n\n\nCuraduría de datos\n•\n✓\n\n\nMetodología\n✓\n✓\n\n\nSoftware / reproducibilidad\n•\n✓\n\n\nValidación\n✓\n✓\n\n\nAnálisis formal\n✓\n✓\n\n\nVisualización\n•\n✓\n\n\nRedacción – borrador original\n✓\n✓\n\n\nRedacción – revisión y edición\n✓\n✓\n\n\nAdministración del proyecto\n✓\n•\n\n\nSupervisión\n✓\n•"
+  },
+  {
+    "objectID": "autores_about.html#contacto-y-soporte",
+    "href": "autores_about.html#contacto-y-soporte",
+    "title": "Autores",
+    "section": "Contacto y soporte",
+    "text": "Contacto y soporte\n\nRepositorio: https://github.com/jcmunozmora/pulso_antioquia\n\nIssues y sugerencias: pestaña Issues del repositorio.\n\nLicencia: MIT. Consulta LICENSE."
+  },
+  {
+    "objectID": "autores_about.html#cómo-citar",
+    "href": "autores_about.html#cómo-citar",
+    "title": "Autores",
+    "section": "Cómo citar",
+    "text": "Cómo citar\n\nMuñoz Mora, J. C., & Quintero, L. (2025). Pulso Antioquia: repositorio y sitio Quarto. Equipo CVP. GitHub: jcmunozmora/pulso_antioquia."
+  },
+  {
+    "objectID": "autores_about.html#agradecimientos",
+    "href": "autores_about.html#agradecimientos",
+    "title": "Autores",
+    "section": "Agradecimientos",
+    "text": "Agradecimientos\n\nA las entidades y equipos que mantienen y publican los datos abiertos usados en el proyecto.\n\nA la comunidad que reporta issues y contribuye con mejoras."
+  },
+  {
+    "objectID": "resultados_cluster_transicion.html",
+    "href": "resultados_cluster_transicion.html",
+    "title": "Antioquia (Zona en Transición): Subtipos y Brechas",
+    "section": "",
+    "text": "La zona en Transición de Antioquia se desagrega en tres subtipos —Transición‑Alto, Transición‑Medio y Transición‑Bajo— con perfiles distintos en contexto y ciclo de vida.\n\nTransición‑Alto: desempeño moderadamente favorable en varios bloques, con rezagos puntuales (p. ej., pobreza/seguridad o salud según componente).\n\nTransición‑Medio: cercano a la media (z ≈ 0) con mejoras en salud mental y leves déficits en desarrollo económico.\n\nTransición‑Bajo: mayor varianza; destaca por mejoras relativas en vivienda y seguridad (comp. 2), pero rezagos en salud y algunos componentes de pobreza.\n\n\n\n\n\n\n\nNota\n\n\n\nCómo leer las barras\nLos gráficos muestran z‑scores frente a la media nacional. Si todas las variables/índices se orientaron a ↑=mejor, entonces z&gt;0 indica mejor desempeño y z&lt;0 peor. De no ser así, invierte la lectura en las dimensiones adversas."
+  },
+  {
+    "objectID": "resultados_cluster_transicion.html#transición-alto",
+    "href": "resultados_cluster_transicion.html#transición-alto",
+    "title": "Antioquia (Zona en Transición): Subtipos y Brechas",
+    "section": "5.1 Transición – Alto",
+    "text": "5.1 Transición – Alto\n\nConsolidación de encadenamientos productivos y empleo de calidad.\n\nCierres selectivos en pobreza/seguridad donde aparezcan leves negativos.\n\nMovilidad hacia el núcleo (tiempos de viaje, conectividad digital)."
+  },
+  {
+    "objectID": "resultados_cluster_transicion.html#transición-medio",
+    "href": "resultados_cluster_transicion.html#transición-medio",
+    "title": "Antioquia (Zona en Transición): Subtipos y Brechas",
+    "section": "5.2 Transición – Medio",
+    "text": "5.2 Transición – Medio\n\nImpulso al desarrollo económico (productividad MIPYME, formación para el trabajo).\n\nSalud mental: fortalecer atención primaria y redes escolares/comunitarias.\n\nMantener niveles de seguridad y servicios."
+  },
+  {
+    "objectID": "resultados_cluster_transicion.html#transición-bajo",
+    "href": "resultados_cluster_transicion.html#transición-bajo",
+    "title": "Antioquia (Zona en Transición): Subtipos y Brechas",
+    "section": "5.3 Transición – Bajo",
+    "text": "5.3 Transición – Bajo\n\nVivienda y hábitat: mejoramiento integral, servicios, reducción de hacinamiento.\n\nSalud: APS reforzada y gestión de crónicas.\n\nJuventud: terminar secundaria, ruta técnico/superior, intermediación laboral.\n\nPobreza: transferencias condicionadas, inclusión productiva;\n\nSeguridad: prevención focalizada, iluminación/espacio público y acompañamiento institucional."
   }
 ]

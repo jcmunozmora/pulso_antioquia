@@ -202,7 +202,7 @@ png(
   
   #### By Component
 png(
-    file = paste0("03_Outputs/", path, "/04_Cluster/cluster_dendo_vars.png"),
+    file = paste0("03_Outputs/",path, "/04_Cluster/cluster_dendo_vars.png"),
     height = h * 0.8,
     width = w,
     units = "in",

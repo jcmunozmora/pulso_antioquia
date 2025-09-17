@@ -36,14 +36,17 @@ ps_cluster(pca_ds,df,c("Consolidada","Transición","Vulnerable"),"all")
 
 for (i in c("Consolidada","Transición","Vulnerable")) {
 
-  vul <- read_rds("03_Outputs/all/04_Cluster/ds_cluster.rds") %>% 
+  i= "Vulnerable"
+  path = i
+  pca_ds <- read_rds("03_Outputs/all/04_Cluster/ds_cluster.rds") %>% 
           filter(sub_grp==i)  %>% mutate(ind_mpio=nivl_vl)
 
-  df <- na.omit(vul) %>% select(-sub_grp,-(nivl_vl:nvl_label),-ind_mpio)
+  df <- na.omit(pca_ds) %>% select(-sub_grp,-(nivl_vl:nvl_label),-ind_mpio)
   df <- scale(df)
-  rownames(df) <- vul$nvl_label
+  rownames(df) <- pca_ds$nvl_label
   df<- as.data.frame(df)
+  lab_g <- c(paste0(i," - Alto"),paste0(i," - Medio"),paste0(i," - Bajo"))
 
-  ps_cluster(vul,df,c(paste0(i," - Alto"),paste0(i," - Medio"),paste0(i," - Bajo")),i)
+  ps_cluster(pca_ds,df,lab_g,i)
 
 }
