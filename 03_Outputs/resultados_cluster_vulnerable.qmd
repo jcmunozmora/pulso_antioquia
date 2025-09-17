@@ -1,6 +1,5 @@
 ---
 title: "Antioquia (Zona Vulnerable): Subtipos y Brechas"
-author: "Equipo Pulso Antioquia (Juan Carlos Muñoz Mora & Laura Quintero)"
 format:
   html:
     toc: true
@@ -87,3 +86,15 @@ Los gráficos muestran **z‑scores** (desviaciones estándar) respecto a la **m
 ---
 
 [(detalles metodológicos) ](03_Outputs/cluster_vulnerable.qmd )
+
+---
+## Descargas
+
+<div class="btn-group" role="group">
+  <a href="Vulnerable/04_Cluster/cluster_map.png" class="btn btn-primary" download>Descargar Mapa</a>
+  <a href="Vulnerable/04_Cluster/ds_cluster.rds" class="btn btn-primary" download>Descargar Base de Datos</a>
+</div>
+
+<div class="btn-group" role="group">
+  <a href="https://github.com/jcmunozmora/pulso_antioquia" class="btn btn-dark" target="_blank">Repositorio principal</a>
+</div>

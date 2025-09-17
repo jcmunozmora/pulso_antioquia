@@ -3,6 +3,13 @@ project:
   output-dir: ../docs
 website:
   title: "Las Antioquias"
+  page-footer:
+    left: "© 2025 Centro Valor Público (EAFIT) — Antioquia Cómo Vamos - Licencia MIT"
+    right: |
+      <a href="https://www.eafit.edu.co" target="_blank" rel="noopener">
+        <img src="img/logo-eafit.png" alt="Universidad EAFIT" class="footer-logo">
+      </a>
+
   navbar:
     tools:
       - icon: house
@@ -79,3 +86,4 @@ format:
     code-line-numbers: false
     code-tools: false
     code-fold: true
+    css: site-footer-logo.css

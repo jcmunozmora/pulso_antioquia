@@ -32,6 +32,7 @@ tabla_resumen %>%
   <img src="all/idx4_Capacidad_radar_PC1.png" width="300px" />
   <img src="all/idx4_Capacidad_radar_PC2.png" width="300px" />
   <img src="all/idx4_Capacidad_radar_PC3.png" width="300px" />
+  <img src="all/idx4_Capacidad_radar_PC4.png" width="300px" />
 </div>
 
 ```{r, fig.cap = 'Resultados completos en PNG'}

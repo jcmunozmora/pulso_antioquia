@@ -1,0 +1,18 @@
+/* Footer logo sizing & alignment */
+.footer-logo{
+  height: 40px;
+  max-width: 80px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-left: .25rem;
+  opacity: .98;
+}
+@media (max-width: 600px){
+  .footer-logo{ height: 22px; }
+}
+
+/* Optional: tighten footer spacing a bit */
+.quarto-page-footer{
+  padding-top: .6rem;
+  padding-bottom: .8rem;
+}

@@ -48,7 +48,7 @@ Se empleó análisis de componentes principales (PCA) para identificar los facto
   <img src="all/idx1_servicio_radar_PC1.png" width="300px" />
   <img src="all/idx1_servicio_radar_PC2.png" width="300px" />
   <img src="all/idx1_servicio_radar_PC3.png" width="300px" />
-  <img src="all/idx10_juventud_radar_PC4.png" width="300px" />
+  <img src="all/idx1_servicio_radar_PC4.png" width="300px" />
 </div>
 
 ```{r, fig.cap = 'Resultados completos en PNG'}

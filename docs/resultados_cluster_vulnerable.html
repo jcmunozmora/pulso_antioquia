@@ -2,11 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.7.34">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Equipo Pulso Antioquia (Juan Carlos Muñoz Mora &amp; Laura Quintero)">
 
 <title>Antioquia (Zona Vulnerable): Subtipos y Brechas – Las Antioquias</title>
 <style>
@@ -33,15 +32,14 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -56,7 +54,7 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No se han encontrado resultados",
+    "search-no-results-text": "Sin resultados",
     "search-matching-documents-text": "documentos encontrados",
     "search-copy-link-title": "Copiar el enlace en la búsqueda",
     "search-hide-matches-text": "Ocultar resultados adicionales",
@@ -71,6 +69,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
+<link rel="stylesheet" href="site-footer-logo.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -80,8 +79,6 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Las Antioquias</span>
     </a>
@@ -244,6 +241,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#vulnerable-alto" id="toc-vulnerable-alto" class="nav-link" data-scroll-target="#vulnerable-alto"><span class="header-section-number">5.1</span> Vulnerable – <strong>Alto</strong></a></li>
   <li><a href="#vulnerable-medio" id="toc-vulnerable-medio" class="nav-link" data-scroll-target="#vulnerable-medio"><span class="header-section-number">5.2</span> Vulnerable – <strong>Medio</strong></a></li>
   <li><a href="#vulnerable-bajo" id="toc-vulnerable-bajo" class="nav-link" data-scroll-target="#vulnerable-bajo"><span class="header-section-number">5.3</span> Vulnerable – <strong>Bajo</strong></a></li>
+  <li><a href="#descargas" id="toc-descargas" class="nav-link" data-scroll-target="#descargas"><span class="header-section-number">5.4</span> Descargas</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -260,12 +258,6 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Autor/a</div>
-    <div class="quarto-title-meta-contents">
-             <p>Equipo Pulso Antioquia (Juan Carlos Muñoz Mora &amp; Laura Quintero) </p>
-          </div>
-  </div>
     
   
     
@@ -386,6 +378,16 @@ Los gráficos muestran <strong>z‑scores</strong> (desviaciones estándar) resp
 </ul>
 <hr>
 <p><a href="03_Outputs/cluster_vulnerable.qmd">(detalles metodológicos)</a></p>
+<hr>
+</section>
+<section id="descargas" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="descargas"><span class="header-section-number">5.4</span> Descargas</h2>
+<div class="btn-group" role="group">
+<p><a href="Vulnerable/04_Cluster/cluster_map.png" class="btn btn-primary" download="">Descargar Mapa</a> <a href="Vulnerable/04_Cluster/ds_cluster.rds" class="btn btn-primary" download="">Descargar Base de Datos</a></p>
+</div>
+<div class="btn-group" role="group">
+<p><a href="https://github.com/jcmunozmora/pulso_antioquia" class="btn btn-dark" target="_blank">Repositorio principal</a></p>
+</div>
 
 
 </section>
@@ -443,14 +445,13 @@ Los gráficos muestran <strong>z‑scores</strong> (desviaciones estándar) resp
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -793,6 +794,19 @@ Los gráficos muestran <strong>z‑scores</strong> (desviaciones estándar) resp
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2025 Centro Valor Público (EAFIT) — Antioquia Cómo Vamos - Licencia MIT</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><a href="https://www.eafit.edu.co" target="_blank" rel="noopener"> <img src="img/logo-eafit.png" alt="Universidad EAFIT" class="footer-logo"> </a></p>
+</div>
+  </div>
+</footer>
 
 
 

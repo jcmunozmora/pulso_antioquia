@@ -56,21 +56,22 @@ Con la implementación de estos métodos se **sacrifica precisión** al no conta
 
 Como resultado, se construyen **15 índices** correspondientes a las subdimensiones, divididos entre **indicadores de contexto** y **de resultado**. A partir de estos índices, se desarrolla el análisis comparativo y de brechas por territorio.
 
-- **Indicadores de Contexto**
-    - [Agua potable y saneamiento](03_Outputs/resultados_idx1_servicio.qmd)
-    - [Crecimiento económico ](03_Outputs/resultados_idx6_crecimiento.qmd )
-    - [Cambio climático ](03_Outputs/resultados_idx3_climatico.qmd )
-    - [Pobreza ](03_Outputs/resultados_idx11_pobreza.qmd)
-    - [Características de la vivienda ](03_Outputs/resultados_idx5_viviendas.qmd )
-    - [Capacidad fiscal](03_Outputs/resultados_idx4_Capacidad.qmd)
-    - [Desigualdad ](03_Outputs/resultados_idx7_gini.qmd)
-    - [Estructura demográfica ](03_Outputs/resultados_idx8_demografica.qmd)
-    - [Salud ](03_Outputs/resultados_idx12_salud.qmd)
-    - [Salud Mental ](03_Outputs/resultados_idx13_saludmental.qmd)
-    - [Seguridad ](03_Outputs/resultados_idx14_seguridad.qmd )
+- **Contexto**: condiciones generales del hogar y entorno (esenciales para comprender el marco en el que se diseñan políticas).  
+  - [Agua potable y saneamiento](resultados_idx1_servicio.html)
+  - [Crecimiento económico ](resultados_idx6_crecimiento.html )
+  - [Cambio climático ](resultados_idx3_climatico.html )
+  - [Pobreza ](resultados_idx11_pobreza.html)
+  - [Características de la vivienda ](resultados_idx5_viviendas.html )
+  - [Capacidad fiscal](resultados_idx4_Capacidad.html)
+  - [Desigualdad ](resultados_idx7_gini.html)
+  - [Estructura demográfica ](resultados_idx8_demografica.html)
+  - [Salud ](resultados_idx12_salud.html)
+  - [Salud Mental ](resultados_idx13_saludmental.html)
+  - [Seguridad ](resultados_idx14_seguridad.html )
 
-- **Indicadores de Resultado**
-    - [Infancia y niñez](03_Outputs/resultados_idx9_infnin.qmd)
-    - [Juventud ](03_Outputs/resultados_idx10_juventud.qmd)
-    - [Adultez ](03_Outputs/resultados_idx2_Adultez.qmd)
-    - [Vejez ](03_Outputs/resultados_idx15_vejez.qmd) 
+- **Resultados**: situaciones sociales específicas **a lo largo del ciclo de vida**; reflejan el contexto e impactos en bienestar.
+  - [Infancia y niñez](resultados_idx9_infnin.html)
+  - [Juventud ](resultados_idx10_juventud.html)
+  - [Adultez ](resultados_idx2_Adultez.html)
+  - [Vejez ](resultados_idx15_vejez.html) 
+

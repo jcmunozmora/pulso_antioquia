@@ -36,8 +36,8 @@ date: last-modified
 .section-title{ font-weight:700; margin:.5rem 0 1rem; }
 </style>
 
-<div class="section-title h4">Equipo CVP — Pulso Antioquia</div>
-<p>Este sitio presenta a los autores y sus roles. Las fotos van en <code>www/img/</code>.</p>
+<div class="section-title h4">Equipo Valor Público — EAFIT</div>
+<p>Este sitio presenta a los autores y sus roles.</p>
 
 ```{=html}
 <div class="people">
@@ -59,10 +59,46 @@ date: last-modified
     <img src="img/Laura.png" alt="Laura Quintero" loading="lazy">
     <div>
       <h3>Laura Quintero</h3>
-      <div class="meta">Investigación aplicada y análisis cuantitativo — Equipo CVP / Pulso Antioquia</div>
+      <div class="meta">Investigadora Senior</div>
       <p>Construcción de indicadores, reproducibilidad (R/tidymodels) y visualización; coautora de la documentación metodológica.</p>
       <p class="links">
         <a href="mailto:lmquinterv@eafit.edu.co">📧 Correo</a>
+      </p>
+    </div>
+  </div>
+
+    <div class="person">
+    <img src="img/moni_h.jpeg" alt="Monica Hernandez" loading="lazy">
+    <div>
+      <h3>Mónica Hernandez</h3>
+      <div class="meta">Profesora-Investigadora</div>
+      <p>Análisis y desarrollo de metodología.</p>
+      <p class="links">
+        <a href="mailto:mhernande6@eafit.edu.co">📧 Correo</a>
+      </p>
+    </div>
+  </div>
+
+    <div class="person">
+    <img src="img/santi.png" alt="Santi" loading="lazy">
+    <div>
+      <h3>Santiago Leyva</h3>
+      <div class="meta">Profesor - Investigador  — Equipo CVP / Pulso Antioquia</div>
+      <p>Análisis.</p>
+      <p class="links">
+        <a href="mailto:sleyvabo@eafit.edu.co">📧 Correo</a>
+      </p>
+    </div>
+  </div>
+
+    <div class="person">
+    <img src="img/harold.png" alt="Harold" loading="lazy">
+    <div>
+      <h3>Harold Cardona</h3>
+      <div class="meta">Profesor - Investigador  — Equipo CVP / Pulso Antioquia</div>
+      <p>Análisis.</p>
+      <p class="links">
+        <a href="mailto:hcardonat@eafit.edu.co">📧 Correo</a>
       </p>
     </div>
   </div>
@@ -79,8 +115,8 @@ date: last-modified
     <img src="img/moni.png" alt="Monica" loading="lazy">
     <div>
       <h3>Mónica Ospina</h3>
-      <div class="meta">Investigación aplicada y análisis cuantitativo — Equipo CVP / Pulso Antioquia</div>
-      <p>Construcción de indicadores, reproducibilidad (R/tidymodels) y visualización; coautora de la documentación metodológica.</p>
+      <div class="meta">Directora Antioquia Cómo Vamos</div>
+      <p>Dirección y acompañamiento estratégico.</p>
       <p class="links">
         <a href="mailto:mospina@proantioquia.org.co">📧 Correo</a>
       </p>
@@ -91,8 +127,8 @@ date: last-modified
     <img src="img/ona.png" alt="Ona" loading="lazy">
     <div>
       <h3>Ona Duarte Venslauskas</h3>
-      <div class="meta">Investigación aplicada y análisis cuantitativo — Equipo CVP / Pulso Antioquia</div>
-      <p>Construcción de indicadores, reproducibilidad (R/tidymodels) y visualización; coautora de la documentación metodológica.</p>
+      <div class="meta">Investigadora - Antioquia Cómo Vamos</div>
+      <p>Acompañamiento en la preparación de análisis.</p>
       <p class="links">
         <a href="mailto:oduarte@proantioquia.org.co">📧 Correo</a>
       </p>
@@ -103,8 +139,8 @@ date: last-modified
     <img src="img/alejo.png" alt="Alejo" loading="lazy">
     <div>
       <h3>Alejandro Arenas Alzate</h3>
-      <div class="meta">Investigación aplicada y análisis cuantitativo — Equipo CVP / Pulso Antioquia</div>
-      <p>Construcción de indicadores, reproducibilidad (R/tidymodels) y visualización; coautora de la documentación metodológica.</p>
+      <div class="meta">Investigador Antioquia Cómo Vamos</div>
+      <p>Construcción de indicadores, reproducibilidad (R/tidymodels) y visualización.</p>
       <p class="links">
         <a href="mailto:aarenas@proantioquia.org.co">📧 Correo</a>
       </p>
@@ -115,8 +151,8 @@ date: last-modified
     <img src="img/yeison.png" alt="Yeison" loading="lazy">
     <div>
       <h3>Yeison Londoño</h3>
-      <div class="meta">Investigación aplicada y análisis cuantitativo — Equipo CVP / Pulso Antioquia</div>
-      <p>Construcción de indicadores, reproducibilidad (R/tidymodels) y visualización; coautora de la documentación metodológica.</p>
+      <div class="meta">Investigador Antioquia Cómo Vamos</div>
+      <p>Construcción de indicadores, reproducibilidad (R/tidymodels) y visualización.</p>
       <p class="links">
         <a href="mailto:ylondono@proantioquia.org.co">📧 Correo</a>
       </p>
@@ -130,18 +166,20 @@ date: last-modified
 
 ## Contribuciones (CRediT)
 
-> Un **✓** indica responsabilidad principal; un **•** contribución de apoyo.
+> Un **✓** indica responsabilidad principal; un **•** contribución de apoyo; **-** no aplica.
 
-| Rol (CRediT)                         | Juan Carlos | Laura |
-|-------------------------------------|:-----------:|:-----:|
-| Conceptualización                   | ✓           | ✓     |
-| Curaduría de datos                  | •           | ✓     |
-| Metodología                         | ✓           | ✓     |
-| Software / reproducibilidad         | •           | ✓     |
-| Validación                          | ✓           | ✓     |
-| Análisis formal                     | ✓           | ✓     |
-| Visualización                       | •           | ✓     |
-| Redacción – borrador original       | ✓           | ✓     |
-| Redacción – revisión y edición      | ✓           | ✓     |
-| Administración del proyecto         | ✓           | •     |
-| Supervisión                         | ✓           | •     |
+| Rol (CRediT)                    | Juan Carlos | Laura | Monica | Alejandro | Yeison | Ona     | Monica H | Santiago | Harold |
+|--------------------------------|:-----------:|:-----:|:------:|:---------:|:------:|:--------:|:--------:|:------:|:------:|
+| Conceptualización              | ✓           | ✓     |   ✓    |     -     |   -    |    ✓     |    ✓     |   ✓    |  ✓     |
+| Curaduría de datos             | ✓           | ✓     |   -    |     ✓     |   ✓    |    -     |    •     |   -    |  -     |
+| Metodología                    | ✓           | ✓     |   -    |     -     |   •    |    -     |    ✓     |   -    |   -    |
+| Software / reproducibilidad    | ✓           | ✓     |   -    |     -     |   •    |    -     |    •     |   -    |  -     |
+| Validación                     | ✓           | ✓     |   ✓    |     ✓     |   ✓    |    ✓     |    ✓     |   ✓    |  ✓     |
+| Análisis formal                | ✓           | ✓     |   ✓    |     ✓     |   ✓    |    ✓     |    ✓     |   ✓    |   ✓    |
+| Visualización                  | ✓           | ✓     |   -    |     ✓     |   ✓    |    ✓     |    •     |   -    |   -    |
+| Redacción – borrador original  | ✓           | ✓     |   -    |     -     |   •    |    •     |    •     |   -    |  -     |
+| Redacción – revisión y edición | ✓           | ✓     |   -    |     -     |   •    |    •     |    •     |   -    |  -     |
+| Administración del proyecto    | ✓           | ✓     |   -   |     -    |   •    |    •     |    •     |   -    |   -    |
+| Supervisión                    | ✓           | •     |   -    |     -     |   •    |    •     |    •     |   -    |  -     |
+
+
