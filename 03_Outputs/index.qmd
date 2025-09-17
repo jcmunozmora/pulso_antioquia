@@ -1,0 +1,16 @@
+---
+title: "Desigualdades Territorriales – Antioquia"
+format: html
+---
+
+Bienvenido/a al sitio de resultados de la réplica metodológica para **Antioquia**.
+
+- **Metodología.** Resumen del pipeline (datos → estandarización → PCA → clustering).
+- **Antioquia.** Panel con fichas y comparativos.
+- **Múltiples Colombias.** Explicación de la tipología y visualizaciones.
+
+---
+
+El estudio original [Descargar](/pdf/Desigualdades-territoriales-en-Colombia-realidades.pdf)
+
+Descripción detallada de la metodología explicada [Descargar](/pdf/Anexo_Metodologico_PulsoSocial.pdf)

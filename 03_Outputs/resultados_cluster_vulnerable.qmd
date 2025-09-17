@@ -1,0 +1,89 @@
+---
+title: "Antioquia (Zona Vulnerable): Subtipos y Brechas"
+author: "Equipo Pulso Antioquia (Juan Carlos Muñoz Mora & Laura Quintero)"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: cosmo
+lang: es
+---
+
+# Resumen ejecutivo
+
+La **zona Vulnerable** de Antioquia se desagrega en **tres subtipos** —**Vulnerable‑Alto**, **Vulnerable‑Medio** y **Vulnerable‑Bajo**— con **heterogeneidad marcada** entre **contexto** y **resultados por ciclo de vida**.
+
+- **Vulnerable‑Bajo**: alta **varianza**; combina **rezagos severos** en *Cambio climático 1*, *Estructura demográfica 1*, *Pobreza 2*, **Seguridad 2** y **Vejez 1**, con **mejoras puntuales** fuertes en *Infancia/Niñez (2–4)* y **Salud mental 2**.  
+- **Vulnerable‑Medio**: desempeño **intermedio**; mejora relativa en **Capacidad fiscal 2** y **Seguridad 1**, pero rezagos en **Pobreza 1** y **Salud 2**.  
+- **Vulnerable‑Alto**: valores **moderadamente positivos** en *Desarrollo económico* y **Pobreza 1**, con **negativos leves** en *Cambio climático 1*, **Capacidad fiscal 1** y algunos componentes de **Juventud**.
+
+::: callout-note
+**Cómo leer las barras**  
+Los gráficos muestran **z‑scores** (desviaciones estándar) respecto a la **media departamental**. Si tus índices están **orientados** a que **↑ = mejor**, entonces z>0 implica **mejor** y z<0 **peor**; si alguna dimensión es **adversa**, invierte esa lectura.
+:::
+
+---
+
+# Mapa de subtipos en la zona Vulnerable
+
+![](Vulnerable/04_Cluster/cluster_map.png){fig-alt="Mapa: zona Vulnerable subdividida (Alto, Medio, Bajo)" fig-cap="Antioquia Vulnerable: subtipos territoriales." width="95%"}
+
+**Lectura territorial (orientativa).** Predominio del subtipo **Bajo** en **Urabá, Bajo Cauca, Nordeste y Magdalena Medio**, con **Medio** en corredores específicos (costeros y mineros) y **Alto** en focos puntuales.
+
+---
+
+# Brechas en **Contexto** (desviaciones respecto a la media)
+
+> Barras = **z‑scores** (0 = media nacional). Guía: **|z| < 0.5** (pequeña), **0.5–1** (moderada), **1–2** (grande), **>2** (muy grande).
+
+![](Vulnerable/04_Cluster/cluster_variables_contexto_1.png){fig-alt="Brechas de contexto – grupo 1" fig-cap="Acceso a agua/saneamiento, cambio climático (1–2), capacidad fiscal (1–2) y vivienda (1–2)." width="100%"}
+
+![](Vulnerable/04_Cluster/cluster_variables_contexto_2.png){fig-alt="Brechas de contexto – grupo 2" fig-cap="Desarrollo económico (1–3), desigualdad, estructura demográfica, pobreza (1–2), salud (1–2), salud mental (1–2), seguridad (1–2)." width="100%"}
+
+**Patrones observados (comparativos entre subtipos):**
+
+- **Cambio climático (1–2):** *Vulnerable‑Bajo* presenta **rezago fuerte** en **(1)** (z ≪ 0) y **mejora** en **(2)** (z > 1), lo que sugiere **exposición alta** pero también **capacidades puntuales de respuesta**.  
+- **Capacidad fiscal:** *Medio* sobresale en **Cap. fiscal 2** (z > 0), *Alto* en **Cap. fiscal 1**; *Bajo* con negativos en **Cap. fiscal 1**.  
+- **Vivienda (1–2):** *Bajo* muestra **peor desempeño** en **Vivienda 1** (z < −1) y **mejoras** en **Vivienda 2** (z > 1).  
+- **Desarrollo económico:** *Alto* ligeramente positivo; *Medio* con negativos en **(2)**; *Bajo* con **rezagos** en **(3)**.  
+- **Estructura demográfica (1):** *Bajo* con **brecha grande negativa** (z ≪ 0).  
+- **Pobreza:** *Medio* peor en **Pobreza 1** (z < 0), *Bajo* **muy negativo** en **Pobreza 2**.  
+- **Salud:** *Bajo* muy **negativo** en **Salud 1** (z ≪ 0), mientras **Salud mental 2** es **muy positiva** (z ≫ 0).  
+- **Seguridad:** *Bajo* **positivo** en **Seguridad 1** (z > 0) pero **negativo** en **Seguridad 2** (z < 0).
+
+---
+
+# Brechas en **Resultados por ciclo de vida**
+
+![](Vulnerable/04_Cluster/cluster_variables_res_1.png){fig-alt="Brechas por ciclo de vida" fig-cap="Infancia/Niñez (1–4), Juventud (1–4), Adultez (1–3) y Vejez (1)." width="100%"}
+
+- **Infancia y Niñez:** *Bajo* exhibe **mejoras muy marcadas** en **(2–4)** (z ≫ 0), a la par de un **rezago** en **(1)** en un subtipo; *Medio* se mueve alrededor de 0.  
+- **Juventud:** *Medio* con **negativos** en **Juv. 2**; *Bajo* con **positivos** en **Juv. 1** y **Juv. 3**, pero **negativo** en **Juv. 4**.  
+- **Adultez:** *Bajo* negativo en **Adul. 3**; *Alto* y *Medio* cercanos a 0 con variaciones leves.  
+- **Vejez:** *Bajo* con **brecha negativa** (z < −1), señalando **mortalidad por crónicas**/condiciones de envejecimiento por encima de la media.
+
+---
+
+# Líneas de acción sugeridas por subtipo
+
+## Vulnerable – **Alto**
+- **Consolidación de APS** y **continuidad de cuidados**; mantener avances en seguridad y desarrollo económico.  
+- **Capacidad fiscal 1**: fortalecer **recaudo** y **catastro** para ampliar margen de inversión.  
+- En **pobreza** y **juventud**, reforzar **transición escuela‑trabajo** y **formación técnica**.
+
+## Vulnerable – **Medio**
+- **Pobreza 1** y **Salud 2**: paquetes de **protección social** y **mejora en oferta hospitalaria/traslados**.  
+- **Economía**: productividad MIPYME, encadenamientos agroindustriales y logísticos.  
+- **Seguridad 1**: mantener y escalar acciones que funcionan (iluminación, control situacional).
+
+## Vulnerable – **Bajo**
+- **Salud 1** y **Vejez 1**: **RISS** con enfoque rural disperso, **tamizajes** y manejo de **crónicas**.  
+- **Pobreza 2**: **inclusión productiva** + **transferencias** focalizadas.  
+- **Vivienda 1**: mejoramiento integral, agua/saneamiento, reducción de hacinamiento.  
+- **Seguridad 2**: prevención focalizada, participación comunitaria, espacio público seguro.  
+- **Cambio climático 1**: gestión del riesgo, soluciones basadas en naturaleza y **alertas tempranas**.
+
+---
+
+[(detalles metodológicos) ](03_Outputs/cluster_vulnerable.qmd )

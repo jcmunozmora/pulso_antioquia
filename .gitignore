@@ -1,0 +1,7 @@
+# Ignorar todos los archivos en 01_Data/01_Inputs
+01_Data/00_Inputs/*
+
+# Permitir el archivo .gitignore en esa carpeta
+!01_Data/00_Inputs/.gitignore
+
+/.quarto/

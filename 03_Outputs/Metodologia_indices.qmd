@@ -1,0 +1,76 @@
+---
+title: "Reducción de Dimensiones e Índices (Pulso Social)"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: cosmo
+lang: es
+bibliography: references.bib
+---
+
+# Introducción
+
+El análisis de **reducción de dimensiones** busca simplificar el análisis de las dimensiones de *Pulso Social* mediante la construcción de **índices** que permitan identificar las principales diferencias o brechas territoriales. Para esto, se emplean **métodos de aprendizaje no supervisado** que aprenden, desde los datos, cuáles son las asociaciones naturales a partir de su comportamiento. En particular, se utilizan **métodos de reducción de dimensiones** que transforman un conjunto grande de variables en otro más pequeño que conserva la mayor parte de la información inicial.
+
+Con la implementación de estos métodos se **sacrifica precisión** al no contar con la información completa, pero se **gana simplicidad** al disponer de índices fáciles de explorar y visualizar. Existen distintos métodos de reducción de dimensiones: **Análisis de Componentes Principales (ACP/PCA)**, **Mínimos Cuadrados Parciales (PLS)**, **Análisis de Correspondencias** y **Uniform Manifold Approximation and Projection (UMAP)**, entre otros. Dada la naturaleza **continua** de los indicadores, se realizó una **comparación** entre ACP y UMAP con resultados similares [@MardiaK.V.KentJ.T.Bibby1979]. Por su **simplicidad inferencial**, se decidió implementar el **ACP** como método principal, usando el paquete **tidymodels** de R.
+
+# Procedimiento de ACP en *Pulso Colombia*
+
+1. **Selección de variables**  
+   La infraestructura de datos recoge información de múltiples fuentes con distinta disponibilidad temporal y espacial. Se construyó una base que prioriza la mayor cobertura posible por territorio y dimensión, aplicando los siguientes criterios:
+
+   - **Temporal:** se toma la **última información disponible** por cada indicador.  
+   - **Geográfico:** la unidad de análisis es **departamental**; cuando no hay dato departamental, se usa el de la **capital** (documentado).  
+   - **Disponibilidad:** se priorizan variables con información en **≥ 80%** del territorio.
+
+2. **Imputación de datos**  
+   Algunas variables sociales no están disponibles para todos los territorios. Para ofrecer una visión completa y balanceada, se aplica **imputación** que asocia valores plausibles usando toda la información disponible:
+
+   - **Imputación por Vecino Más Cercano (Nearest Neighbor, NN / KNN):** método eficaz para imputar datos faltantes sustituyendo por valores derivados de casos con perfiles similares en el conjunto. Demuestra buena capacidad predictiva y preserva la estructura de los datos [@Beretta2016NearestEvaluation].  
+   - Cuando una observación es imputada, se **deja nota** explícita de ello.
+
+3. **Estandarización de los datos**  
+   Para evitar sesgos por magnitud y asegurar que cada variable contribuya por igual al análisis, se aplican **dos estandarizaciones consecutivas**:
+
+   - (1) **Transformación orderNorm**  
+     $$
+     g(x) \;=\; \Phi^{-1}\!\left(\frac{\mathrm{rank}(x)-0.5}{\mathrm{length}(x)}\right)
+     $$
+     donde \\(\Phi\\) es la CDF normal estándar, \\(\mathrm{rank}(x)\\) es el rango de cada observación y \\(\mathrm{length}(x)\\) el número de observaciones.
+   - (2) **Centrado y escalado:** todas las variables quedan con **media 0** y **desviación estándar 1**.
+
+4. **Matriz de covarianzas**  
+   Con los datos estandarizados, se construye la **matriz de covarianzas** para identificar la estructura de correlaciones, detectar **redundancias** y determinar qué variables explican más variación.
+
+5. **Valores y vectores propios**  
+   Los **componentes principales** surgen de los **autovalores** y **autovectores** de la matriz de covarianzas. Cada componente es una **combinación lineal** de las variables originales, **no correlacionada** con las demás, que captura la mayor parte posible de la varianza. Los primeros componentes concentran la información más relevante.
+
+6. **Selección de Componentes Principales**  
+   Para garantizar **alto poder explicativo**, se fija un umbral de **varianza mínima acumulada del 60%**.  
+   - Si el **primer componente (PC1)** explica **≥ 60%**, se usa **un solo componente** para el índice.  
+   - En caso contrario, se **acumulan componentes** (PC1 + PC2, …) hasta alcanzar **≥ 60%**.
+
+# Resultado
+
+Como resultado, se construyen **15 índices** correspondientes a las subdimensiones, divididos entre **indicadores de contexto** y **de resultado**. A partir de estos índices, se desarrolla el análisis comparativo y de brechas por territorio.
+
+- **Indicadores de Contexto**
+    - [Agua potable y saneamiento](03_Outputs/resultados_idx1_servicio.qmd)
+    - [Crecimiento económico ](03_Outputs/resultados_idx6_crecimiento.qmd )
+    - [Cambio climático ](03_Outputs/resultados_idx3_climatico.qmd )
+    - [Pobreza ](03_Outputs/resultados_idx11_pobreza.qmd)
+    - [Características de la vivienda ](03_Outputs/resultados_idx5_viviendas.qmd )
+    - [Capacidad fiscal](03_Outputs/resultados_idx4_Capacidad.qmd)
+    - [Desigualdad ](03_Outputs/resultados_idx7_gini.qmd)
+    - [Estructura demográfica ](03_Outputs/resultados_idx8_demografica.qmd)
+    - [Salud ](03_Outputs/resultados_idx12_salud.qmd)
+    - [Salud Mental ](03_Outputs/resultados_idx13_saludmental.qmd)
+    - [Seguridad ](03_Outputs/resultados_idx14_seguridad.qmd )
+
+- **Indicadores de Resultado**
+    - [Infancia y niñez](03_Outputs/resultados_idx9_infnin.qmd)
+    - [Juventud ](03_Outputs/resultados_idx10_juventud.qmd)
+    - [Adultez ](03_Outputs/resultados_idx2_Adultez.qmd)
+    - [Vejez ](03_Outputs/resultados_idx15_vejez.qmd) 

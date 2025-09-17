@@ -1,0 +1,147 @@
+---
+title: "Autores"
+page-layout: full
+format:
+  html:
+    toc: false
+    number-sections: false
+    theme: cosmo
+lang: es
+date: last-modified
+---
+
+<style>
+/* Control global del tamaño */
+:root { --avatar: 96px; --card-w: 320px; }
+
+/* Layout simple con flex */
+.people { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+.person {
+  display: flex; gap: 12px; padding: 12px;
+  border: 1px solid #eee; border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+  max-width: var(--card-w); background: #fff;
+}
+.person img {
+  width: var(--avatar); height: var(--avatar);
+  object-fit: cover; border-radius: 50%;
+}
+.person h3 { margin: 0 0 4px 0; font-size: 1.05rem; }
+.person .meta { color:#6c757d; font-size:.9rem; margin-bottom: 6px; }
+.person .links a {
+  text-decoration: none; padding: 4px 8px;
+  border: 1px solid #ddd; border-radius: 6px;
+  margin-right: 6px; font-size: .85rem;
+}
+.section-title{ font-weight:700; margin:.5rem 0 1rem; }
+</style>
+
+<div class="section-title h4">Equipo CVP — Pulso Antioquia</div>
+<p>Este sitio presenta a los autores y sus roles. Las fotos van en <code>www/img/</code>.</p>
+
+```{=html}
+<div class="people">
+
+  <div class="person">
+    <img src="img/jc_munoz.png" alt="Juan Carlos Muñoz Mora" loading="lazy">
+    <div>
+      <h3>Juan Carlos Muñoz Mora</h3>
+      <div class="meta">Dirección y coordinación técnica — Equipo CVP / Pulso Antioquia</div>
+      <p>Economista aplicado. Lidera conceptualización, metodología, validación y coordinación del repositorio y del sitio Quarto.</p>
+      <p class="links">
+        <a href="mailto:jmunozm1@eafit.co">📧 Correo</a>
+        <a href="https://github.com/jcmunozmora">💻 GitHub</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="person">
+    <img src="img/Laura.png" alt="Laura Quintero" loading="lazy">
+    <div>
+      <h3>Laura Quintero</h3>
+      <div class="meta">Investigación aplicada y análisis cuantitativo — Equipo CVP / Pulso Antioquia</div>
+      <p>Construcción de indicadores, reproducibilidad (R/tidymodels) y visualización; coautora de la documentación metodológica.</p>
+      <p class="links">
+        <a href="mailto:lmquinterv@eafit.edu.co">📧 Correo</a>
+      </p>
+    </div>
+  </div>
+
+</div>
+```
+
+<div class="section-title h4">Equipo Antioquia Cómo Vamos</div>
+
+```{=html}
+<div class="people">
+
+  <div class="person">
+    <img src="img/moni.png" alt="Monica" loading="lazy">
+    <div>
+      <h3>Mónica Ospina</h3>
+      <div class="meta">Investigación aplicada y análisis cuantitativo — Equipo CVP / Pulso Antioquia</div>
+      <p>Construcción de indicadores, reproducibilidad (R/tidymodels) y visualización; coautora de la documentación metodológica.</p>
+      <p class="links">
+        <a href="mailto:mospina@proantioquia.org.co">📧 Correo</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="person">
+    <img src="img/ona.png" alt="Ona" loading="lazy">
+    <div>
+      <h3>Ona Duarte Venslauskas</h3>
+      <div class="meta">Investigación aplicada y análisis cuantitativo — Equipo CVP / Pulso Antioquia</div>
+      <p>Construcción de indicadores, reproducibilidad (R/tidymodels) y visualización; coautora de la documentación metodológica.</p>
+      <p class="links">
+        <a href="mailto:oduarte@proantioquia.org.co">📧 Correo</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="person">
+    <img src="img/alejo.png" alt="Alejo" loading="lazy">
+    <div>
+      <h3>Alejandro Arenas Alzate</h3>
+      <div class="meta">Investigación aplicada y análisis cuantitativo — Equipo CVP / Pulso Antioquia</div>
+      <p>Construcción de indicadores, reproducibilidad (R/tidymodels) y visualización; coautora de la documentación metodológica.</p>
+      <p class="links">
+        <a href="mailto:aarenas@proantioquia.org.co">📧 Correo</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="person">
+    <img src="img/yeison.png" alt="Yeison" loading="lazy">
+    <div>
+      <h3>Yeison Londoño</h3>
+      <div class="meta">Investigación aplicada y análisis cuantitativo — Equipo CVP / Pulso Antioquia</div>
+      <p>Construcción de indicadores, reproducibilidad (R/tidymodels) y visualización; coautora de la documentación metodológica.</p>
+      <p class="links">
+        <a href="mailto:ylondono@proantioquia.org.co">📧 Correo</a>
+      </p>
+    </div>
+  </div>
+
+</div>
+```
+
+---
+
+## Contribuciones (CRediT)
+
+> Un **✓** indica responsabilidad principal; un **•** contribución de apoyo.
+
+| Rol (CRediT)                         | Juan Carlos | Laura |
+|-------------------------------------|:-----------:|:-----:|
+| Conceptualización                   | ✓           | ✓     |
+| Curaduría de datos                  | •           | ✓     |
+| Metodología                         | ✓           | ✓     |
+| Software / reproducibilidad         | •           | ✓     |
+| Validación                          | ✓           | ✓     |
+| Análisis formal                     | ✓           | ✓     |
+| Visualización                       | •           | ✓     |
+| Redacción – borrador original       | ✓           | ✓     |
+| Redacción – revisión y edición      | ✓           | ✓     |
+| Administración del proyecto         | ✓           | •     |
+| Supervisión                         | ✓           | •     |

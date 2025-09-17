@@ -1,0 +1,108 @@
+---
+title: "La Antioquia Consolidada - Metodología"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: cosmo
+lang: es
+bibliography: references.bib
+---
+
+# Introducción
+
+Una vez construida una aproximación simple para cada una de las **subdimensiones**, se realizó el último paso del análisis: **identificar las realidades territoriales** a partir del análisis sistemático de la información disponible. Para esto, se aplicó un **método de aprendizaje no supervisado** para dividir las observaciones en grupos que cumplan los siguientes **principios** [@Anderson2003]:
+
+- **Principio de cohesión:** cada grupo debe ser **homogéneo internamente** en las variables utilizadas. En el presente proyecto, se busca que las regiones o departamentos sean altamente parecidos en las **13 dimensiones** de la metodología *Pulso Social*.
+- **Principio de separación:** se debe garantizar que las diferencias entre grupos estén **claramente definidas**, es decir, que cada grupo presente condiciones que lo distingan de los demás.
+
+En el marco de *Pulso Social*, el análisis de **conglomerados** ofrece una lectura de las **brechas territoriales** en Antioquia a partir de un análisis sistemático de las dimensiones que componen la metodología. A continuación, se presentan **estadísticas descriptivas** de los **índices** empleados en el análisis (resultado del ACP).
+
+## Estadísticas descriptivas de los índices
+
+```{r}
+library(readxl)
+library(knitr)
+library(magrittr)
+ruta_excel <- "Consolidada/04_Cluster/Summary_Stats.xlsx"
+tabla_resumen <- read_xlsx(ruta_excel)
+tabla_resumen %>%
+  dplyr::select(Etiqueta, N, Media, SD, Min, Max) %>%
+  dplyr::mutate(Media = round(Media, 3), SD = round(SD, 3), Min = round(Min, 3), Max = round(Max, 3)) %>%
+  kable(caption = "Resumen de variables numéricas válidas")
+```
+
+
+# Matriz de distancia o disimilitud
+
+El primer paso del análisis de conglomerados es la estimación de la **matriz de distancia/disimilitud**, que establece una medida de (dis)similitud entre cada par de observaciones. Existen varios métodos para estimarla; dado que se observaron resultados similares entre alternativas, se eligió el método **euclidiano**[^dist-alt]:
+
+$$
+d_{\mathrm{ecu}}(x,y)\;=\;\sqrt{\sum_{i=1}^{n} \bigl(x_i - y_i\bigr)^2}\,.
+$$
+
+[^dist-alt]: Entre los métodos alternativos para la matriz de distancia: **Manhattan**, **correlación de Pearson**, entre otros.
+
+La siguiente figura presenta los resultados de la aplicación de la matriz de distancia. Se sugieren **varios grupos** de departamentos con condiciones similares. Por ejemplo, **Antioquia, Valle del Cauca, Risaralda, Caldas y Quindío** muestran alta similitud; en contraste, **Vaupés, La Guajira**, entre otros, difieren de los anteriores pero son similares entre ellos. Esta es la **primera aproximación** a los posibles *clusters* que surgirán del análisis.
+
+![](Consolidada/04_Cluster/cluster_dist.png){fig-alt="Matriz de distancia euclídea" fig-cap="Matriz de distancia euclídea" width="100%"}
+
+# Método jerárquico aglomerativo (AGNES)
+
+El método de conglomerados utilizado fue el **jerárquico aglomerativo**, también conocido como **AGNES (Agglomerative Nesting)**. La lógica es la siguiente: cada **objeto** inicia como un clúster de un solo elemento; de forma **iterada**, se van combinando en clústeres mayores hasta que **todas las observaciones** pertenecen a una única raíz [@Anderson2003]. Esta lógica permite una representación visual conocida como **dendrograma**.
+
+## Selección del método de enlace
+
+Dado que existen distintos criterios de **enlace** (linkage), se realizó una comparación mediante el **coeficiente de aglomeración**, que indica el poder de explicación de la estructura de agrupación para un enlace dado. Cuanto más cercano a **1**, **mejor** la agrupación [@Anderson2003].
+
+**Resultados:**
+
+| average | single | complete | ward |
+|:------:|:------:|:--------:|:----:|
+|  0.51  |  0.37  |   0.72   | 0.83 |
+
+Conclusión: el **enlace Ward** es el más apropiado en este caso.
+
+## Determinación del número de clústeres (k)
+
+Tras elegir el enlace, se determina el número óptimo de clústeres. Aunque no existe un criterio único, el más usado es el **método del codo (_elbow_)**, que busca el \(k\) que **minimiza** la variación intra–clúster (**WSS**):
+
+$$
+\arg\min_{k}\ \sum_{j=1}^{k} W(C_j)\,,
+$$
+
+donde \(C_j\) es el clúster \(j\)-ésimo y \(W(C_j)\) su variación intra. La **WSS** mide la compacidad de la agrupación; se desea que sea **lo más pequeña posible**. Los resultados se muestran a continuación.
+
+![](Consolidada/04_Cluster/cluster_elbow.png){fig-alt="Método del codo para estimar k óptimo" fig-cap="Método del codo para estimar el número óptimo de clústeres" width="80%"}
+
+A partir de la evidencia y la discusión técnica, se concluye que el número óptimo de clústeres es **tres (3)**.
+
+## Dendrograma y representación de clústeres
+
+Una vez definido el enlace y \(k\) óptimo, se presenta la **salida gráfica** del análisis.
+
+::: {layout-ncol=2}
+![](Consolidada/04_Cluster/cluster_dendo.png){fig-alt="Dendrograma (AGNES)" fig-cap="Dendrograma (AGNES)" width="100%"}
+![](Consolidada/04_Cluster/cluster_dendo_vars.png){fig-alt="Dendrograma con variables" fig-cap="Dendrograma por variables" width="100%"}
+:::
+
+# Composición de los clústeres
+
+- **Clúster 1 – Antioquia Consolidada - Alta**  
+- **Clúster 2 – Antioquia Consolidada - Media**   
+- **Clúster 3 – Antioquia Consolidada - Baja** 
+
+La representación espacial de los clústeres se ilustra a continuación.
+
+![](Consolidada/04_Cluster/cluster_map.png){fig-alt="Mapa de clústeres: Las Antioquias" fig-cap="Representación filogenética de la agrupación por clústeres" width="80%"}
+
+# Contribución de las variables
+
+Finalmente, se presenta la composición/media de las variables por tipo de clúster. El análisis detallado se desarrolla en el informe técnico.
+
+![](Consolidada/04_Cluster/cluster_variables_contexto_1.png){fig-alt="Medias de indicadores de contexto (1) por clúster" fig-cap="Medias de indicadores de contexto por clúster" width="80%"}
+
+![](Consolidada/04_Cluster/cluster_variables_contexto_2.png){fig-alt="Medias de indicadores de contexto (2) por clúster" fig-cap="Medias de indicadores de contexto por clúster" width="80%"}
+
+![](Consolidada/04_Cluster/cluster_variables_res_1.png){fig-alt="Medias de indicadores de resultado por clúster" fig-cap="Medias de indicadores de resultado por clúster" width="80%"}

@@ -1,0 +1,101 @@
+---
+title: "Las Antioquias"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: cosmo
+lang: es
+---
+
+# Resumen ejecutivo
+
+- **Antioquia es tri‑modal**: un **núcleo Consolidado** (Valle de Aburrá y Oriente cercano), una **corona en Transición** (centro–sur y norte interior) y un **anillo Vulnerable** (Urabá, Bajo Cauca, Nordeste, Magdalena Medio y Occidente fluvial).
+- **Brechas más grandes (|z| ≳ 1)**  
+  - **Vulnerable**: Vivienda, Salud (incl. vejez), Seguridad, Pobreza y exposición al **cambio climático (comp. 2)**.  
+  - **Consolidada**: **Capacidad fiscal** y **Desarrollo económico** sostenidamente por encima de la media; mejores resultados de Salud/Seguridad.  
+  - **Transición**: valores cercanos a 0 con **rezagos leves** en vivienda/seguridad y algunas dimensiones sociales.
+- **Implicación**: política **diferenciada por territorio**. Inversión dura y social en el **anillo Vulnerable**; consolidación de capital humano e innovación en el **núcleo Consolidado**; **saltos de calidad** en municipios en **Transición**.
+
+::: callout-note
+**Leyenda de colores**  
+El mapa y los gráficos adjuntos usan paletas distintas. En el texto se hace referencia a los **nombres** de clúster (*Consolidada*, *Transición*, *Vulnerable*). 
+:::
+
+---
+
+# Mapa de tipologías (clústeres municipales)
+
+![](all/04_Cluster/cluster_map.png){fig-alt="Mapa de clústeres municipales en Antioquia" fig-cap="Tipologías territoriales: Consolidada, Transición y Vulnerable." width="95%"}
+
+**Lectura territorial.**  
+
+- **Consolidada**: **Valle de Aburrá** (Medellín y AMVA) y **Oriente cercano** (Rionegro, La Ceja, Marinilla, El Retiro, El Carmen, La Unión…).  
+
+- **Transición**: gran parte del **centro** y **sur/norte interior**.  
+
+- **Vulnerable**: **Urabá** (Turbo, Apartadó, Carepa, Chigorodó, Necoclí), **Bajo Cauca** (Caucasia, El Bagre, Zaragoza, Nechí), **Nordeste** (Segovia, Remedios, Amalfi), **Magdalena Medio** (Yondó) y **Occidente/Atrato** (Dabeiba, Murindó, Vigía del Fuerte).
+
+---
+
+# Brechas en **Contexto** (desviaciones respecto a la media)
+
+> Barras = **z‑scores** (0 = media nacional). Regla de pulgar: **|z| < 0.5** (pequeña), **0.5–1** (moderada), **1–2** (grande), **>2** (muy grande).
+
+![](all/04_Cluster/cluster_variables_contexto_1.png){fig-alt="Brechas de contexto (primer grupo de dimensiones)" fig-cap="Brechas de contexto – grupo 1." width="100%"}
+
+![](all/04_Cluster/cluster_variables_contexto_2.png){fig-alt="Brechas de contexto (segundo grupo de dimensiones)" fig-cap="Brechas de contexto – grupo 2." width="100%"}
+
+**Hallazgos clave.**
+
+- **Capacidad fiscal (1)**: **Consolidada ≈ +1** → mayor margen de maniobra; **Transición** levemente negativa; **Vulnerable** por debajo o ≈0.  
+
+- **Vivienda (1–2)**: **Vulnerable ≈ −2** (brecha **muy grande** en calidad/condiciones/hacinamiento); **Transición** ~ −0.3/−0.5; **Consolidada** positiva.  
+
+- **Desarrollo económico (1–3)**: **Consolidada** consistentemente >0; **Vulnerable** <0; **Transición** cercana a 0 con altibajos.  
+
+- **Pobreza (1–2)**: **Vulnerable** por debajo (peor desempeño); **Transición** apenas negativa; **Consolidada** mejor que la media.  
+
+- **Salud (1–2)** y **Seguridad (1–2)**: patrón similar: **Consolidada** por encima; **Vulnerable** por debajo (en Salud 1 la brecha es grande); **Transición** próxima a 0.  
+
+- **Cambio climático (2)**: **Vulnerable** con rezago marcado (~−1), sugiere **mayor exposición/sensibilidad** o menor capacidad de adaptación.
+
+---
+
+# Brechas en **Resultados por ciclo de vida**
+
+![](all/04_Cluster/cluster_variables_res_1.png){fig-alt="Brechas en resultados por ciclo de vida" fig-cap="Desviaciones en Infancia/Niñez, Juventud, Adultez y Vejez." width="100%"}
+
+- **Infancia y niñez**: **Vulnerable** con rezagos notables (~−1.5 en un subíndice); foco en **APS**, **nutrición** y **mortalidad infantil**.
+  
+- **Juventud**: déficits en **terminación de secundaria**, **educación superior** y **transición escuela–trabajo** (Vulnerable ≈ −1 a −1.5).  
+
+- **Adultez**: **Consolidada** >0 en al menos un componente; **Vulnerable** negativa; **Transición** cerca de 0.  
+
+- **Vejez**: **Vulnerable ≈ −1.7** (mortalidad por crónicas/condiciones de envejecimiento); **Consolidada** levemente >0.
+
+---
+
+# Líneas de acción sugeridas por clúster
+
+## Vulnerable (periferias)
+
+- **Infraestructura y vivienda:** agua/saneamiento rural, mejoramiento integral de barrios, reducción de hacinamiento.  
+- **Salud primaria y vejez:** redes integradas con énfasis rural disperso, tamizajes y manejo de crónicas; transporte sanitario.  
+- **Juventud:** terminar secundaria + **ruta a superior/técnica** y empleo joven; **brecha digital**.  
+- **Seguridad y protección social:** prevención focalizada, articulación con oferta nacional/territorial.  
+- **Adaptación climática:** gestión del riesgo, infraestructura natural, **alertas tempranas**.
+
+## Transición (corona intermedia)
+
+- **Saltos de calidad** en vivienda/seguridad y **cierre de brechas de juventud** (finalización, STEM/tech, formación dual).  
+- Encadenamientos productivos con el núcleo y **mejora fiscal** (catastro, recaudo, compras públicas).
+
+## Consolidada (núcleo AMVA + Oriente cercano)
+
+- **Capital humano avanzado** e **innovación** (educación superior, I+D, clústeres pyme).  
+- **Conurbación y movilidad** metropolitana (TOM, integración tarifaria).  
+- **Efecto derrame** hacia Transición (proveeduría, formación, empleo).
+
+

@@ -1,0 +1,71 @@
+project:
+  type: website
+  output-dir: ../docs
+website:
+  title: "Pulso Social – Antioquia"
+  navbar:
+    tools:
+      - icon: house
+        href: https://www.jcmunozmora.co/
+      - icon: github
+        href: https://twitter.com
+
+    left:
+      - href: index.qmd
+        text: Inicio
+      - href: antioquia.qmd
+        text: Resultados
+      - text: Clusters
+        menu:
+          - href: cluster_antioquias.qmd
+            text: Las Antioquias - Metodología
+          - href: cluster_consolidada.qmd
+            text: La Antioquia consolidada - Metodología
+          - href: cluster_transicion.qmd
+            text: La Antioquia en transición - Metodología
+          - href: cluster_vulnerable.qmd
+            text: La Antioquia en vulnerable - Metodología
+      - text: Indicadores
+        menu:
+          - href: Metodologia_indices.qmd
+            text: Metodología
+          - href: resultados_idx1_servicio.qmd
+            text: "IDX 1: Acceso a servicio de agua potable y saneamiento"
+          - href: resultados_idx2_Adultez.qmd
+            text: "IDX 2: Adultez"
+          - href: resultados_idx3_climatico.qmd
+            text: "IDX 3: Cambio climático"
+          - href: resultados_idx4_Capacidad.qmd
+            text: "IDX 4: Capacidad fiscal"
+          - href: resultados_idx5_viviendas.qmd
+            text: "IDX 5: Características de las viviendas"
+          - href: resultados_idx6_crecimiento.qmd
+            text: "IDX 6: Desarrollo económico"
+          - href: resultados_idx7_gini.qmd
+            text: "IDX 7: Desigualdad"
+          - href: resultados_idx8_demografica.qmd
+            text: "IDX 8: Estructura demográfica"
+          - href: resultados_idx9_infnin.qmd
+            text: "IDX 9: Infancia y Niñez"
+          - href: resultados_idx10_juventud.qmd
+            text: "IDX 10: Juventud"
+          - href: resultados_idx11_pobreza.qmd
+            text: "IDX 11: Pobreza"
+          - href: resultados_idx12_salud.qmd
+            text: "IDX 12: Salud"
+          - href: resultados_idx13_saludmental.qmd
+            text: "IDX 13: Salud mental"
+          - href: resultados_idx14_seguridad.qmd
+            text: "IDX 14: Seguridad"
+          - href: resultados_idx15_vejez.qmd
+            text: "IDX 15: Vejez"
+          
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: false
+    code-line-numbers: false
+    code-tools: false
+    code-fold: true

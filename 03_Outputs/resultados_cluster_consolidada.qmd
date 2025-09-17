@@ -1,0 +1,83 @@
+---
+title: "La Antioquia consolidada"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: cosmo
+lang: es
+---
+
+# Resumen ejecutivo
+
+La **zona Consolidada** de Antioquia no es homogénea: se identifican **tres subtipos** con perfiles diferenciados —**Consolidada‑Alto**, **Consolidada‑Medio** y **Consolidada‑Bajo**— que concentran sus brechas en dimensiones distintas.
+
+- **Alto**: desempeño relativo **fuerte y estable** en la mayoría de dimensiones; algunas tensiones puntuales en vivienda/infancia según el indicador.  
+- **Medio**: **perfil balanceado** (z‑scores cercanos a 0) con pequeños rezagos en pobreza/seguridad o salud mental según el gráfico.  
+- **Bajo**: **mayores desviaciones absolutas** (positivas o negativas) en varias dimensiones de **contexto** (vivienda, seguridad) y **resultados** (juventud), lo que sugiere **heterogeneidad interna**.  
+
+::: callout-note
+**Cómo leer las barras**  
+Los gráficos muestran **desviaciones estándar (z‑scores)** respecto a la **media departamental**. Si tus índices están **orientados** a que **↑=mejor**, entonces valores positivos implican **mejor** que el promedio y negativos, **peor**. Si no, **invierte** esa lectura para las dimensiones con signo adverso.  
+:::
+
+---
+
+# Mapa de subtipos dentro de la zona consolidada
+
+![](Consolidada/04_Cluster/cluster_map.png){fig-alt="Mapa de la zona Consolidada subdividida: Alto, Medio y Bajo" fig-cap="Antioquia consolidada: subtipos territoriales." width="95%"}
+
+**Lectura territorial (orientativa):** núcleo metropolitano y eje de **Oriente cercano** muestran predominio **Alto/Medio**, con **Bajo** en bordes de transición. Esta composición sugiere gradientes de acceso/equipamientos y condiciones de vivienda.
+
+---
+
+# Brechas en **Contexto** (desviaciones respecto a la media)
+
+> Barras = **z‑scores** (0 = media nacional). Guía: **|z| < 0.5** (pequeña), **0.5–1** (moderada), **1–2** (grande), **>2** (muy grande).
+
+![](Consolidada/04_Cluster/cluster_variables_contexto_1.png){fig-alt="Brechas de contexto – grupo 1" fig-cap="Acceso a agua/saneamiento, cambio climático (1–2), capacidad fiscal (1–2) y vivienda (1–2)." width="100%"}
+
+![](Consolidada/04_Cluster/cluster_variables_contexto_2.png){fig-alt="Brechas de contexto – grupo 2" fig-cap="Desarrollo económico (1–3), desigualdad, estructura demográfica, pobreza (1–2), salud (1–2), salud mental (1–2), seguridad (1–2)." width="100%"}
+
+**Patrones observados (comparativos entre subtipos):**
+
+- **Capacidad fiscal:** *Alto* tiende a ubicarse por encima/cerca de la media en **Cap. fiscal 2**; *Bajo* muestra valores más cercanos a 0 o positivos en **Cap. fiscal 1** (revisar orientación de signo para interpretación sustantiva).  
+- **Vivienda (1–2):** *Bajo* presenta **desviaciones mayores** (positivas) frente a *Medio/Alto*; si la dimensión está orientada como **adversa**, esto implicaría **peores condiciones relativas** en vivienda.  
+- **Desarrollo económico (1–3):** *Alto* y, en ocasiones, *Bajo* exhiben las **desviaciones más notorias**; *Medio* permanece más cerca de 0.  
+- **Pobreza/Salud/Seguridad:** *Medio* suele quedar próximo a 0; *Alto* y *Bajo* se separan (con signos opuestos en algunos casos), lo que indica **gradientes claros** al interior de la zona consolidada.  
+- **Salud mental / Cambio climático (2):** diferencias visibles entre *Alto* y *Bajo* sugieren **exposición/soporte psicosocial** distinto.
+
+---
+
+# Brechas en **Resultados por ciclo de vida**
+
+![](Consolidada/04_Cluster/cluster_variables_res_1.png){fig-alt="Brechas por ciclo de vida" fig-cap="Infancia/Niñez (1–4), Juventud (1–4), Adultez (1–3) y Vejez (1)." width="100%"}
+
+- **Infancia/Niñez:** *Alto* muestra rezagos en **(2–3)** frente a *Medio/Bajo* en algunos componentes; revisar si el signo es adverso (mortalidad/APS) para la lectura sustantiva.  
+- **Juventud:** *Bajo* presenta **desviaciones positivas amplias** en algunos componentes (p. ej., **Juv. 2–3**); confirmar orientación de signo (terminación, superior, transición escuela‑trabajo).  
+- **Adultez:** *Alto* mejora en al menos un componente; *Medio* queda alrededor de 0.  
+- **Vejez:** diferencias leves entre subtipos (cercanas a 0–0.5 z).
+
+---
+
+# Líneas de acción sugeridas por subtipo
+
+## Consolidada – **Alto**
+- **Capital humano avanzado**: mayor énfasis en **educación superior**, **I+D** y **ecosistemas de innovación**.  
+- **Salud**: consolidar **prevención secundaria** (crónicas) y **salud mental**.  
+- **Vivienda/calidad urbana**: renovación y **hábitat** (densificación equilibrada, espacio público).
+
+## Consolidada – **Medio**
+- **Cierres selectivos**: puntual en **vivienda** y **seguridad** donde aparezcan brechas; mantener desempeño económico.  
+- **Movilidad/metrópolis**: integración con el núcleo (TOM, intermodalidad) y **gobernanza metropolitana**.
+
+## Consolidada – **Bajo**
+- **Vivienda y entorno**: mejoramiento integral, servicios públicos, reducción de hacinamiento.  
+- **Juventud**: **terminación de secundaria**, ruta a **técnica/superior**, empleabilidad.  
+- **Seguridad y salud**: refuerzo de **APS**, **salud mental comunitaria** y enfoque preventivo en seguridad.  
+- **Capacidad fiscal**: catastro multipropósito, recaudo y compras públicas para ampliar margen de inversión.
+
+---
+
+[(detalles metodológicos) ](03_Outputs/cluster_consolidada.qmd )
