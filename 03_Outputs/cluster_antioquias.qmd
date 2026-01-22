@@ -22,6 +22,7 @@ En el marco de *Pulso Social*, el análisis de **conglomerados** ofrece una lect
 ## Estadísticas descriptivas de los índices
 
 ```{r}
+#| warning: false
 library(readxl)
 library(knitr)
 library(magrittr)

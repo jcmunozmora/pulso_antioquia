@@ -22,10 +22,11 @@ En el marco de *Pulso Social*, el análisis de **conglomerados** ofrece una lect
 ## Estadísticas descriptivas de los índices
 
 ```{r}
+#| warning: false
 library(readxl)
 library(knitr)
 library(magrittr)
-ruta_excel <- "Transición/04_Cluster/Summary_Stats.xlsx"
+ruta_excel <- "Transición_ref_subset/04_Cluster/Summary_Stats.xlsx"
 tabla_resumen <- read_xlsx(ruta_excel)
 tabla_resumen %>%
   dplyr::select(Etiqueta, N, Media, SD, Min, Max) %>%
@@ -46,7 +47,7 @@ $$
 
 La siguiente figura presenta los resultados de la aplicación de la matriz de distancia. Se sugieren **varios grupos** de departamentos con condiciones similares. Por ejemplo, **Antioquia, Valle del Cauca, Risaralda, Caldas y Quindío** muestran alta similitud; en contraste, **Vaupés, La Guajira**, entre otros, difieren de los anteriores pero son similares entre ellos. Esta es la **primera aproximación** a los posibles *clusters* que surgirán del análisis.
 
-![](Transición/04_Cluster/cluster_dist.png){fig-alt="Matriz de distancia euclídea" fig-cap="Matriz de distancia euclídea" width="100%"}
+![](Transición_ref_subset/04_Cluster/cluster_dist.png){fig-alt="Matriz de distancia euclídea" fig-cap="Matriz de distancia euclídea" width="100%"}
 
 # Método jerárquico aglomerativo (AGNES)
 
@@ -74,7 +75,7 @@ $$
 
 donde \(C_j\) es el clúster \(j\)-ésimo y \(W(C_j)\) su variación intra. La **WSS** mide la compacidad de la agrupación; se desea que sea **lo más pequeña posible**. Los resultados se muestran a continuación.
 
-![](Transición/04_Cluster/cluster_elbow.png){fig-alt="Método del codo para estimar k óptimo" fig-cap="Método del codo para estimar el número óptimo de clústeres" width="80%"}
+![](Transición_ref_subset/04_Cluster/cluster_elbow.png){fig-alt="Método del codo para estimar k óptimo" fig-cap="Método del codo para estimar el número óptimo de clústeres" width="80%"}
 
 A partir de la evidencia y la discusión técnica, se concluye que el número óptimo de clústeres es **tres (3)**.
 
@@ -83,8 +84,8 @@ A partir de la evidencia y la discusión técnica, se concluye que el número ó
 Una vez definido el enlace y \(k\) óptimo, se presenta la **salida gráfica** del análisis.
 
 ::: {layout-ncol=2}
-![](Transición/04_Cluster/cluster_dendo.png){fig-alt="Dendrograma (AGNES)" fig-cap="Dendrograma (AGNES)" width="100%"}
-![](Transición/04_Cluster/cluster_dendo_vars.png){fig-alt="Dendrograma con variables" fig-cap="Dendrograma por variables" width="100%"}
+![](Transición_ref_subset/04_Cluster/cluster_dendo.png){fig-alt="Dendrograma (AGNES)" fig-cap="Dendrograma (AGNES)" width="100%"}
+![](Transición_ref_subset/04_Cluster/cluster_dendo_vars.png){fig-alt="Dendrograma con variables" fig-cap="Dendrograma por variables" width="100%"}
 :::
 
 # Composición de los clústeres
@@ -95,14 +96,14 @@ Una vez definido el enlace y \(k\) óptimo, se presenta la **salida gráfica** d
 
 La representación espacial de los clústeres se ilustra a continuación.
 
-![](Transición/04_Cluster/cluster_map.png){fig-alt="Mapa de clústeres: Las Antioquias" fig-cap="Representación filogenética de la agrupación por clústeres" width="80%"}
+![](Transición_ref_subset/04_Cluster/cluster_map.png){fig-alt="Mapa de clústeres: Las Antioquias" fig-cap="Representación filogenética de la agrupación por clústeres" width="80%"}
 
 # Contribución de las variables
 
 Finalmente, se presenta la composición/media de las variables por tipo de clúster. El análisis detallado se desarrolla en el informe técnico.
 
-![](Transición/04_Cluster/cluster_variables_contexto_1.png){fig-alt="Medias de indicadores de contexto (1) por clúster" fig-cap="Medias de indicadores de contexto por clúster" width="80%"}
+![](Transición_ref_subset/04_Cluster/cluster_variables_contexto_1.png){fig-alt="Medias de indicadores de contexto (1) por clúster" fig-cap="Medias de indicadores de contexto por clúster" width="80%"}
 
-![](Transición/04_Cluster/cluster_variables_contexto_2.png){fig-alt="Medias de indicadores de contexto (2) por clúster" fig-cap="Medias de indicadores de contexto por clúster" width="80%"}
+![](Transición_ref_subset/04_Cluster/cluster_variables_contexto_2.png){fig-alt="Medias de indicadores de contexto (2) por clúster" fig-cap="Medias de indicadores de contexto por clúster" width="80%"}
 
-![](Transición/04_Cluster/cluster_variables_res_1.png){fig-alt="Medias de indicadores de resultado por clúster" fig-cap="Medias de indicadores de resultado por clúster" width="80%"}
+![](Transición_ref_subset/04_Cluster/cluster_variables_res_1.png){fig-alt="Medias de indicadores de resultado por clúster" fig-cap="Medias de indicadores de resultado por clúster" width="80%"}
