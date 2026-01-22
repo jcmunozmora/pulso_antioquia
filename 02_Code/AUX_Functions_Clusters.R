@@ -57,6 +57,21 @@ map_theme <- list(
     panel.grid.minor = element_blank(),
   ))
 
+# Paleta base (misma en mapas y gráficos)
+base_palette <- c(
+  "Consolidada" = "#27AE60",
+  "Transición"  = "#2980B9",
+  "Vulnerable"  = "#E67E22"
+)
+
+# Genera tonos: Bajo (claro) -> Medio -> Alto (color base)
+make_tints3 <- function(hex){
+  pal <- grDevices::colorRampPalette(c("#FFFFFF", hex))(9)
+  pal[c(4, 6, 9)]
+}
+
+
+
 ## 00 - labels
 ###===============
 
@@ -98,7 +113,7 @@ lab <- c(   "Acceso a servicio de agua potable y saneamiento - 1",
 
 
 ####---------
-ps_cluster <- function(pca_ds,df,lab_g,path){
+ps_cluster <- function(pca_ds,df,lab_g,path, eje){
 
   # Ensure all required output directories exist
   output_dirs <- c(
@@ -170,15 +185,22 @@ ps_cluster <- function(pca_ds,df,lab_g,path){
   
   wss1 <- data.frame(cluster=c(1:10),wss)
   
-  ggplot(wss1) + aes(cluster,wss) + geom_line(color="blue") + 
-    geom_point(color="blue") +
-    geom_vline(xintercept = 3, linetype = 2, col="red") +
-    labs(title = "Método Elbow") + 
-    scale_x_continuous(breaks=1:10) +
+  p_elbow <- ggplot(wss1, aes(cluster, wss)) +
+    geom_line(color = "blue") +
+    geom_point(color = "blue") +
+    geom_vline(xintercept = 3, linetype = 2, color = "red") +
+    labs(title = "Método Elbow") +
+    scale_x_continuous(breaks = 1:10) +
     theme_classic()
   
-  ggsave(file=paste0("03_Outputs/",path,"/04_Cluster/cluster_elbow.png"),
-         height = h*0.8, width = w, dpi = 900) 
+  ggsave(
+    filename = paste0("03_Outputs/", path, "/04_Cluster/cluster_elbow.png"),
+    plot = p_elbow,
+    height = h * 0.8,
+    width = w,
+    dpi = 900
+  )
+  
   
   #### Step 03: Dendogram
   ###==============
@@ -187,34 +209,62 @@ ps_cluster <- function(pca_ds,df,lab_g,path){
   hc5 <- hclust(d, method = "ward.D2" )
   # Cut tree into 4 groups
   sub_grp <- cutree(hc5, k = 3)
+   
+  
+  # Ordenar clusters: mejor -> peor y reasignar IDs 1..k
+  rank_clusters_best_to_worst <- function(df_scaled, clusters) {
+    tmp <- as.data.frame(df_scaled)
+    tmp$sub_grp <- clusters
+
+    sc <- tmp %>%
+      dplyr::group_by(sub_grp) %>%
+      dplyr::summarise(
+        score = mean(as.matrix(dplyr::across(-sub_grp)), na.rm = TRUE),
+        .groups = "drop"
+      )
+
+    ord <- sc %>% dplyr::arrange(dplyr::desc(score)) %>% dplyr::pull(sub_grp)
+    map <- setNames(seq_along(ord), ord)
+
+    as.integer(map[as.character(clusters)])
+  }
+  if (path == "Transición_ref_dept"){
+    # Re-etiqueta: el mejor cluster queda como 1, luego 2, luego 3
+    sub_grp <- rank_clusters_best_to_worst(df, sub_grp)
+  }
+
   
   #### Dendrogram
-png(
-    file = paste0("03_Outputs/", path, "/04_Cluster/cluster_dendo.png"),
+  p_dendo <- fviz_dend(
+    hc5,
+    cex = 0.5,
+    k = 3,
+    rect = TRUE
+  )
+  
+  ggsave(
+    filename = paste0("03_Outputs/", path, "/04_Cluster/cluster_dendo.png"),
+    plot = p_dendo,
     height = h * 0.8,
     width = w,
-    units = "in",
-    res = 300
-)
-  fviz_dend(hc5, cex = 0.5, k = 3, rect = TRUE)
-  dev.off()
+    dpi = 300
+  )
   
   
   #### By Component
-png(
-    file = paste0("03_Outputs/",path, "/04_Cluster/cluster_dendo_vars.png"),
+  p_dendo_vars <- fviz_cluster(list(data = df, cluster = sub_grp),
+                   #palette = c("#2E9FDF",  "#E7B800", "#FC4E07","#e4546c"),
+                   palette = c("#2E9FDF",  "#E7B800", "#FC4E07"),
+                   ellipse.type = "convex", # Concentration ellipse
+                   repel = F, # Avoid label overplotting (slow)
+                   show.clust.cent = FALSE, ggtheme = theme_minimal())
+  ggsave(
+    filename = paste0("03_Outputs/", path, "/04_Cluster/cluster_dendo_vars.png"),
+    plot = p_dendo_vars,
     height = h * 0.8,
     width = w,
-    units = "in",
-    res = 300
-)
-  fviz_cluster(list(data = df, cluster = sub_grp),
-               #palette = c("#2E9FDF",  "#E7B800", "#FC4E07","#e4546c"),
-               palette = c("#2E9FDF",  "#E7B800", "#FC4E07"),
-               ellipse.type = "convex", # Concentration ellipse
-               repel = F, # Avoid label overplotting (slow)
-               show.clust.cent = FALSE, ggtheme = theme_minimal())
-  dev.off()
+    dpi = 300
+  )
   
   #png(
   #  file = paste0("03_Outputs/", path, "/04_Cluster/cluster_dendo_phylogenic.png"),
@@ -228,10 +278,7 @@ png(
   #dev.off()
   
   #### Step 04: Build Data
-  ###==============
-  
-  df <- na.omit(df)
-  df <- scale(df)
+  ###=============
   
   datos.j <- as.data.frame(cbind(df, sub_grp))
   datos.j_aux <- tibble::rownames_to_column(as.data.frame(datos.j), var = "municipio")
@@ -265,11 +312,33 @@ png(
                                        labels=  lab)
   
     ### Fix Variables
-    #col_palette <- c("#fcac24","#4c9ccc","#e4546c","#55E459")
-    col_palette <- c("#fcac24","#e4546c","#55E459")
     gathered_datos.j$sub_grp <- factor(gathered_datos.j$sub_grp, 
                                        levels=c(1,2,3),
                                       labels = lab_g)
+ 
+    # --- Paleta dinámica según tipo de gráfico ---
+    levs <- levels(gathered_datos.j$sub_grp)
+    
+    # Caso 1: clúster general (Consolidada/Transición/Vulnerable)
+    if (all(levs %in% names(base_palette))) {
+      col_palette_named <- base_palette[levs]
+      
+      # Caso 2: subniveles (p.ej. "Vulnerable - Alto/Medio/Bajo")
+    } else {
+      # Extrae grupo y nivel
+      grupo <- sub(" - (Alto|Alta|Medio|Media|Bajo|Baja)$", "", levs)
+      nivel <- sub("^.* - ", "", levs)
+      nivel <- dplyr::recode(nivel,
+                             "Alta"="Alto", "Media"="Medio", "Baja"="Bajo")
+      
+      # Asigna tonos por grupo
+      col_palette_named <- purrr::map2_chr(grupo, nivel, \(g, n){
+        tonos <- make_tints3(base_palette[[g]])
+        names(tonos) <- c("Bajo","Medio","Alto")
+        tonos[[n]]
+      })
+      names(col_palette_named) <- levs
+    }
     
     ##### Variables de contexto
     ds_con_1 <- gathered_datos.j %>% filter((variable %in% c( "Acceso a servicio de agua potable y saneamiento - 1",
@@ -286,13 +355,14 @@ png(
       geom_bar(stat="identity", position=position_dodge())+
       #geom_text(aes(label=len), vjust=1.6, color="white",
       #          position = position_dodge(0.9), size=3.5)+
-      scale_fill_manual(values =  rep(col_palette, 40), na.value = "#ededed", na.translate = F) +
-      #scale_fill_brewer(palette="Paired")+
+      scale_fill_manual(values = col_palette_named,
+                        na.value = "#ededed", na.translate = FALSE)+
+    #scale_fill_brewer(palette="Paired")+
       guides(fill = guide_legend(ncol = 3))+
-      theme_minimal()+ylim(-5,5)+
+      theme_minimal()+ylim(c(-2.5, 2.5))+
       theme(legend.position = c(0.7, 0.1),legend.title=element_blank(),
             axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-      labs(y="Desviaciones de la Media Nacional (std. desv.)",x="")
+      labs(y=eje,x="")
     
     
     ggsave(file=paste0("03_Outputs/", path, "/04_Cluster/cluster_variables_contexto_1.png"),
@@ -321,13 +391,14 @@ png(
       geom_bar(stat="identity", position=position_dodge())+
       #geom_text(aes(label=len), vjust=1.6, color="white",
       #          position = position_dodge(0.9), size=3.5)+
-      scale_fill_manual(values =  rep(col_palette, 40), na.value = "#ededed", na.translate = F) +
+      scale_fill_manual(values = col_palette_named,
+                        na.value = "#ededed", na.translate = FALSE)+
       #scale_fill_brewer(palette="Paired")+
       guides(fill = guide_legend(ncol = 3))+
-      theme_minimal()+ylim(-5,5)+
+      theme_minimal()+ylim(c(-2.5, 2.5))+
       theme(legend.position = c(0.7, 0.1),legend.title=element_blank(),
             axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-      labs(y="Desviaciones de la Media Nacional (std. desv.)",x="")
+      labs(y=eje,x="")
     
     
     ggsave(file=paste0("03_Outputs/", path, "/04_Cluster/cluster_variables_contexto_2.png"),
@@ -355,13 +426,14 @@ png(
       geom_bar(stat="identity", position=position_dodge())+
       #geom_text(aes(label=len), vjust=1.6, color="white",
       #          position = position_dodge(0.9), size=3.5)+
-      scale_fill_manual(values =  rep(col_palette, 40), na.value = "#ededed", na.translate = F) +
+      scale_fill_manual(values = col_palette_named,
+                        na.value = "#ededed", na.translate = FALSE)+
       #scale_fill_brewer(palette="Paired")+
       guides(fill = guide_legend(ncol = 3))+
-      theme_minimal()+ylim(-5,5)+
+      theme_minimal()+ylim(c(-2.5, 2.5))+
       theme(legend.position = c(0.7, 0.1),legend.title=element_blank(),
             axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-      labs(y="Desviaciones de la Media Nacional (std. desv.)",x="")
+      labs(y=eje,x="")
     
    
     
@@ -428,16 +500,38 @@ png(
     
     # data_map <- data_map[data_map$nivl_vl == 88,]
     # Cambie la paleta
-    #col_palette <- c("#55E459","#4C9CCC","#FCAC24","#E4546C")
-    #data_map$sub_grp <- factor(data_map$sub_grp,levels=c(1,2,3,4),labels = c("Consolidada","Emergente","Transición","Vulnerable"))
-    col_palette <- c("#55E459","#4C9CCC","#FCAC24")
     data_map$sub_grp <- factor(data_map$sub_grp,levels=c(1,2,3),labels = lab_g)
+    
+    # --- Paleta dinámica según tipo de gráfico ---
+    levs <- levels(data_map$sub_grp)
+    
+    # Caso 1: clúster general (Consolidada/Transición/Vulnerable)
+    if (all(levs %in% names(base_palette))) {
+      col_palette_named <- base_palette[levs]
+      
+      # Caso 2: subniveles (p.ej. "Vulnerable - Alto/Medio/Bajo")
+    } else {
+      # Extrae grupo y nivel
+      grupo <- sub(" - (Alto|Alta|Medio|Media|Bajo|Baja)$", "", levs)
+      nivel <- sub("^.* - ", "", levs)
+      nivel <- dplyr::recode(nivel,
+                             "Alta"="Alto", "Media"="Medio", "Baja"="Bajo")
+      
+      # Asigna tonos por grupo
+      col_palette_named <- purrr::map2_chr(grupo, nivel, \(g, n){
+        tonos <- make_tints3(base_palette[[g]])
+        names(tonos) <- c("Bajo","Medio","Alto")
+        tonos[[n]]
+      })
+      names(col_palette_named) <- levs
+    }
     
     g1 <- ggplot(data_map) +
       geom_sf(aes(fill = factor(sub_grp)), color = "#606060", size = 0.05, alpha = 0.60) +
       geom_text(aes(X, Y, label = nvl_lbl), vjust = 1.5, color = "black",
                 position = position_dodge(0.9), size = 2,alpha = 1) +
-      scale_fill_manual(values =  rep(col_palette, 40), na.value = "#ededed", na.translate = F) +
+      scale_fill_manual(values = col_palette_named,
+                        na.value = "#ededed", na.translate = FALSE)+
       guides(fill = guide_legend(ncol = 1)) +
       xlab("") +
       labs(fill="") +

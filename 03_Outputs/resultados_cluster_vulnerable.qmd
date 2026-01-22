@@ -26,7 +26,7 @@ Los gráficos muestran **z‑scores** (desviaciones estándar) respecto a la **m
 
 # Mapa de subtipos en la zona Vulnerable
 
-![](Vulnerable/04_Cluster/cluster_map.png){fig-alt="Mapa: zona Vulnerable subdividida (Alto, Medio, Bajo)" fig-cap="Antioquia Vulnerable: subtipos territoriales." width="95%"}
+![](Vulnerable_ref_subset/04_Cluster/cluster_map.png){fig-alt="Mapa: zona Vulnerable subdividida (Alto, Medio, Bajo)" fig-cap="Antioquia Vulnerable: subtipos territoriales." width="95%"}
 
 **Lectura territorial (orientativa).** Predominio del subtipo **Bajo** en **Urabá, Bajo Cauca, Nordeste y Magdalena Medio**, con **Medio** en corredores específicos (costeros y mineros) y **Alto** en focos puntuales.
 
@@ -36,9 +36,9 @@ Los gráficos muestran **z‑scores** (desviaciones estándar) respecto a la **m
 
 > Barras = **z‑scores** (0 = media nacional). Guía: **|z| < 0.5** (pequeña), **0.5–1** (moderada), **1–2** (grande), **>2** (muy grande).
 
-![](Vulnerable/04_Cluster/cluster_variables_contexto_1.png){fig-alt="Brechas de contexto – grupo 1" fig-cap="Acceso a agua/saneamiento, cambio climático (1–2), capacidad fiscal (1–2) y vivienda (1–2)." width="100%"}
+![](Vulnerable_ref_subset/04_Cluster/cluster_variables_contexto_1.png){fig-alt="Brechas de contexto – grupo 1" fig-cap="Acceso a agua/saneamiento, cambio climático (1–2), capacidad fiscal (1–2) y vivienda (1–2)." width="100%"}
 
-![](Vulnerable/04_Cluster/cluster_variables_contexto_2.png){fig-alt="Brechas de contexto – grupo 2" fig-cap="Desarrollo económico (1–3), desigualdad, estructura demográfica, pobreza (1–2), salud (1–2), salud mental (1–2), seguridad (1–2)." width="100%"}
+![](Vulnerable_ref_subset/04_Cluster/cluster_variables_contexto_2.png){fig-alt="Brechas de contexto – grupo 2" fig-cap="Desarrollo económico (1–3), desigualdad, estructura demográfica, pobreza (1–2), salud (1–2), salud mental (1–2), seguridad (1–2)." width="100%"}
 
 **Patrones observados (comparativos entre subtipos):**
 
@@ -55,7 +55,7 @@ Los gráficos muestran **z‑scores** (desviaciones estándar) respecto a la **m
 
 # Brechas en **Resultados por ciclo de vida**
 
-![](Vulnerable/04_Cluster/cluster_variables_res_1.png){fig-alt="Brechas por ciclo de vida" fig-cap="Infancia/Niñez (1–4), Juventud (1–4), Adultez (1–3) y Vejez (1)." width="100%"}
+![](Vulnerable_ref_subset/04_Cluster/cluster_variables_res_1.png){fig-alt="Brechas por ciclo de vida" fig-cap="Infancia/Niñez (1–4), Juventud (1–4), Adultez (1–3) y Vejez (1)." width="100%"}
 
 - **Infancia y Niñez:** *Bajo* exhibe **mejoras muy marcadas** en **(2–4)** (z ≫ 0), a la par de un **rezago** en **(1)** en un subtipo; *Medio* se mueve alrededor de 0.  
 - **Juventud:** *Medio* con **negativos** en **Juv. 2**; *Bajo* con **positivos** en **Juv. 1** y **Juv. 3**, pero **negativo** en **Juv. 4**.  

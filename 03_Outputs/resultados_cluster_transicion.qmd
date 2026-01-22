@@ -26,7 +26,7 @@ Los gráficos muestran **z‑scores** frente a la **media departamental**. Si to
 
 # Mapa de subtipos en la zona en Transición
 
-![](Transición/04_Cluster/cluster_map.png){fig-alt="Mapa: zona en Transición subdividida (Alto, Medio, Bajo)" fig-cap="Antioquia en Transición: subtipos territoriales." width="95%"}
+![](Transición_ref_subset/04_Cluster/cluster_map.png){fig-alt="Mapa: zona en Transición subdividida (Alto, Medio, Bajo)" fig-cap="Antioquia en Transición: subtipos territoriales." width="95%"}
 
 **Lectura territorial (orientativa).** Subtipos **Alto/Medio** tienden a ubicarse en **corredores** con mejor conectividad hacia el núcleo metropolitano, mientras que **Bajo** aparece en **bordes** y zonas de transición hacia periferias, con menor acceso a equipamientos.
 
@@ -36,24 +36,25 @@ Los gráficos muestran **z‑scores** frente a la **media departamental**. Si to
 
 > Barras = **z‑scores** (0 = media nacional). Guía: **|z| < 0.5** (pequeña), **0.5–1** (moderada), **1–2** (grande), **>2** (muy grande).
 
-![](Transición/04_Cluster/cluster_variables_contexto_1.png){fig-alt="Brechas de contexto – grupo 1" fig-cap="Acceso a agua/saneamiento, cambio climático (1–2), capacidad fiscal (1–2) y vivienda (1–2)." width="100%"}
+![](Transición_ref_subset/04_Cluster/cluster_variables_contexto_1.png){fig-alt="Brechas de contexto – grupo 1" fig-cap="Acceso a agua/saneamiento, cambio climático (1–2), capacidad fiscal (1–2) y vivienda (1–2)." width="100%"}
 
-![](Transición/04_Cluster/cluster_variables_contexto_2.png){fig-alt="Brechas de contexto – grupo 2" fig-cap="Desarrollo económico (1–3), desigualdad, estructura demográfica, pobreza (1–2), salud (1–2), salud mental (1–2), seguridad (1–2)." width="100%"}
+![](Transición_ref_subset/04_Cluster/cluster_variables_contexto_2.png){fig-alt="Brechas de contexto – grupo 2" fig-cap="Desarrollo económico (1–3), desigualdad, estructura demográfica, pobreza (1–2), salud (1–2), salud mental (1–2), seguridad (1–2)." width="100%"}
 
 **Patrones observados (comparativos entre subtipos):**
 
-- **Vivienda (1–2):** *Transición‑Bajo* presenta **desviaciones positivas** mayores frente a *Alto/Medio*; si la dimensión está orientada como **adversa**, esto señalaría **peores condiciones relativas** de vivienda en este subtipo.  
-- **Desarrollo económico (1–3):** *Transición‑Medio* muestra **déficits leves** (z<0) en varios componentes; *Bajo* y *Alto* alternan ventajas puntuales (z>0) según componente.  
-- **Pobreza (1–2):** *Transición‑Bajo* registra **negativos** en al menos un componente; *Medio* cercano a 0; *Alto* leve negativo.  
-- **Salud (1–2):** *Transición‑Bajo* con **rezagos** (z<0); *Medio* y *Alto* próximos a 0.  
+- **Vivienda (1–2):** *Transición‑Bajo* presenta **desviaciones negativas**, mientras que *Alto* se mantiene por encima. *Medio* presenta desviaciones cercanas a 0. 
+- **Desarrollo económico (1–3):** *Transición‑Medio* muestra **desviaciones positivas** en todos los componentes (z>0); *Alto* alternan ventajas puntuales (z>0) según componente, y *Bajo* presenta **leves desviaciones negativas**.
+- **Cambio climático (1-2)**:  *Transición‑Bajo* presenta desviaciones negativas. Mientras que  *Transición‑Medio* mantienen desviaciones positivas en ambos componentes.
+- **Pobreza (1–2):** *Bajo y Medio* presenta alterna dependiendo del componente. Mientras que  *Transición‑Alto* mantienen leves desviaciones positivas en ambos componentes.
+- **Salud (1–2):** *Transición‑Bajo* con **rezagos sistematicos** (z<0); *Medio* próximo a 0; *Alto* con leves desviaciones positivas.
 - **Salud mental (1–2):** *Transición‑Medio* con **mejoras relativas** (z>0).  
-- **Seguridad (1–2):** *Transición‑Bajo* sobresale en **Seguridad 2** (z>1 en el gráfico), mientras *Alto*/*Medio* permanecen cerca de 0 o con leves negativos.
+- **Seguridad (1–2):** *Transición‑Bajo* es negativo en **Seguridad**, mientras *Medio* permanecen cerca de 0 o con leves negativos y *Alto* alterna de signo dependiendo del componente.
 
 ---
 
 # Brechas en **Resultados por ciclo de vida**
 
-![](Transición/04_Cluster/cluster_variables_res_1.png){fig-alt="Brechas por ciclo de vida" fig-cap="Infancia/Niñez (1–4), Juventud (1–4), Adultez (1–3) y Vejez (1)." width="100%"}
+![](Transición_ref_subset/04_Cluster/cluster_variables_res_1.png){fig-alt="Brechas por ciclo de vida" fig-cap="Infancia/Niñez (1–4), Juventud (1–4), Adultez (1–3) y Vejez (1)." width="100%"}
 
 - **Infancia y Niñez:** *Transición‑Bajo* combina **rezagos** en **(2)** con **mejoras** en **(3–4)**; *Alto/Medio* se ubican alrededor de 0 con variaciones menores.  
 - **Juventud:** *Transición‑Bajo* muestra **ventajas** en **Juv. 1** (z>1) pero **rezagos** en **Juv. 3–4**; *Alto* con negativos moderados en **Juv. 2–3**.  

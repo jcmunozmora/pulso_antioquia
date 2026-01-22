@@ -18,11 +18,6 @@ lang: es
   - **Transición**: valores cercanos a 0 con **rezagos leves** en vivienda/seguridad y algunas dimensiones sociales.
 - **Implicación**: política **diferenciada por territorio**. Inversión dura y social en el **anillo Vulnerable**; consolidación de capital humano e innovación en el **núcleo Consolidado**; **saltos de calidad** en municipios en **Transición**.
 
-::: callout-note
-**Leyenda de colores**  
-El mapa y los gráficos adjuntos usan paletas distintas. En el texto se hace referencia a los **nombres** de clúster (*Consolidada*, *Transición*, *Vulnerable*). 
-:::
-
 ---
 
 # Mapa de tipologías (clústeres municipales)
@@ -67,13 +62,13 @@ El mapa y los gráficos adjuntos usan paletas distintas. En el texto se hace ref
 
 ![](all/04_Cluster/cluster_variables_res_1.png){fig-alt="Brechas en resultados por ciclo de vida" fig-cap="Desviaciones en Infancia/Niñez, Juventud, Adultez y Vejez." width="100%"}
 
-- **Infancia y niñez**: **Vulnerable** con rezagos notables (~−1.5 en un subíndice); foco en **APS**, **nutrición** y **mortalidad infantil**.
+- **Infancia y niñez**: **Consolidada** con rezagos notables (~−1.5 en un subíndice); foco en **Cobertura en educación**, **repitencia**, **deserción** y **mortalidad infantil**.
   
-- **Juventud**: déficits en **terminación de secundaria**, **educación superior** y **transición escuela–trabajo** (Vulnerable ≈ −1 a −1.5).  
+- **Juventud**: Déficits en  **fecundidad adolescente**, **repitencia**, **cobertura en educación** y **transición a educación superior** (Vulnerable ≈ −1 a −1.5).  
 
-- **Adultez**: **Consolidada** >0 en al menos un componente; **Vulnerable** negativa; **Transición** cerca de 0.  
+- **Adultez**: **Consolidada** <0 (énfasis en **empleo informal** y **afiliación a salud**); **Vulnerable** positiva; **Transición** cerca de 0.  
 
-- **Vejez**: **Vulnerable ≈ −1.7** (mortalidad por crónicas/condiciones de envejecimiento); **Consolidada** levemente >0.
+- **Vejez**: **Vulnerable ≈ −1.7** (estructura demosgráfica/cotización a pensión); **Consolidada** y **Transición** levemente >0.
 
 ---
 
