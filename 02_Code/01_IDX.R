@@ -1,23 +1,57 @@
-# ------------------------------------------------------------------------------
-# Project: Antioquias 2025 - Indicadores
-# File: 01_IDX.R
-# Authors: Laura Quintero, Juan Carlos Muñoz
-# Description: Main script for calculating and analyzing indicators for the 
-#              Antioquias 2025 project. Loads auxiliary functions and prepares 
-#              the environment for further analysis.
-# ------------------------------------------------------------------------------
+# ==============================================================================#
+# ANTIOQUIAS - 01_IDX.R
+# CONSTRUCCIÓN DE ÍNDICES MULTIDIMENSIONALES MEDIANTE PCA
+# Autores:Laura Quintero, Juan Carlos Muñoz
+#
+# OBJETIVO:
+# Calcular 15 índices temáticos aplicando PCA para reducción dimensional.
+# Cada índice agrupa variables relacionadas a subdimensiones específicas
+# identificadas en la metodología de brechas territoriales.
+#
+# INPUTS:  01_Data/01_Derived/01_DATOS_INICIALES.xlsx
+#          01_Data/01_Derived/01_DATOS_INICIALES_dim.xlsx
+#          01_Data/01_Derived/labels_2.xlsx
+#          02_Code/AUX_Functions.R
+# OUTPUTS: 01_Data/01_Derived/pca_ds_total.xlsx (consolidado de 15 índices)
+#          01_Data/01_Derived/pca_ds_total.rds
+#          + outputs individuales generados por reduc_dim() (gráficos, scores)
+#
+# ETAPA DEL PIPELINE: 2 - Construcción de índices multidimensionales
+# ==============================================================================#
+
+# ---- packages ----
 rm(list = ls())
 
-# Load auxiliary functions
-source("02_Code/AUX_Functions.R")
+pacman::p_load(
+  readxl,
+  writexl,
+  dplyr,
+  purrr
+)
 
-# DATOS 
-ds_ind <- read_excel("01_Data/01_Derived/01_DATOS_INICIALES.xlsx")
-ds <- read_excel("01_Data/01_Derived/01_DATOS_INICIALES_dim.xlsx")
-label <- read_excel("01_Data/01_Derived/labels_2.xlsx")
+# ---- paths ----
+path_in  <- "01_Data/01_Derived"
+path_out <- "01_Data/01_Derived"
+path_code <- "02_Code"
 
+# ---- funciones auxiliares ----
+source(file.path(path_code, "AUX_Functions.R"))
 
-## IDX 1 : Acceso a servicio de agua potable y saneamiento 
+# ---- lectura de datos ----
+ds_ind <- read_excel(file.path(path_in, "01_DATOS_INICIALES.xlsx"))
+ds     <- read_excel(file.path(path_in, "01_DATOS_INICIALES_dim.xlsx"))
+label  <- read_excel(file.path(path_in, "labels_2.xlsx"))
+
+# ==============================================================================#
+# CÁLCULO DE ÍNDICES POR SUBDIMENSIÓN
+# ==============================================================================#
+# Patrón general para cada índice:
+# 1. Extraer variables de la subdimensión específica
+# 2. Aplicar transformaciones: invertir signo de variables negativas (*-1)
+# 3. Seleccionar variables finales para PCA
+# 4. Aplicar reducción dimensional mediante reduc_dim()
+
+# ---- IDX 1: Acceso a servicio de agua potable y saneamiento ---- 
 cat("Calculando IDX 1: Acceso a servicio de agua potable y saneamiento...\n")
 
   idx_1 <-  get_subdimension_data(ds, "Acceso a servicio de agua potable y saneamiento")
@@ -41,9 +75,7 @@ cat("Calculando IDX 1: Acceso a servicio de agua potable y saneamiento...\n")
                 ircarural)  %>%
   reduc_dim(., 1,label, "idx1_servicio","all")
 
-
-### IDX 2 : Adultez
-
+# ---- IDX 2: Adultez ----
 cat("Calculando IDX 2: Adultez...\n")
 
 idx_2 <-  get_subdimension_data(ds, "Adultez")
@@ -65,7 +97,7 @@ idx_2 <- idx_2 %>%
                )  %>%
   reduc_dim(., 1,label, "idx2_Adultez","all")
 
-### IDX 3: Cambio climatico
+# ---- IDX 3: Cambio climático ----
 cat("Calculando IDX 3: Cambio climático...\n")
 
 idx_3 <-  get_subdimension_data(ds, "Cambio climatico")
@@ -81,7 +113,7 @@ idx_3 <- idx_3 %>%
   )  %>%
   reduc_dim(., 1,label, "idx3_climatico","all")
 
-### IDX 4: Capacidad fiscal
+# ---- IDX 4: Capacidad fiscal ----
 cat("Calculando IDX 4: Capacidad fiscal...\n")
 
 idx_4 <-  get_subdimension_data(ds, "Capacidad fiscal")
@@ -92,9 +124,8 @@ idx_4 <- idx_4 %>%
         med_d_mun
   )  %>%
   reduc_dim(., 1,label, "idx4_Capacidad","all")
-
     
-### IDX 5: Características de las viviendas
+# ---- IDX 5: Características de las viviendas ----
 cat("Calculando IDX 5: Características de las viviendas...\n")
 
 idx_5 <-  get_subdimension_data(ds, "Características de las viviendas")
@@ -116,7 +147,7 @@ idx_5 <- idx_5 %>%
   )  %>%
   reduc_dim(., 1,label, "idx5_viviendas","all")
 
-### IDX 6: Desarrollo económico
+# ---- IDX 6: Desarrollo económico ----
 cat("Calculando IDX 6: Desarrollo económico...\n")
 
 idx_6 <-  get_subdimension_data(ds, "Desarrollo económico")
@@ -140,9 +171,8 @@ idx_6 <- idx_6 %>%
                 #vpc_total
                 internet)  %>%
   reduc_dim(., 1,label, "idx6_crecimiento","all")
-
     
-### IDX 7: Desigualdad
+# ---- IDX 7: Desigualdad ----
 cat("Calculando IDX 7: Desigualdad...\n")
 
 idx_7 <-  get_subdimension_data(ds, "Desigualdad")
@@ -157,7 +187,7 @@ idx_7 <- idx_7 %>%
   )  %>%
   reduc_dim(., 1,label, "idx7_gini","all")
                 
-### IDX 8: Estructura demográfica
+# ---- IDX 8: Estructura demográfica ----
 cat("Calculando IDX 8: Estructura demográfica...\n")
 
 idx_8 <-  get_subdimension_data(ds, "Estructura demográfica")
@@ -189,10 +219,8 @@ idx_8 <- idx_8 %>%
                ide_t_c,
                ide_t_r)  %>%
   reduc_dim(., 1,label, "idx8_demografica","all")
-
                 
-
-### IDX 9: Infancia y Niñez
+# ---- IDX 9: Infancia y niñez ----
 cat("Calculando IDX 9: Infancia y Niñez...\n")
 
 idx_9 <-  get_subdimension_data(ds, "Infancia y Niñez")
@@ -222,7 +250,7 @@ idx_9 <- idx_9 %>%
                )  %>%
   reduc_dim(., 1,label, "idx9_infnin","all")
 
-### IDX 10: Juventud
+# ---- IDX 10: Juventud ----
 cat("Calculando IDX 10: Juventud...\n")
 
 idx_10 <-  get_subdimension_data(ds, "Juventud")
@@ -258,7 +286,7 @@ idx_10 <- idx_10 %>%
   )  %>%
   reduc_dim(., 1,label, "idx10_juventud","all")
 
-### IDX 11: Pobreza
+# ---- IDX 11: Pobreza ----
 cat("Calculando IDX 11: Pobreza...\n")
 
 idx_11 <-  get_subdimension_data(ds, "Pobreza")
@@ -313,8 +341,7 @@ idx_11 <- idx_11 %>%
                  pob_nbi_mujeres)  %>%
   reduc_dim(., 1,label, "idx11_pobreza","all")
 
-
-### IDX : Salud
+# ---- IDX 12: Salud ----
 cat("Calculando IDX 12: Salud...\n")
 
 idx_12 <-  get_subdimension_data(ds, "Salud")
@@ -330,7 +357,7 @@ idx_12 <- idx_12 %>%
                malaria)  %>%
   reduc_dim(., 1,label, "idx12_salud","all")
 
-### IDX 13: Salud mental
+# ---- IDX 13: Salud mental ----
 cat("Calculando IDX 13: Salud mental...\n")
 
 idx_13 <-  get_subdimension_data(ds, "Salud mental")
@@ -364,7 +391,7 @@ idx_13 <- idx_13 %>%
                )  %>%
   reduc_dim(., 1,label, "idx13_saludmental","all")
 
-### IDX 14 : Seguridad
+# ---- IDX 14: Seguridad ----
 cat("Calculando IDX 14: Seguridad...\n")
 
 idx_14 <-  get_subdimension_data(ds, "Seguridad")
@@ -384,7 +411,7 @@ idx_14 <- idx_14 %>%
                )  %>%
   reduc_dim(., 1,label, "idx14_seguridad","all")
 
-### IDX 15: Vejez
+# ---- IDX 15: Vejez ----
 cat("Calculando IDX 15: Vejez...\n")
 
 idx_15 <-  get_subdimension_data(ds, "Vejez")
@@ -413,14 +440,20 @@ idx_15 <- idx_15 %>%
                i_enve_t_r,
   )  %>%
   reduc_dim(., 1,label, "idx15_vejez","all")
-# Join data
+
+# ==============================================================================#
+# CONSOLIDACIÓN DE ÍNDICES 
+# ==============================================================================#
+# Unir todos los índices en un único dataset
+
 lista_idx <- mget(ls(pattern = "^idx_"))
 
 df_final <- reduce(lista_idx, function(x, y) {
   left_join(x, y, by = c("ind_mpio", "nvl_label"))
 })
 
-write_xlsx(df_final, path = "01_Data/01_Derived/pca_ds_total.xlsx")
-saveRDS(df_final, file = "01_Data/01_Derived/pca_ds_total.rds")
+# ---- exportación de resultados ----
+write_xlsx(df_final, path = file.path(path_out, "pca_ds_total.xlsx"))
+saveRDS(df_final, file = file.path(path_out, "pca_ds_total.rds"))
 
 

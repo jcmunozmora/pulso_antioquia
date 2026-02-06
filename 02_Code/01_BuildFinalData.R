@@ -1,4 +1,4 @@
-# ==============================================================================
+# ==============================================================================#
 # ANTIOQUIAS - 01_BuildFinalData.R
 # TRANSFORMACIÓN A FORMATO LARGO Y CONSTRUCCIÓN DE DATASETS INICIALES
 #
@@ -14,7 +14,7 @@
 #          label.xlsx (diccionario var_id -> variable)
 #
 # ETAPA DEL PIPELINE: 1 - Preparación y reshaping de datos
-# ==============================================================================
+# ==============================================================================#
 
 # ---- packages ----
 rm(list = ls())

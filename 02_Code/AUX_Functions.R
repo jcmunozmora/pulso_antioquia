@@ -1,47 +1,52 @@
-rm(list = ls())
-# Aux Funciones
-# ------------------------------------------------------------------------------
-# File: AUX_Functions.R
-# Created by: Laura Quintero & Juan Carlos Muñoz
+# ==============================================================================#
+# ANTIOQUIAS - AUX_Functions.R
+# FUNCIONES AUXILIARES PARA ANÁLISIS PCA Y VISUALIZACIÓN
+#
+# AUTHORS: Laura Quintero & Juan Carlos Muñoz
 # Last modified: 2024-06-10
-# Description: Auxiliary functions for data analysis and visualization in Antioquias project.
-# ------------------------------------------------------------------------------
+#
+# DESCRIPCIÓN:
+# Conjunto de funciones reutilizables para:
+# - Extracción y filtrado de datos por subdimensión
+# - Reducción dimensional mediante PCA
+# - Generación de visualizaciones (mapas, gráficos de cargas, telañas)
+# - Exportación automática de tablas y outputs
+#
+# ETAPA DEL PIPELINE: Funciones transversales (usadas en etapas 2-4)
+# ==============================================================================#
 
-#### 00 - Loading packages
-#==============================
-# Load required packages using pacman::p_load for easier management
-# Load required packages using pacman::p_load for easier management
-library(haven)
-library(tidyr)
-library(dplyr)
-library(stringi)
-library(writexl)
-library(readxl)
-library(tidymodels)
-library(ggrepel)
-library(stringr)
+# ---- packages ---- 
+pacman::p_load(
+  haven,
+  tidyr,
+  dplyr,
+  stringi,
+  writexl,
+  readxl,
+  tidymodels,
+  ggrepel,
+  stringr,
+  tidyverse,
+  bestNormalize,
+  embed,
+  ggpubr,
+  gridExtra,
+  ggforce,
+  learntidymodels,
+  sf,
+  colorspace,
+  ggthemes,
+  stargazer,
+  glue
+)
+
 tidymodels_prefer()
-library(tidyverse) # Basic data management
-library(bestNormalize) ### Important package to normalize
-library(embed) # load the library to use `step_umap()`  
-library(ggpubr) # Nice graphs
-library(gridExtra) ## Better graphs
-library(ggforce) ### Force images
-#devtools::install_github("tidymodels/learntidymodels")
-library(learntidymodels) ## Graphs for PCA
-#library(PulsoSocialColombia)
-library(sf)
-library(colorspace)
-library(ggthemes)
-library(stargazer) # Tables
-library(glue)
 
-tidymodels_prefer() # Prefer tidymodels functions over base R
+# ==============================================================================#
+# CONFIGURACIÓN GLOBAL: PARÁMETROS DE VISUALIZACIÓN ----
+# ==============================================================================#
 
-
-###===================
-### 01 - Map Stylish
-#===
+# ---- parámetros de tamaño y estilo ---- #
 
 w <- 4.5*2.5
 h <- 3.2*2.5
@@ -79,131 +84,121 @@ map_theme <- list(
     panel.grid.minor = element_blank(),
   ))
 
+# ==============================================================================#
+# FUNCIÓN 1: plot_top_loadings_jc ----
+# ==============================================================================#
+# Visualiza las variables con mayor carga absoluta en componentes principales
+#
+# PARÁMETROS:
+#   v      - Factor de inversión (1 o -1) para ajustar signo de loadings
+#   label  - Data frame con columnas 'terms' y 'lab' (etiquetas legibles)
+#   x      - Objeto recipe con step_pca preparado
+#   ...    - Argumentos adicionales para filtrar componentes
+#   n      - Número de variables top a mostrar por componente (default: 4)
+#   id     - ID del step_pca (default: NULL)
+#   type   - Tipo de análisis (default: "pca")
+#
+# RETORNA:
+#   Objeto ggplot con gráfico de barras facetado por componente
+# ==============================================================================#
+# ---- plot_top_loadings_jc ---- #
 
-
-###===================
-### 01 - Map Stylish
-#===
-
-w <- 4.5*2.5
-h <- 3.2*2.5
-text <- 15
-d <- 900
-s <- 1.2
-a_line <- 0.6
-a_dot <- 0.7
-
-theme <- list(
-  theme_classic(base_size = text*1.5),
-  theme(axis.title.x = element_text(colour = "black"),
-        axis.title.y = element_text(colour = "black"),
-        axis.text.x = element_text(colour = "black"),
-        axis.text.y = element_text(colour = "black"),
-        legend.position = "bottom",
-        plot.title = element_text(hjust = 0.5),
-        legend.title = element_blank()))
-
-map_theme <- list(
-  theme(
-    panel.background = element_blank(),
-    plot.background = element_blank(),
-    panel.border = element_blank(),
-    panel.grid = element_blank(),
-    axis.title = element_text(face = "bold", size = rel(1)),
-    axis.title.y = element_blank(),
-    axis.title.x = element_text(vjust = -0.2,colour = "black"),
-    axis.text = element_blank(),
-    axis.text.y = element_blank(),
-    axis.text.x = element_blank(),
-    axis.line = element_blank(),
-    axis.ticks = element_blank(),
-    panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank(),
-  ))
-
-
-###===================
-### 01 - Plot numbers 
-#====================
-
-plot_top_loadings_jc <- function(v,label,x, ..., n = 4, id = NULL, type = "pca") {
+plot_top_loadings_jc <- function(v, label, x, ..., n = 4, id = NULL, type = "pca") {
   comp_vals <- get_loading_data(x, ..., id = id, type = type)
   
-  comp_vals <-
-    comp_vals %>%
+  comp_vals <- comp_vals %>%
     dplyr::mutate(
-      value=value*v,
+      value = value * v,
       `Positivo?` = value > 0,
       abs_value = abs(value)
-    )%>%
+    ) %>%
     dplyr::group_by(component) %>%
     dplyr::slice_max(abs_value, n = n) %>%
     dplyr::ungroup() %>%
     dplyr::arrange(component, abs_value) %>%
     dplyr::mutate(order = dplyr::row_number()) %>%
-    dplyr::left_join(label,by="terms")
+    dplyr::left_join(label, by = "terms")
   
   ggplot2::ggplot(comp_vals, ggplot2::aes(x = order, y = abs_value, fill = `Positivo?`)) +
     ggplot2::geom_col() +
     ggplot2::coord_flip() +
-    ggplot2::facet_wrap( vars(component), scales = "free_y") +
+    ggplot2::facet_wrap(vars(component), scales = "free_y") +
     ggplot2::scale_x_continuous(
-      breaks = comp_vals$order,
+     # breaks = comp_vals$order,
       labels = comp_vals$lab,
-      expand = c(0,0)
-    )  +
+      expand = c(0, 0)
+    ) +
     ggplot2::labs(x = NULL, y = "Abs. Coefficient Value")
-  
 }
 
-
-###===================
-### 01 - Map
-#=====================
+# ==============================================================================#
+# CONFIGURACIÓN DE MAPAS ----
+# ==============================================================================#
+# ---- carga de shapefile y paleta de colores ---- #
 map_mpios <- st_read("01_Data/01_Derived/maps/municipios_antioquia.shp")
-col_palette <- c("#9ADCFF","#FFF89A","#FFB2A6","#FF8AAE")
+map_mpios <- st_make_valid(map_mpios)
+map_mpios <- st_simplify(map_mpios, preserveTopology = TRUE, dTolerance = 0.0001)
+col_palette <- c("#9ADCFF", "#FFF89A", "#FFB2A6", "#FF8AAE")
 
-
-
-mk_map <- function(data_map,var,ann){
+# ==============================================================================#
+# FUNCIÓN 2: mk_map ----
+# ==============================================================================#
+# Genera mapas temáticos de Antioquia con clasificación por cuartiles
+#
+# PARÁMETROS:
+#   data_map - Objeto sf con geometrías y datos municipales
+#   var      - Nombre de la variable a mapear (string)
+#   ann      - Anotación/caption para el mapa (string)
+#
+# RETORNA:
+#   Objeto ggplot con mapa cloroplético por cuartiles
+# ==============================================================================#
+# ---- mk_map ---- #
+mk_map <- function(data_map, var, ann) {
   
   ### Var
   dat <- data_map[,c(var,"nvl_lbl","X","Y")]
   colnames(dat) <- c("var","nvl_lbl","X","Y","geometry")
+  # Clasificar por cuartiles
   dat <- dat %>%
     mutate(tertiles = ntile(var, 4)) %>%
     mutate(tertiles = if_else(tertiles == 1, '1 Cuartil',
                               if_else(tertiles == 2, '2 Cuartil',
-                                      ifelse(tertiles==3,'3 Cuartil','4 Cuartil')))) %>%
+                                      ifelse(tertiles == 3, '3 Cuartil', '4 Cuartil')))) %>%
     arrange(var)
   
-  g1<- ggplot(dat) +
+  # Generar mapa
+  g1 <- ggplot(dat) +
     geom_sf(aes(fill = tertiles),
-            color = "#606060", size = 0.05, alpha = 0.65) +
-    geom_text(aes(X, Y, label = nvl_lbl), vjust = 1.5,  size = 2.5,  color = "black",
-              position = position_dodge(0.9), 
-              size = 2.5,alpha = 1, color = "black") +
-    scale_color_manual(values =  col_palette, 
-                       na.value = "#ededed", na.translate = F) +
+            color = "#505050", linewidth = 0.4, alpha = 0.95) +
+    geom_text(aes(X, Y, label = nvl_lbl), vjust = 1.5, size = 2.5, color = "black",
+              position = position_dodge(0.9), alpha = 1) +
+    scale_color_manual(values = col_palette,
+                       na.value = "#ededed", na.translate = FALSE) +
     guides(fill = guide_legend(ncol = 2)) +
     xlab("") +
-    #labs(fill="",caption = ann) +
-    labs(fill="",caption = NULL) +
-    theme + map_theme+
-    theme_map(base_size = 12)+
+    labs(fill = "", caption = NULL) +
+    theme + map_theme +
+    theme_map(base_size = 12) +
     theme(legend.position = c(0.8, 0.2),
-          plot.caption = element_text(color = "blue", 
-                                      face = "italic",size=7))
-  
+          plot.caption = element_text(color = "blue", face = "italic", size = 7))
   
   return(g1)
-  }
+}
 
-
-
-###===================
-### 01 - PIVOT + FILTER
-#=====================
+# ==============================================================================#
+# FUNCIÓN 3: get_subdimension_data ----
+# ==============================================================================#
+# Filtra y pivota datos para extraer variables de una subdimensión específica
+#
+# PARÁMETROS:
+#   data          - Data frame en formato largo con columna 'Subdimension'
+#   subdimension_ - Nombre de la subdimensión a extraer (string)
+#
+# RETORNA:
+#   Data frame en formato ancho con ind_mpio, nvl_label y variables como columnas
+# ==============================================================================
+# ---- get_subdimension_data ---- #
 get_subdimension_data <- function(data, subdimension_) {
   data_filtered <- data %>%
     filter(Subdimension == subdimension_) %>%
@@ -215,17 +210,38 @@ get_subdimension_data <- function(data, subdimension_) {
   return(data_values)
 }
 
-### =================
-### 02- PCA 
-### =================
+# ==============================================================================#
+# FUNCIÓN 4: reduc_dim (FUNCIÓN PRINCIPAL DE ANÁLISIS PCA) ----
+# ==============================================================================#
+# Aplica reducción dimensional mediante PCA con pipeline completo:
+# - Normalización e imputación
+# - Cálculo de componentes principales
+# - Generación automática de outputs (tablas, gráficos, mapas)
+#
+# PARÁMETROS:
+#   ds_raw - Data frame con ind_mpio, nvl_label y variables numéricas
+#   trans  - Factor de transformación (1: mantener signo, -1: invertir)
+#   label  - Data frame con columnas 'terms' y 'lab' (diccionario variables)
+#   nm     - Nombre base para archivos de salida (string, ej: "idx1_servicio")
+#   path   - Subcarpeta dentro de 03_Outputs/ para guardar resultados
+#
+# RETORNA:
+#   Data frame con ind_mpio, nvl_label y componentes principales (PC1, PC2, ...)
+#
+# OUTPUTS GENERADOS:
+#   - 01_TablasDescriptivas/: estadísticas descriptivas (.xlsx, .tex)
+#   - 02_Imagenes/: gráficos PCA, mapas, cargas, radar charts
+#   - 03_DS/: dataset final con scores PCA
+#   - {nm}_loadings_y_tops.xlsx: cargas, varianza, top variables
+# ==============================================================================#
+# ---- reduc_dim ---- #
 
-reduc_dim <- function(ds_raw,trans,label,nm,path) {
-
-###
-dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE)
-
-#### 00 - Normalize the data
-  # Ensure all required output directories exist
+reduc_dim <- function(ds_raw, trans, label, nm, path) {
+  
+  # Crear estructura de directorios
+  dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE)
+  
+  # Asegurar que existan todos los directorios de salida
   output_dirs <- c(
     file.path("03_Outputs", path),
     file.path("03_Outputs", path, "01_TablasDescriptivas"),
@@ -244,9 +260,8 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
     ann <- ""
   #}
   
-  ###
   ### 00 a- Sumary stats
-  ###================================
+
   lb <- label[label$terms %in% names(ds_raw),]
   vars <- lb$terms
   df_num <- ds_raw[,vars]
@@ -329,7 +344,7 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
   # test <- bake(prep(ds_prep),new_data=NULL)
   
   #### 01 - Dimensionality Methods
-  ###================================
+
   n_pred <- ds_raw %>%
     dplyr::select(-ind_mpio, -nvl_label) %>%
     dplyr::select(where(base::is.numeric)) %>% ncol()
@@ -342,11 +357,7 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
   
   #### % Varianza Explicado
   pca_bake <- bake(pca_prep, ds_raw)
-  
-  
-  # ====== BLOQUE COMPLETO  ======
 
-  
   # Etiquetas "bonitas" desde tu tabla 'label' (si la tienes)
   lb_ <- label %>%
     dplyr::filter(terms %in% names(ds_raw)) %>%
@@ -447,7 +458,6 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
   umap_bake <- bake(ds_umap, ds_raw)
   
   #### 02 - Compare Methods
-  ###================================
   
   g1 <- umap_bake %>%
     ggplot(aes(UMAP1, UMAP2, label=nvl_label)) +
@@ -467,7 +477,6 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
                                                        size=5))
   
   #### 02 - PCA
-  ###================================
   
   pca_variances <- tidy(pca_prep, id = "pca", type = "variance")
   write_xlsx(pca_variances, path = glue("03_Outputs/",path,"/01_TablasDescriptivas/", nm, "_vr.xlsx"))
@@ -518,7 +527,7 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
   
 
   #### 03 - Get the pca
-  ###================================
+
   # Emparejar datos y mapas
   data_map <- merge(map_mpios,pca_bake,by.x="nivl_vl",by.y="ind_mpio",all.x=TRUE)
   names(data_map)
@@ -541,7 +550,7 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
   
   
   #### 04 - Final
-  ###================================
+
   k <- sum(grepl("^PC\\d+$", names(pca_bake)))   # cuántas PCs hay realmente
   names(pca_bake) <- c("ind_mpio", "nvl_label", paste0(nm, seq_len(k)))
 
@@ -549,11 +558,30 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
   
   
   return(pca_bake)
-  
 }
 
- ### 05 - Telaraña
-  plot_radar_pc_tbl <- function(load_tbl, var_tbl, comp = 1, order_by = c("magnitude","name","given")) {
+# ==============================================================================#
+# FUNCIÓN 5: plot_radar_pc_tbl ----
+# ==============================================================================#
+# Genera gráficos de telaraña (radar charts) para visualizar las cargas
+# de variables en un componente principal específico
+#
+# PARÁMETROS:
+#   load_tbl - Data frame con columnas: component, variable, loading, peso_relativo
+#   var_tbl  - Data frame con columnas: component, percent (varianza explicada)
+#   comp     - Número del componente a graficar (default: 1)
+#   order_by - Criterio de ordenamiento de ejes: "magnitude" (por |loading|),
+#              "name" (alfabético), "given" (orden original)
+#
+# RETORNA:
+#   Objeto ggplot con gráfico de telaraña circular
+#   - Centro = loading 0
+#   - Radio aumenta con valor absoluto del loading
+#   - Color indica signo: azul (+), rojo (-)
+# ==============================================================================#
+# ---- plot_radar_pc_tbl ---- #
+
+plot_radar_pc_tbl <- function(load_tbl, var_tbl, comp = 1, order_by = c("magnitude", "name", "given")) {
     order_by <- match.arg(order_by)
     comp_name <- paste0("PC", comp)
     
@@ -606,5 +634,4 @@ dir.create(file.path("03_Outputs", path), recursive = TRUE, showWarnings = FALSE
       theme_minimal(base_size = 14) +
       theme(axis.text = element_blank(), axis.ticks = element_blank(),
             panel.grid = element_blank(), legend.position = "bottom")
-  }
-  
+}
