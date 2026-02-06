@@ -36,12 +36,12 @@ La aplicación de la metodología partió de la consolidación del programa *Ant
 
 # Enfoque analítico: “las múltiples Antioquias”
 
-La estructura de datos permite una lectura **comprensiva** de la realidad social del país y una propuesta basada en la **caracterización de tipologías territoriales** (las *múltiples Colombias*).
+La estructura de datos permite una lectura **comprensiva** de la realidad social del departamento y una propuesta basada en la **caracterización de tipologías territoriales**, inspirada en el enfoque de *las múltiples Colombias*.
 
 1. **Índices por dimensión**: primero se construyen **índices** para cada dimensión de *Pulso Social*, que **resumen** las características comunes de los indicadores que la componen.  
 2. **Agrupamiento por similitud**: luego, a partir de **patrones comunes** y **similitudes** entre **todas las dimensiones**, se generan **agrupaciones** de territorios **más homogéneos**.
 
-A este análisis lo denominamos **“las múltiples Colombias”**, porque hace visible la **diversidad de trayectorias** territoriales desde una lectura sistemática de las dimensiones por **ciclo de vida**.
+Este enfoque retoma el marco analítico de **“las múltiples Colombias”** como referente conceptual y metodológico adaptado al contexto departamental, el cual permite identificar y comprender brechas territoriales en Antioquia. Por ello, este análisis lo denominamos **las múltiples Antioquias**, porque hace visible la **diversidad de trayectorias** territoriales desde una lectura sistemática de las dimensiones por **ciclo de vida**.
 
 
 ---

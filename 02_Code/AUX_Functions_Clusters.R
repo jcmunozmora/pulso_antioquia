@@ -13,6 +13,7 @@ library(cluster)
 library(ggplot2)
 library(sp)
 library(sf)
+library(ggrepel)
 library("maps")
 library("ggplot2")
 library("cowplot")
@@ -59,16 +60,34 @@ map_theme <- list(
 
 # Paleta base (misma en mapas y gráficos)
 base_palette <- c(
-  "Consolidada" = "#27AE60",
-  "Transición"  = "#2980B9",
-  "Vulnerable"  = "#E67E22"
+  "Consolidada" = "#88B08D",
+  "Transición"  = "#DDD878",
+  "Vulnerable"  = "#CE5244"
+)
+
+#Para análisis de clusters
+col_palette <- c(
+  # Consolidada
+  "Consolidada - Alto"  = "#88B08D",
+  "Consolidada - Medio"= "#9EBA88",
+  "Consolidada - Bajo" = "#B3C383",
+  
+  # Transición
+  "Transición - Alto"  = "#C8CE7D",
+  "Transición - Medio"= "#DDD878",
+  "Transición - Bajo" = "#D9B76B",
+  
+  # Vulnerable
+  "Vulnerable - Alto"  = "#D6555F",
+  "Vulnerable - Medio"= "#D27452",
+  "Vulnerable - Bajo" = "#CE5244"
 )
 
 # Genera tonos: Bajo (claro) -> Medio -> Alto (color base)
-make_tints3 <- function(hex){
-  pal <- grDevices::colorRampPalette(c("#FFFFFF", hex))(9)
-  pal[c(4, 6, 9)]
-}
+#make_tints3 <- function(hex){
+  #pal <- grDevices::colorRampPalette(c("#FFFFFF", hex))(9)
+  #pal[c(3, 6, 9)]
+#}
 
 
 
@@ -206,33 +225,35 @@ ps_cluster <- function(pca_ds,df,lab_g,path, eje){
   ###==============
   
   # Ward's method
-  hc5 <- hclust(d, method = "ward.D2" )
-  # Cut tree into 4 groups
-  sub_grp <- cutree(hc5, k = 3)
-   
+  hc5 <- hclust(d, method = "ward.D2")
   
-  # Ordenar clusters: mejor -> peor y reasignar IDs 1..k
-  rank_clusters_best_to_worst <- function(df_scaled, clusters) {
-    tmp <- as.data.frame(df_scaled)
-    tmp$sub_grp <- clusters
-
-    sc <- tmp %>%
-      dplyr::group_by(sub_grp) %>%
-      dplyr::summarise(
-        score = mean(as.matrix(dplyr::across(-sub_grp)), na.rm = TRUE),
-        .groups = "drop"
-      )
-
-    ord <- sc %>% dplyr::arrange(dplyr::desc(score)) %>% dplyr::pull(sub_grp)
-    map <- setNames(seq_along(ord), ord)
-
-    as.integer(map[as.character(clusters)])
-  }
-  if (path == "Transición_ref_dept"){
-    # Re-etiqueta: el mejor cluster queda como 1, luego 2, luego 3
-    sub_grp <- rank_clusters_best_to_worst(df, sub_grp)
-  }
-
+  # 1. Corte inicial del árbol
+  sub_grp_raw <- cutree(hc5, k = 3)
+  
+  # 2. Identificar solo los PC1 para determinar el orden (más es mejor)
+  # Según el vector 'vars', son los que terminan exactamente en "1"
+  cols_pc1 <- grep("1$", colnames(df), value = TRUE)
+  
+  # 3. Crear un ranking basado en el promedio de esos PC1
+  # Usamos un dataframe temporal para no alterar el 'df' original
+  df_ranking <- data.frame(
+    old_cluster = sub_grp_raw,
+    score_orden = rowMeans(df[, cols_pc1, drop = FALSE], na.rm = TRUE)
+  )
+  
+  # 4. Calcular el desempeño promedio por cluster
+  resumen_clusters <- df_ranking %>%
+    group_by(old_cluster) %>%
+    summarise(avg_score = mean(score_orden)) %>%
+    arrange(desc(avg_score)) %>% 
+    mutate(new_cluster_id = row_number())
+  
+  # 5. Mapear los viejos IDs a los nuevos IDs (1=Mejor, 3=Peor)
+  map_clusters <- resumen_clusters$new_cluster_id
+  names(map_clusters) <- resumen_clusters$old_cluster
+  
+  # 6. Reemplazar sub_grp con los valores ordenados
+  sub_grp <- as.integer(map_clusters[as.character(sub_grp_raw)])
   
   #### Dendrogram
   p_dendo <- fviz_dend(
@@ -265,18 +286,7 @@ ps_cluster <- function(pca_ds,df,lab_g,path, eje){
     width = w,
     dpi = 300
   )
-  
-  #png(
-  #  file = paste0("03_Outputs/", path, "/04_Cluster/cluster_dendo_phylogenic.png"),
-  #  height = h * 0.8,
-   # width = w,
-   # units = "in",
-  #  res = 300
-   #)
-  #fviz_dend(hc5,k=4,k_colors="jco",
-  #          type="phylogenic", repel=TRUE)
-  #dev.off()
-  
+ 
   #### Step 04: Build Data
   ###=============
   
@@ -319,24 +329,23 @@ ps_cluster <- function(pca_ds,df,lab_g,path, eje){
     # --- Paleta dinámica según tipo de gráfico ---
     levs <- levels(gathered_datos.j$sub_grp)
     
-    # Caso 1: clúster general (Consolidada/Transición/Vulnerable)
+    # Caso 1: cluster simple
     if (all(levs %in% names(base_palette))) {
+      
       col_palette_named <- base_palette[levs]
       
-      # Caso 2: subniveles (p.ej. "Vulnerable - Alto/Medio/Bajo")
     } else {
-      # Extrae grupo y nivel
-      grupo <- sub(" - (Alto|Alta|Medio|Media|Bajo|Baja)$", "", levs)
-      nivel <- sub("^.* - ", "", levs)
-      nivel <- dplyr::recode(nivel,
-                             "Alta"="Alto", "Media"="Medio", "Baja"="Bajo")
       
-      # Asigna tonos por grupo
-      col_palette_named <- purrr::map2_chr(grupo, nivel, \(g, n){
-        tonos <- make_tints3(base_palette[[g]])
-        names(tonos) <- c("Bajo","Medio","Alto")
-        tonos[[n]]
-      })
+      levs_clean <- levs
+      levs_clean <- gsub(" - Alta$",  " - Alto",  levs_clean)
+      levs_clean <- gsub(" - Media$", " - Medio", levs_clean)
+      levs_clean <- gsub(" - Baja$",  " - Bajo",  levs_clean)
+      
+      faltan <- setdiff(levs_clean, names(col_palette))
+      if (length(faltan) > 0)
+        stop(paste("No están en col_palette:", paste(faltan, collapse = ", ")))
+      
+      col_palette_named <- col_palette[levs_clean]
       names(col_palette_named) <- levs
     }
     
@@ -485,6 +494,8 @@ ps_cluster <- function(pca_ds,df,lab_g,path, eje){
   ###==============
     map_dptos <- st_read("01_Data/01_Derived/maps/municipios_antioquia.shp")
     #col_palette <- c("#9ADCFF","#FFF89A","#FFB2A6","#FF8AAE")
+    
+    
     ds_out <- cbind( pca_ds[,c("ind_mpio","nvl_label")],datos.j)
   
     data_map <- merge(map_dptos,ds_out,by.x="nivl_vl",by.y="ind_mpio")
@@ -500,50 +511,61 @@ ps_cluster <- function(pca_ds,df,lab_g,path, eje){
     
     # data_map <- data_map[data_map$nivl_vl == 88,]
     # Cambie la paleta
-    data_map$sub_grp <- factor(data_map$sub_grp,levels=c(1,2,3),labels = lab_g)
+    data_map$sub_grp <- factor(data_map$sub_grp,
+                               levels = c(1,2,3),
+                               labels = lab_g)
     
-    # --- Paleta dinámica según tipo de gráfico ---
+    # --- Paleta según tipo ---
     levs <- levels(data_map$sub_grp)
     
-    # Caso 1: clúster general (Consolidada/Transición/Vulnerable)
+    # Caso 1: cluster simple
     if (all(levs %in% names(base_palette))) {
+      
       col_palette_named <- base_palette[levs]
       
-      # Caso 2: subniveles (p.ej. "Vulnerable - Alto/Medio/Bajo")
     } else {
-      # Extrae grupo y nivel
-      grupo <- sub(" - (Alto|Alta|Medio|Media|Bajo|Baja)$", "", levs)
-      nivel <- sub("^.* - ", "", levs)
-      nivel <- dplyr::recode(nivel,
-                             "Alta"="Alto", "Media"="Medio", "Baja"="Bajo")
       
-      # Asigna tonos por grupo
-      col_palette_named <- purrr::map2_chr(grupo, nivel, \(g, n){
-        tonos <- make_tints3(base_palette[[g]])
-        names(tonos) <- c("Bajo","Medio","Alto")
-        tonos[[n]]
-      })
+      levs_clean <- levs
+      levs_clean <- gsub(" - Alta$",  " - Alto",  levs_clean)
+      levs_clean <- gsub(" - Media$", " - Medio", levs_clean)
+      levs_clean <- gsub(" - Baja$",  " - Bajo",  levs_clean)
+      
+      faltan <- setdiff(levs_clean, names(col_palette))
+      if (length(faltan) > 0)
+        stop(paste("No están en col_palette:", paste(faltan, collapse = ", ")))
+      
+      col_palette_named <- col_palette[levs_clean]
       names(col_palette_named) <- levs
     }
     
+    # Calcular centroides reales de cada municipio
+    data_map <- data_map %>%
+      mutate(centroid = st_centroid(geometry),
+             x_centroid = st_coordinates(centroid)[,1],
+             y_centroid = st_coordinates(centroid)[,2])
+    
     g1 <- ggplot(data_map) +
       geom_sf(aes(fill = factor(sub_grp)), color = "#606060", size = 0.05, alpha = 0.60) +
-      geom_text(aes(X, Y, label = nvl_lbl), vjust = 1.5, color = "black",
-                position = position_dodge(0.9), size = 2,alpha = 1) +
+      geom_text_repel(aes(x_centroid, y_centroid, label = nvl_lbl),
+                      size = 2,
+                      color = "black",
+                      alpha = 0.9,
+                      segment.size = 0,
+                      max.overlaps = Inf,
+                      force = 2,
+                      force_pull = 0.5,
+                      box.padding = 0.3) +
       scale_fill_manual(values = col_palette_named,
                         na.value = "#ededed", na.translate = FALSE)+
       guides(fill = guide_legend(ncol = 1)) +
       xlab("") +
       labs(fill="") +
-     map_theme +
-      #theme_map(base_size = 12)+
-      theme(legend.position = c(0.8, 0.1),
-            plot.caption = element_text(color = "blue", 
-                                        face = "italic",size=5))
+      map_theme +
+      theme(legend.position = c(0.8, 0.1))
     
     
     ggsave(file=paste0("03_Outputs/", path, "/04_Cluster/cluster_map.png"), 
-           g1,height = h, width = w*0.8, dpi = d)
+           g1, height = h*1.2, width = w*0.8, dpi = d)
     
     
     datos.j <- as.data.frame(cbind(df, sub_grp))
