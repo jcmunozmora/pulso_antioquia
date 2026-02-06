@@ -5,3 +5,10 @@
 !01_Data/00_Inputs/.gitignore
 
 /.quarto/
+
+# Scripts de renderización temporal
+render_sin_cache.R
+
+# Cache de Quarto
+*_cache/
+_freeze/

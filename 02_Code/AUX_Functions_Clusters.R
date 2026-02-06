@@ -96,7 +96,7 @@ col_palette <- c(
   "Transición - Bajo" = "#D9B76B",
   
   # Vulnerable (tonos rojos)
-  "Vulnerable - Alto"  = "#D6555F",
+  "Vulnerable - Alto"  = "#D6955F",
   "Vulnerable - Medio"= "#D27452",
   "Vulnerable - Bajo" = "#CE5244"
 )
@@ -570,16 +570,17 @@ ps_cluster <- function(pca_ds, df, lab_g, path, eje){
   
   # ---- generar mapa coroplético ----
   g1 <- ggplot(data_map) +
-    geom_sf(aes(fill = factor(sub_grp)), color = "#505050", linewidth = 0.4, alpha = 0.95) +
+    geom_sf(aes(fill = factor(sub_grp)), color = "#606060", size = 0.05) +
     geom_text_repel(aes(x_centroid, y_centroid, label = nvl_lbl),
-                    size = 2,
+                    size = 2.5,
                     color = "black",
                     alpha = 0.9,
-                    segment.size = 0,
                     max.overlaps = Inf,
-                    force = 2,
-                    force_pull = 0.5,
-                    box.padding = 0.3) +
+                    min.segment.length = 0,
+                    force = 0.1,
+                    force_pull = 5,
+                    box.padding = 0.05,
+                    point.padding = 0.1) +
     scale_fill_manual(values = col_palette_named,
                       na.value = "#ededed", na.translate = FALSE)+
     guides(fill = guide_legend(ncol = 1)) +

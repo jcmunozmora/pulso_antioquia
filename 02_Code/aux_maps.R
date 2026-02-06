@@ -1,8 +1,8 @@
 # ==============================================================================#
 # SCRIPT: aux_maps.R
 # PROYECTO: Pulso Social - Las Antioquias
-# DESCRIPCIÓN: Genera shapefile de municipios de Antioquia con correcciones
-#              topológicas para eliminar gaps entre límites municipales
+# DESCRIPCIÓN: Reemplaza geometrías del shapefile anterior con geometrías
+#              de alta calidad, manteniendo todas las variables originales
 # ==============================================================================#
 
 # ==============================================================================#
@@ -14,52 +14,69 @@ rm(list = ls())
 library(sf)
 library(tidyverse)
 library(stringr)
-library(lwgeom)
 
 # ==============================================================================#
-# CARGA Y PREPARACIÓN DE DATOS ----
+# CARGA DE SHAPEFILES ----
 # ==============================================================================#
-# ---- cargar shapefiles de Colombia ---- #
-map_mpios <- st_read("01_Data/00_Inputs/maps/mapa_municipios_colombia.shp")
 
-# ---- filtrar municipios de Antioquia ---- #
-mpios_ant <- map_mpios |>
+# ---- cargar shapefile NUEVO (mejor calidad topológica) ---- #
+# Este shapefile ya viene filtrado solo para Antioquia
+map_nuevo <- st_read("01_Data/00_Inputs/maps/MGN_MPIO_POLITICO.shp")
+
+# ---- cargar shapefile ANTERIOR (tiene las variables que necesitamos) ---- #
+map_anterior <- st_read("01_Data/00_Inputs/maps/mapa_municipios_colombia.shp")
+
+# ==============================================================================#
+# PREPARAR SHAPEFILE ANTERIOR ----
+# ==============================================================================#
+
+# ---- filtrar Antioquia y preparar variables en shapefile anterior ---- #
+mpios_anterior_ant <- map_anterior |>
   mutate(
-    code5   = str_pad(as.character(nivl_vl), width = 5, pad = "0"),
-    depcode = substr(code5, 1, 2)
+    # Estandarizar código a 5 dígitos para el join
+    nivl_vl = str_pad(as.character(nivl_vl), width = 5, pad = "0")
   ) |>
-  filter(depcode == "05")
+  filter(substr(nivl_vl, 1, 2) == "05") |> # Filtrar solo Antioquia
+  mutate( nvl_lbl_2 = str_sub(nvl_lbl, 1, 3))     
 
-# ---- agregar variables derivadas ---- #
-mpios_ant <- mpios_ant |>
-  mutate(
-    nivl_vl_num = as.integer(nivl_vl),
-    nivl_vl     = str_pad(as.character(nivl_vl), 5, pad = "0"),
-    nvl_lbl_2   = str_sub(nvl_lbl, 1, 3)
+
+# ==============================================================================#
+# UNIR GEOMETRÍAS NUEVAS CON VARIABLES ANTERIORES ----
+# ==============================================================================#
+
+# ---- extraer solo la geometría del nuevo shapefile ---- #
+# Nos quedamos solo con código y geometría del nuevo
+geom_nueva <- map_nuevo |>
+  select(MPIO_CCDGO, geometry)
+
+# ---- remover geometría del anterior y mantener todas sus variables ---- #
+# Quitamos geometría para poder hacer join sin conflictos
+vars_anteriores <- mpios_anterior_ant |>
+  st_drop_geometry()
+
+# ---- hacer join usando código de municipio ---- #
+# Unimos las variables del anterior con la geometría del nuevo
+mpios_ant <- geom_nueva |>
+  left_join(
+    vars_anteriores,
+    by = c("MPIO_CCDGO" = "nivl_vl")  # La llave de unión
   )
 
-# ==============================================================================#
-# CORRECCIONES TOPOLÓGICAS ----
-# ==============================================================================#
-# ---- aplicar buffer + snap para cerrar gaps entre municipios ---- #
-crs_original <- st_crs(mpios_ant)
-
+# ---- remover columna del nuevo shapefile y mantener solo las del anterior ---- #
+# Eliminamos MPIO_CCDGO porque ya tenemos nivl_vl del shapefile anterior
 mpios_ant <- mpios_ant |>
-  st_transform(3857) |>           # CRS proyectado Web Mercator (metros)
-  st_make_valid() |>              # Validar geometrías
-  st_buffer(500) |>               # Buffer 300m para cerrar gaps
-  st_make_valid() |>              # Re-validar después del buffer
-  lwgeom::st_snap_to_grid(1) |>   # Snap a grilla 1m para regularizar vértices
-  st_transform(crs_original)      # Volver a CRS original
+  rename(nivl_vl = MPIO_CCDGO)
 
 # ==============================================================================#
 # EXPORTAR SHAPEFILE ----
 # ==============================================================================#
-# ---- guardar shapefile corregido ---- #
+
+# ---- guardar shapefile con geometrías nuevas y variables anteriores ---- #
 st_write(
   mpios_ant,
   dsn = "01_Data/01_Derived/maps/municipios_antioquia.shp",
-  delete_layer = TRUE
+  delete_layer = TRUE  # Sobreescribe si ya existe
 )
+
 
 
