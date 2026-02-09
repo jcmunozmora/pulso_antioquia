@@ -32,7 +32,7 @@ Para ello se realiza una **revisión sistemática** de indicadores sociales, agr
 
 # Infraestructura de datos 
 
-La aplicación de la metodología partió de la consolidación del programa *Antioquia como vamos*, el cual es la base de la **infraestructura de datos abiertos** que habilita un análisis **flexible**, con **enfoque territorial** y **diferencial**. La infraestructura incluye la revisión de **404 indicadores** provenientes de **22 bases de datos**, con corte a **diciembre de 2021**. El **anexo técnico** describe en detalle la arquitectura de datos, fuentes, coberturas y reglas de tratamiento.
+La aplicación de la metodología partió de la consolidación del programa *Antioquia como vamos*, el cual es la base de la **infraestructura de datos abiertos** que habilita un análisis **flexible**, con **enfoque territorial** y **diferencial**. La infraestructura incluye la revisión de **120 indicadores** provenientes de **25 bases de datos**, con corte a **diciembre de 2023**. El **anexo técnico** describe en detalle la arquitectura de datos, fuentes, coberturas y reglas de tratamiento.
 
 # Enfoque analítico: “las múltiples Antioquias”
 

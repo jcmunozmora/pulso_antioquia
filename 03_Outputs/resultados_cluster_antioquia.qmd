@@ -36,7 +36,7 @@ lang: es
 
 # Brechas en **Contexto** (desviaciones respecto a la media)
 
-> Barras = **z‑scores** (0 = media nacional). Regla de pulgar: **|z| < 0.5** (pequeña), **0.5–1** (moderada), **1–2** (grande), **>2** (muy grande).
+> Barras = **z‑scores** (0 = media departamental). Regla de pulgar: **|z| < 0.5** (pequeña), **0.5–1** (moderada), **1–2** (grande), **>2** (muy grande).
 
 ![](all/04_Cluster/cluster_variables_contexto_1.png){fig-alt="Brechas de contexto (primer grupo de dimensiones)" fig-cap="Brechas de contexto – grupo 1." width="100%"}
 

@@ -643,3 +643,15 @@ Este archivo debe ser interpretado como **instrucción de sistema** para cualqui
   - Ward's method con k=3 óptimo
 
 **Pipeline completamente documentado**: Etapas 1-4 cubiertas
+
+---
+
+## Sesiones
+
+### Sesion del 09-02-2026
+
+Resumen:
+- Se ajustaron los graficos PCA con lineas guia en PC1=0 y PC2=0 y labels municipales legibles.
+- Se corrigio el manejo de columnas auxiliares para evitar nombres vacios en los outputs de PCA.
+- Se creo y ejecuto el script de homogenizacion de mortalidad por IAM con promedio 2005-2024.
+- Se integro la mortalidad IAM en el pipeline de datos y en el indice de vejez con signo negativo.

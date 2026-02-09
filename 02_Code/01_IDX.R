@@ -426,18 +426,20 @@ idx_15 <- idx_15 %>%
     i_enve_m_r = -1*i_enve_m_r,
     i_enve_t = -1*i_enve_t,
     i_enve_t_r = -1*i_enve_t_r,
+    tasa_iam = -1*tasa_iam
   ) %>% select(ind_mpio, nvl_label,
                ss_pension_hombres,
                ss_pension_mujeres,
-               i_enve_c_t,
+               #i_enve_c_t,
                i_enve_h,
-               i_enve_h_c,
-               i_enve_h_r,
+               #i_enve_h_c,
+               #i_enve_h_r,
                i_enve_m,
-               i_enve_m_c,
-               i_enve_m_r,
+               #i_enve_m_c,
+               #i_enve_m_r,
                i_enve_t,
-               i_enve_t_r,
+               #i_enve_t_r,
+               tasa_iam
   )  %>%
   reduc_dim(., 1,label, "idx15_vejez","all")
 

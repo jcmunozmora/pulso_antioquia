@@ -12,3 +12,6 @@ render_sin_cache.R
 # Cache de Quarto
 *_cache/
 _freeze/
+
+.Rhistory
+.RData

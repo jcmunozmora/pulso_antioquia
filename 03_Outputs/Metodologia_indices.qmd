@@ -38,19 +38,17 @@ Con la implementación de estos métodos se **sacrifica precisión** al no conta
      $$
      g(x) \;=\; \Phi^{-1}\!\left(\frac{\mathrm{rank}(x)-0.5}{\mathrm{length}(x)}\right)
      $$
-     donde \\(\Phi\\) es la CDF normal estándar, \\(\mathrm{rank}(x)\\) es el rango de cada observación y \\(\mathrm{length}(x)\\) el número de observaciones.
+     donde \\(\Phi\\) es la Función de Distribución Acumulada (CDF) normal estándar, \\(\mathrm{rank}(x)\\) es el rango de cada observación y \\(\mathrm{length}(x)\\) el número de observaciones.
    - (2) **Centrado y escalado:** todas las variables quedan con **media 0** y **desviación estándar 1**.
 
 4. **Matriz de covarianzas**  
-   Con los datos estandarizados, se construye la **matriz de covarianzas** para identificar la estructura de correlaciones, detectar **redundancias** y determinar qué variables explican más variación.
+   Con los datos estandarizados, se construye la **matriz de covarianzas** para identificar la estructura de correlaciones, detectar **redundancias** y determinar cuáles variables logran explicar mayor variación.
 
 5. **Valores y vectores propios**  
    Los **componentes principales** surgen de los **autovalores** y **autovectores** de la matriz de covarianzas. Cada componente es una **combinación lineal** de las variables originales, **no correlacionada** con las demás, que captura la mayor parte posible de la varianza. Los primeros componentes concentran la información más relevante.
 
 6. **Selección de Componentes Principales**  
-   Para garantizar **alto poder explicativo**, se fija un umbral de **varianza mínima acumulada del 60%**.  
-   - Si el **primer componente (PC1)** explica **≥ 60%**, se usa **un solo componente** para el índice.  
-   - En caso contrario, se **acumulan componentes** (PC1 + PC2, …) hasta alcanzar **≥ 60%**.
+   Para garantizar **alto poder explicativo**, se conservan **los primeros cinco componentes** que presentan una estructura informativa suficiente (estadísticamente relevantes), ordenados por la varianza explicada. 
 
 # Resultado
 

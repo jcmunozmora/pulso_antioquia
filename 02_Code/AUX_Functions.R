@@ -124,7 +124,7 @@ plot_top_loadings_jc <- function(v, label, x, ..., n = 4, id = NULL, type = "pca
     ggplot2::coord_flip() +
     ggplot2::facet_wrap(vars(component), scales = "free_y") +
     ggplot2::scale_x_continuous(
-     # breaks = comp_vals$order,
+      breaks = comp_vals$order,
       labels = comp_vals$lab,
       expand = c(0, 0)
     ) +
@@ -170,7 +170,7 @@ mk_map <- function(data_map, var, ann) {
   # Generar mapa
   g1 <- ggplot(dat) +
     geom_sf(aes(fill = tertiles),
-            color = "#505050", linewidth = 0.4, alpha = 0.95) +
+            color = "#606060", size = 0.05, alpha = 0.65) +
     geom_text(aes(X, Y, label = nvl_lbl), vjust = 1.5, size = 2.5, color = "black",
               position = position_dodge(0.9), alpha = 1) +
     scale_color_manual(values = col_palette,
@@ -357,6 +357,19 @@ reduc_dim <- function(ds_raw, trans, label, nm, path) {
   
   #### % Varianza Explicado
   pca_bake <- bake(pca_prep, ds_raw)
+  
+  # ---- cargar nombres bien formateados desde shapefile ----
+  # Usar nvl_lbl del shapefile en lugar de nvl_label para mejor legibilidad
+  map_lookup <- st_read("01_Data/01_Derived/maps/municipios_antioquia.shp", quiet = TRUE)
+  nombres_lookup <- map_lookup %>%
+    st_drop_geometry() %>%
+    dplyr::select(nivl_vl, nvl_lbl) %>%
+    dplyr::distinct()
+  
+  # Agregar nombres bien formateados a pca_bake
+  pca_bake <- pca_bake %>%
+    dplyr::left_join(nombres_lookup, by = c("ind_mpio" = "nivl_vl")) %>%
+    dplyr::mutate(nvl_lbl = dplyr::if_else(!is.na(nvl_lbl), nvl_lbl, nvl_label))
 
   # Etiquetas "bonitas" desde tu tabla 'label' (si la tienes)
   lb_ <- label %>%
@@ -467,8 +480,10 @@ reduc_dim <- function(ds_raw, trans, label, nm, path) {
     theme_minimal()+ theme(legend.position = "none")
   
   g2 <- pca_bake %>%
-    ggplot(aes(PC1, PC2, label=nvl_label)) +
-    geom_point(aes(color = nvl_label), alpha = 0.7, size = 2)+
+    ggplot(aes(PC1, PC2, label=nvl_lbl)) +
+    geom_hline(yintercept = 0, color = "black", linetype = "solid", linewidth = 0.5) +
+    geom_vline(xintercept = 0, color = "black", linetype = "solid", linewidth = 0.5) +
+    geom_point(aes(color = nvl_lbl), alpha = 0.7, size = 2)+
     geom_text(check_overlap = TRUE, hjust = "inward",size=3) +
     labs(color = NULL,
          caption = ann) +
@@ -529,7 +544,12 @@ reduc_dim <- function(ds_raw, trans, label, nm, path) {
   #### 03 - Get the pca
 
   # Emparejar datos y mapas
-  data_map <- merge(map_mpios,pca_bake,by.x="nivl_vl",by.y="ind_mpio",all.x=TRUE)
+  # Seleccionar solo columnas necesarias de pca_bake para evitar duplicados en merge
+  pca_bake_for_map <- pca_bake %>%
+    dplyr::select(ind_mpio, nvl_label, starts_with("PC")) %>%
+    dplyr::select(-dplyr::any_of("nvl_lbl"))  # Remover nvl_lbl si existe
+  
+  data_map <- merge(map_mpios, pca_bake_for_map, by.x="nivl_vl", by.y="ind_mpio", all.x=TRUE)
   names(data_map)
   
   data_map <- data_map[data_map$nivl_vl != 88,]
@@ -551,13 +571,21 @@ reduc_dim <- function(ds_raw, trans, label, nm, path) {
   
   #### 04 - Final
 
-  k <- sum(grepl("^PC\\d+$", names(pca_bake)))   # cuántas PCs hay realmente
-  names(pca_bake) <- c("ind_mpio", "nvl_label", paste0(nm, seq_len(k)))
+  # Contar cuántas columnas PC existen
+  k <- sum(grepl("^PC\\d+$", names(pca_bake)))
+  
+  # Seleccionar solo las columnas que necesitamos para el output final
+  # (ind_mpio, nvl_label, y todas las PCs)
+  pca_bake_final <- pca_bake %>%
+    dplyr::select(ind_mpio, nvl_label, starts_with("PC"))
+  
+  # Renombrar las columnas PC con el nombre del índice
+  names(pca_bake_final) <- c("ind_mpio", "nvl_label", paste0(nm, seq_len(k)))
 
-  write_xlsx(pca_bake, path = glue("03_Outputs/",path,"/03_DS/ds_", nm, ".xlsx"))
+  write_xlsx(pca_bake_final, path = glue("03_Outputs/",path,"/03_DS/ds_", nm, ".xlsx"))
   
   
-  return(pca_bake)
+  return(pca_bake_final)
 }
 
 # ==============================================================================#

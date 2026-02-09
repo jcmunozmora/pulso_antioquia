@@ -34,7 +34,7 @@ Los gráficos muestran **z‑scores** (desviaciones estándar) respecto a la **m
 
 # Brechas en **Contexto** (desviaciones respecto a la media)
 
-> Barras = **z‑scores** (0 = media nacional). Guía: **|z| < 0.5** (pequeña), **0.5–1** (moderada), **1–2** (grande), **>2** (muy grande).
+> Barras = **z‑scores** (0 = media del subgrupo). Guía: **|z| < 0.5** (pequeña), **0.5–1** (moderada), **1–2** (grande), **>2** (muy grande).
 
 ![](Vulnerable_ref_subset/04_Cluster/cluster_variables_contexto_1.png){fig-alt="Brechas de contexto – grupo 1" fig-cap="Acceso a agua/saneamiento, cambio climático (1–2), capacidad fiscal (1–2) y vivienda (1–2)." width="100%"}
 

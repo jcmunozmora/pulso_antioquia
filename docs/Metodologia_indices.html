@@ -339,23 +339,18 @@ Para evitar sesgos por magnitud y asegurar que cada variable contribuya por igua
 <li><strong>Transformación orderNorm</strong><br>
 <span class="math display">\[
 g(x) \;=\; \Phi^{-1}\!\left(\frac{\mathrm{rank}(x)-0.5}{\mathrm{length}(x)}\right)
-\]</span> donde \(\) es la CDF normal estándar, \((x)\) es el rango de cada observación y \((x)\) el número de observaciones.</li>
+\]</span> donde \(\) es la Función de Distribución Acumulada (CDF) normal estándar, \((x)\) es el rango de cada observación y \((x)\) el número de observaciones.</li>
 </ol></li>
 <li><ol start="2" type="1">
 <li><strong>Centrado y escalado:</strong> todas las variables quedan con <strong>media 0</strong> y <strong>desviación estándar 1</strong>.</li>
 </ol></li>
 </ul></li>
 <li><p><strong>Matriz de covarianzas</strong><br>
-Con los datos estandarizados, se construye la <strong>matriz de covarianzas</strong> para identificar la estructura de correlaciones, detectar <strong>redundancias</strong> y determinar qué variables explican más variación.</p></li>
+Con los datos estandarizados, se construye la <strong>matriz de covarianzas</strong> para identificar la estructura de correlaciones, detectar <strong>redundancias</strong> y determinar cuáles variables logran explicar mayor variación.</p></li>
 <li><p><strong>Valores y vectores propios</strong><br>
 Los <strong>componentes principales</strong> surgen de los <strong>autovalores</strong> y <strong>autovectores</strong> de la matriz de covarianzas. Cada componente es una <strong>combinación lineal</strong> de las variables originales, <strong>no correlacionada</strong> con las demás, que captura la mayor parte posible de la varianza. Los primeros componentes concentran la información más relevante.</p></li>
 <li><p><strong>Selección de Componentes Principales</strong><br>
-Para garantizar <strong>alto poder explicativo</strong>, se fija un umbral de <strong>varianza mínima acumulada del 60%</strong>.</p>
-<ul>
-<li>Si el <strong>primer componente (PC1)</strong> explica <strong>≥ 60%</strong>, se usa <strong>un solo componente</strong> para el índice.<br>
-</li>
-<li>En caso contrario, se <strong>acumulan componentes</strong> (PC1 + PC2, …) hasta alcanzar <strong>≥ 60%</strong>.</li>
-</ul></li>
+Para garantizar <strong>alto poder explicativo</strong>, se conservan <strong>los primeros cinco componentes</strong> que presentan una estructura informativa suficiente (estadísticamente relevantes), ordenados por la varianza explicada.</p></li>
 </ol>
 </section>
 <section id="resultado" class="level1" data-number="3">

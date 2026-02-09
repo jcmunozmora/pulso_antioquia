@@ -1,23 +1,17 @@
-/*==============================================================================
-  ANTIOQUIAS - 00_BuildData.do
-  PREPARACIÓN Y CONSOLIDACIÓN DE DATOS
-  
-  OBJETIVO: 
-  Importar todos los archivos Excel de indicadores municipales y consolidarlos
-  en un único dataset (.dta) que será la base para el cálculo de índices.
-  
-  INPUTS:  01_Data/01_Derived/*.xlsx (indicadores por municipio)
-  OUTPUTS: 01_Data/01_Derived/01_final_data.dta
-  
-  ETAPA DEL PIPELINE: 1 - Preparación y reshaping de datos
-==============================================================================*/
+* ----------------------------------------------------------------------------
+* ANTIOQUIAS - 00_BuildData.do
+* PREPARACIÓN Y CONSOLIDACIÓN DE DATOS 
+* OBJETIVO: Importar indicadores municipales y consolidarlos
+* INPUTS: 01_Data/01_Derived/.xlsx
+* OUTPUTS: 01_Data/01_Derived/01_final_data.dta 
+* ----------------------------------------------------------------------------
 
 * ---- Configuración de directorios ----
 * NOTA: Ajustar según usuario local
 
 if "`c(username)'" == "user" {
     
-	global path "C:/Users/user/OneDrive - Universidad EAFIT/Antioquias"
+	global path "C:/Users/user/OneDrive/pulso_antioquia"
 	global rawdata "$path/01_Data/00_Inputs"
 	global scripts "$path/02_Code"
 	global data "$path/01_Data/01_Derived"
@@ -30,7 +24,7 @@ ls
 * ---- Importación de archivos Excel a formato .dta ----
 * Cada archivo contiene indicadores a nivel municipal (sheet "Data")
 
-local direccion "20250505_SEGURIDAD_SALUD_DEFICT_VIVIENDA 20250506_DEyC 20250506_ECV 20250506_ECV_ADICIONALES 20250506_EDUCACION i_datalake_ges_pub_dicc infraestructura_municipios_dicc IRCA_decreto_y_resolucion_dicc IRCA_dicc natalidad_dicc poblacion_municipal_total_2023_dicc suicidios_e_intentos_medias_dicc"
+local direccion "20250505_SEGURIDAD_SALUD_DEFICT_VIVIENDA 20250506_DEyC 20250506_ECV 20250506_ECV_ADICIONALES 20250506_EDUCACION i_datalake_ges_pub_dicc infraestructura_municipios_dicc IRCA_decreto_y_resolucion_dicc IRCA_dicc natalidad_dicc poblacion_municipal_total_2023_dicc suicidios_e_intentos_medias_dicc mortalidad_iam_dicc"
 
 foreach x in `direccion' {
     import excel using "`x'.xlsx", sheet("Data") firstrow allstring clear
@@ -131,6 +125,10 @@ drop _merge
 merge 1:1 ind_mpio using "suicidios_e_intentos_medias_dicc.dta"
 drop _merge
 
+* Merge: Mortalidad por Infarto Agudo de Miocardio (IAM)
+merge 1:1 ind_mpio using "mortalidad_iam_dicc.dta"
+drop _merge
+
 * ---- Tratamiento de valores faltantes ----
 * Variables de salud mental: reemplazar blancos por "NA" explícito
 
@@ -151,7 +149,7 @@ replace TIS_mujeres = "NA" if TIS_mujeres == ""
 * OUTPUT: 01_final_data.dta
 * Contiene todos los indicadores municipales listos para análisis PCA
 
-save "$data/01_final_data.dta"
+save "$data/01_final_data.dta", replace
 
 
 
