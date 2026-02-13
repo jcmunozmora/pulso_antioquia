@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reducción de Dimensiones e Índices (Pulso Social) – Las Antioquias</title>
+<title>Metodología de Construcción de Índices Multidimensionales (Pulso Social) – Las Antioquias</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -281,8 +261,13 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a></li>
-  <li><a href="#procedimiento-de-acp-en-pulso-colombia" id="toc-procedimiento-de-acp-en-pulso-colombia" class="nav-link" data-scroll-target="#procedimiento-de-acp-en-pulso-colombia"><span class="header-section-number">2</span> Procedimiento de ACP en <em>Pulso Colombia</em></a></li>
-  <li><a href="#resultado" id="toc-resultado" class="nav-link" data-scroll-target="#resultado"><span class="header-section-number">3</span> Resultado</a></li>
+  <li><a href="#procedimiento-de-acp-en-las-antioquias" id="toc-procedimiento-de-acp-en-las-antioquias" class="nav-link" data-scroll-target="#procedimiento-de-acp-en-las-antioquias"><span class="header-section-number">2</span> Procedimiento de ACP en <em>Las Antioquias</em></a>
+  <ul class="collapse">
+  <li><a href="#estructura-de-outputs-por-índice" id="toc-estructura-de-outputs-por-índice" class="nav-link" data-scroll-target="#estructura-de-outputs-por-índice"><span class="header-section-number">2.1</span> Estructura de outputs por índice</a></li>
+  <li><a href="#índices-de-contexto" id="toc-índices-de-contexto" class="nav-link" data-scroll-target="#índices-de-contexto"><span class="header-section-number">2.2</span> Índices de contexto</a></li>
+  <li><a href="#índices-de-resultado-ciclo-de-vida" id="toc-índices-de-resultado-ciclo-de-vida" class="nav-link" data-scroll-target="#índices-de-resultado-ciclo-de-vida"><span class="header-section-number">2.3</span> Índices de resultado (ciclo de vida)</a></li>
+  <li><a href="#uso-de-los-índices-en-análisis-posteriores" id="toc-uso-de-los-índices-en-análisis-posteriores" class="nav-link" data-scroll-target="#uso-de-los-índices-en-análisis-posteriores"><span class="header-section-number">2.4</span> Uso de los índices en análisis posteriores</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -291,7 +276,8 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Reducción de Dimensiones e Índices (Pulso Social)</h1>
+<h1 class="title">Metodología de Construcción de Índices Multidimensionales (Pulso Social)</h1>
+<p class="subtitle lead">Las Antioquias: Análisis de Brechas Territoriales en Antioquia</p>
 </div>
 
 
@@ -310,67 +296,105 @@ window.Quarto = {
 
 <section id="introducción" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introducción</h1>
-<p>El análisis de <strong>reducción de dimensiones</strong> busca simplificar el análisis de las dimensiones de <em>Pulso Social</em> mediante la construcción de <strong>índices</strong> que permitan identificar las principales diferencias o brechas territoriales. Para esto, se emplean <strong>métodos de aprendizaje no supervisado</strong> que aprenden, desde los datos, cuáles son las asociaciones naturales a partir de su comportamiento. En particular, se utilizan <strong>métodos de reducción de dimensiones</strong> que transforman un conjunto grande de variables en otro más pequeño que conserva la mayor parte de la información inicial.</p>
-<p>Con la implementación de estos métodos se <strong>sacrifica precisión</strong> al no contar con la información completa, pero se <strong>gana simplicidad</strong> al disponer de índices fáciles de explorar y visualizar. Existen distintos métodos de reducción de dimensiones: <strong>Análisis de Componentes Principales (ACP/PCA)</strong>, <strong>Mínimos Cuadrados Parciales (PLS)</strong>, <strong>Análisis de Correspondencias</strong> y <strong>Uniform Manifold Approximation and Projection (UMAP)</strong>, entre otros. Dada la naturaleza <strong>continua</strong> de los indicadores, se realizó una <strong>comparación</strong> entre ACP y UMAP con resultados similares <span class="citation" data-cites="MardiaK.V.KentJ.T.Bibby1979">(<a href="#ref-MardiaK.V.KentJ.T.Bibby1979" role="doc-biblioref">Mardia, Kent, y Bibby 1979</a>)</span>. Por su <strong>simplicidad inferencial</strong>, se decidió implementar el <strong>ACP</strong> como método principal, usando el paquete <strong>tidymodels</strong> de R.</p>
+<p>El análisis de <strong>reducción de dimensiones</strong> busca simplificar el estudio de las múltiples dimensiones del bienestar territorial en Antioquia mediante la construcción de <strong>índices sintéticos</strong> que permitan identificar las principales brechas entre los <strong>125 municipios</strong> del departamento. Para esto, se emplean <strong>métodos de aprendizaje no supervisado</strong> que identifican, a partir de los datos, las asociaciones y patrones naturales entre variables relacionadas. En particular, se utilizan <strong>métodos de reducción de dimensiones</strong> que transforman un conjunto grande de indicadores en otro más pequeño que conserva la mayor parte de la información relevante.</p>
+<p>Con la implementación de estos métodos se <strong>sacrifica cierta precisión</strong> al reducir dimensiones, pero se <strong>gana interpretabilidad y capacidad analítica</strong> al disponer de índices sintéticos fáciles de explorar, visualizar y comparar. Existen distintos métodos de reducción de dimensiones: <strong>Análisis de Componentes Principales (ACP/PCA)</strong>, <strong>Mínimos Cuadrados Parciales (PLS)</strong>, <strong>Análisis de Correspondencias</strong> y <strong>Uniform Manifold Approximation and Projection (UMAP)</strong>, entre otros. Dada la naturaleza <strong>continua</strong> de los indicadores municipales y la necesidad de <strong>interpretabilidad lineal</strong>, se implementó el <strong>ACP</strong> como método principal.</p>
 </section>
-<section id="procedimiento-de-acp-en-pulso-colombia" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Procedimiento de ACP en <em>Pulso Colombia</em></h1>
+<section id="procedimiento-de-acp-en-las-antioquias" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Procedimiento de ACP en <em>Las Antioquias</em></h1>
 <ol type="1">
-<li><p><strong>Selección de variables</strong><br>
-La infraestructura de datos recoge información de múltiples fuentes con distinta disponibilidad temporal y espacial. Se construyó una base que prioriza la mayor cobertura posible por territorio y dimensión, aplicando los siguientes criterios:</p>
+<li><p><strong>Selección de variables y preparación de datos</strong><br>
+La infraestructura de datos consolida información de múltiples fuentes institucionales (DANE, DNP, Ministerios, Gobernación de Antioquia) con distinta disponibilidad temporal y espacial. Se construyó una base de datos que prioriza la mayor cobertura posible aplicando los siguientes criterios:</p>
 <ul>
-<li><strong>Temporal:</strong> se toma la <strong>última información disponible</strong> por cada indicador.<br>
-</li>
-<li><strong>Geográfico:</strong> la unidad de análisis es <strong>departamental</strong>; cuando no hay dato departamental, se usa el de la <strong>capital</strong> (documentado).<br>
-</li>
-<li><strong>Disponibilidad:</strong> se priorizan variables con información en <strong>≥ 80%</strong> del territorio.</li>
+<li><p><strong>Unidad de análisis:</strong> <strong>municipal</strong>. Los 125 municipios de Antioquia constituyen la unidad básica de comparación territorial.<br>
+</p></li>
+<li><p><strong>Temporal:</strong> se utiliza la <strong>información más reciente disponible</strong> para cada indicador, privilegiando datos posteriores a 2018 cuando es posible.<br>
+</p></li>
+<li><p><strong>Cobertura:</strong> se priorizan variables con información en <strong>≥ 80%</strong> de los municipios del departamento.<br>
+</p></li>
+<li><p><strong>Agrupación temática:</strong> las variables se organizan en <strong>15 subdimensiones</strong> que corresponden a las áreas clave de contexto y resultados del ciclo de vida. Tratamiento de variables direccionales**<br>
+Previo al análisis PCA, se realiza un <strong>ajuste direccional</strong> de las variables para garantizar que todas tengan la misma interpretación: <strong>valores más altos indican mejor situación</strong>. Esto implica invertir el signo (multiplicar por -1) de aquellas variables donde valores elevados representan condiciones adversas:</p></li>
+<li><p><strong>Ejemplos de inversión:</strong> tasas de desempleo, pobreza, mortalidad, déficit habitacional, inseguridad alimentaria, índices de riesgo, etc.<br>
+</p></li>
+<li><p><strong>Documentación:</strong> cada variable invertida queda explícitamente documentada en el código de construcción de índices (<code>01_IDX.R</code>).<br>
+</p></li>
+<li><p><strong>Beneficio:</strong> permite que todos los componentes principales tengan interpretación consistente (mayor valor = mejor desempeño relativo).</p></li>
 </ul></li>
-<li><p><strong>Imputación de datos</strong><br>
-Algunas variables sociales no están disponibles para todos los territorios. Para ofrecer una visión completa y balanceada, se aplica <strong>imputación</strong> que asocia valores plausibles usando toda la información disponible:</p>
+<li><p><strong>Normalización y estandarización</strong><br>
+Para evitar que variables con magnitudes muy diferentes dominen el análisis y garantizar que cada indicador contribuya equitativamente, se aplica un <strong>pipeline de normalización en dos etapas</strong> usando <code>recipes</code>:</p>
 <ul>
-<li><strong>Imputación por Vecino Más Cercano (Nearest Neighbor, NN / KNN):</strong> método eficaz para imputar datos faltantes sustituyendo por valores derivados de casos con perfiles similares en el conjunto. Demuestra buena capacidad predictiva y preserva la estructura de los datos <span class="citation" data-cites="Beretta2016NearestEvaluation">(<a href="#ref-Beretta2016NearestEvaluation" role="doc-biblioref">Beretta y Santaniello 2016</a>)</span>.<br>
-</li>
-<li>Cuando una observación es imputada, se <strong>deja nota</strong> explícita de ello.</li>
-</ul></li>
-<li><p><strong>Estandarización de los datos</strong><br>
-Para evitar sesgos por magnitud y asegurar que cada variable contribuya por igual al análisis, se aplican <strong>dos estandarizaciones consecutivas</strong>:</p>
-<ul>
-<li><ol type="1">
-<li><strong>Transformación orderNorm</strong><br>
-<span class="math display">\[
+<li><p><strong>(Etapa 1) Normalización:</strong> Se centra y escala cada variable para que tenga <strong>media 0</strong> y <strong>desviación estándar 1</strong>. Esto elimina efectos de escala entre variables medidas en unidades diferentes (porcentajes, tasas por 100,000 hab., índices 0-100, etc.).</p></li>
+<li><p><strong>(Etapa 2 - Opcional) Transformación orderNorm:</strong> En algunos casos se puede aplicar la transformación de normalización por rangos, que mapea los datos a una distribución aproximadamente normal: <span class="math display">\[
 g(x) \;=\; \Phi^{-1}\!\left(\frac{\mathrm{rank}(x)-0.5}{\mathrm{length}(x)}\right)
-\]</span> donde \(\) es la Función de Distribución Acumulada (CDF) normal estándar, \((x)\) es el rango de cada observación y \((x)\) el número de observaciones.</li>
-</ol></li>
-<li><ol start="2" type="1">
-<li><strong>Centrado y escalado:</strong> todas las variables quedan con <strong>media 0</strong> y <strong>desviación estándar 1</strong>.</li>
-</ol></li>
+\]</span> donde <span class="math inline">\(\Phi^{-1}\)</span> es la función cuantil de la distribución normal estándar, <span class="math inline">\(\mathrm{rank}(x)\)</span> es el rango de cada observación y <span class="math inline">\(\mathrm{length}(x)\)</span> el número de observaciones (125 municipios).</p></li>
 </ul></li>
-<li><p><strong>Matriz de covarianzas</strong><br>
-Con los datos estandarizados, se construye la <strong>matriz de covarianzas</strong> para identificar la estructura de correlaciones, detectar <strong>redundancias</strong> y determinar cuáles variables logran explicar mayor variación.</p></li>
-<li><p><strong>Valores y vectores propios</strong><br>
-Los <strong>componentes principales</strong> surgen de los <strong>autovalores</strong> y <strong>autovectores</strong> de la matriz de covarianzas. Cada componente es una <strong>combinación lineal</strong> de las variables originales, <strong>no correlacionada</strong> con las demás, que captura la mayor parte posible de la varianza. Los primeros componentes concentran la información más relevante.</p></li>
-<li><p><strong>Selección de Componentes Principales</strong><br>
-Para garantizar <strong>alto poder explicativo</strong>, se conservan <strong>los primeros cinco componentes</strong> que presentan una estructura informativa suficiente (estadísticamente relevantes), ordenados por la varianza explicada.</p></li>
+<li><p><strong>Análisis de Componentes Principales (PCA)</strong><br>
+Con los datos normalizados e imputados, se aplica PCA mediante <code>step_pca()</code> de <code>tidymodels</code>. El método descompone la varianza multidimensional siguiendo estos pasos:</p>
+<ul>
+<li><p><strong>Matriz de covarianzas:</strong> Se construye automáticamente a partir de las variables estandarizadas, capturando todas las correlaciones bivariadas entre indicadores.</p></li>
+<li><p><strong>Descomposición espectral:</strong> Se calculan los <strong>autovalores</strong> (eigenvalues) y <strong>autovectores</strong> (eigenvectors) de la matriz de covarianzas. Cada autovector define la dirección de máxima varianza restante (un componente principal), y su autovalor asociado indica la cantidad de varianza explicada.</p></li>
+<li><p><strong>Componentes principales:</strong> Cada componente <span class="math inline">\(PC_k\)</span> es una <strong>combinación lineal</strong> de las variables originales: <span class="math display">\[
+PC_k = w_{k1}x_1 + w_{k2}x_2 + \cdots + w_{kp}x_p
+\]</span> donde <span class="math inline">\(w_{ki}\)</span> son las <strong>cargas</strong> (loadings) que indican la contribución de cada variable <span class="math inline">\(x_i\)</span> al componente <span class="math inline">\(k\)</span>. Los componentes son <strong>ortogonales entre sí</strong> (no correlacionados) y están ordenados por varianza explicada decreciente.</p></li>
+</ul></li>
+<li><p><strong>Selección del número de componentes</strong><br>
+Para cada una de las 15 subdimensiones se conservan <strong>hasta 5 componentes principales</strong> (o menos si el número de variables es menor), garantizando así:</p>
+<ul>
+<li><strong>Poder explicativo:</strong> Los primeros componentes capturan la mayor parte de la varianza (típicamente &gt;60-75% con 2-3 componentes).<br>
+</li>
+<li>**Intes: 15 índices multidimensionales</li>
+</ul></li>
+</ol>
+<p>Como resultado del pipeline de PCA, se construyen <strong>15 índices temáticos</strong> (uno por subdimensión), divididos entre <strong>indicadores de contexto</strong> (11) y <strong>de resultado</strong> (4). Cada índice genera múltiples componentes principales (típicamente 2-4), resultando en un total de <strong>31 componentes principales</strong> que alimentan el análisis posterior de clustering y brechas territoriales.</p>
+<section id="estructura-de-outputs-por-índice" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="estructura-de-outputs-por-índice"><span class="header-section-number">2.1</span> Estructura de outputs por índice</h2>
+<p>Para cada uno de los 15 índices, el proceso genera automáticamente:</p>
+<ul>
+<li><strong>Dataset con scores PCA:</strong> valores de cada municipio en los componentes principales.<br>
+</li>
+<li><strong>Tabla de cargas (loadings):</strong> contribución de cada variable a cada componente.<br>
+</li>
+<li><strong>Estadísticas descriptivas:</strong> resúmenes de las variables originales y componentes.<br>
+</li>
+<li><strong>Gráficos de cargas:</strong> visualización de las variables con mayor peso en cada componente.<br>
+</li>
+<li><strong>Mapas temáticos:</strong> distribución espacial de los componentes principales por municipio.<br>
+</li>
+<li><strong>Gráficos de telaraña (radar charts):</strong> perfiles multivariados de los componentes.</li>
+</ul>
+</section>
+<section id="índices-de-contexto" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="índices-de-contexto"><span class="header-section-number">2.2</span> Índices de contexto</h2>
+<p>Estas 11 dimensiones capturan las <strong>condiciones estructurales</strong> del territorio (infraestructura, economía, demografía, riesgos), esenciales para comprender el marco en el que se diseñan políticas públicas y se generan oportunidades para la población.</p>
+<ol type="1">
+<li><a href="resultados_idx1_servicio.html"><strong>Agua potable y saneamiento</strong></a> — Acceso a servicios básicos (IRCA urbano/rural, cobertura acueducto/alcantarillado)</li>
+<li><a href="resultados_idx6_crecimiento.html"><strong>Desarrollo económico</strong></a> — Infraestructura vial, densidad empresarial, conectividad digital, inclusión financiera</li>
+<li><a href="resultados_idx3_climatico.html"><strong>Cambio climático</strong></a> — Vulnerabilidad ante eventos climáticos, amenazas naturales, capacidad de adaptación</li>
+<li><a href="resultados_idx11_pobreza.html"><strong>Pobreza</strong></a> — Índice de Pobreza Multidimensional (IPM), NBI, líneas de pobreza, inseguridad alimentaria</li>
+<li><a href="resultados_idx5_viviendas.html"><strong>Características de la vivienda</strong></a> — Déficit cualitativo/cuantitativo, hacinamiento, materialidad, servicios públicos</li>
+<li><a href="resultados_idx4_Capacidad.html"><strong>Capacidad fiscal</strong></a> — Desempeño fiscal municipal, capacidad de gestión, categorización</li>
+<li><a href="resultados_idx7_gini.html"><strong>Desigualdad</strong></a> — Coeficiente de Gini, brechas de ingreso, concentración de la riqueza</li>
+<li><a href="resultados_idx8_demografica.html"><strong>Estructura demográfica</strong></a> — Pirámide poblacional, tasas de dependencia, razón de masculinidad</li>
+<li><a href="resultados_idx12_salud.html"><strong>Salud</strong></a> — Enfermedades transmitidas por vectores (dengue, malaria, leishmaniasis), infraestructura hospitalaria</li>
+<li><a href="resultados_idx13_saludmental.html"><strong>Salud mental</strong></a> — Tasas de suicidio e intentos, trastornos mentales, violencia</li>
+<li><a href="resultados_idx14_seguridad.html"><strong>Seguridad</strong></a> — Índice de Riesgo de Victimización (IRV), homicidios, delitos, violencias de género</li>
 </ol>
 </section>
-<section id="resultado" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Resultado</h1>
-<p>Como resultado, se construyen <strong>15 índices</strong> correspondientes a las subdimensiones, divididos entre <strong>indicadores de contexto</strong> y <strong>de resultado</strong>. A partir de estos índices, se desarrolla el análisis comparativo y de brechas por territorio.</p>
+<section id="índices-de-resultado-ciclo-de-vida" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="índices-de-resultado-ciclo-de-vida"><span class="header-section-number">2.3</span> Índices de resultado (ciclo de vida)</h2>
+<p>Estas 4 dimensiones reflejan <strong>situaciones de bienestar específicas a lo largo del ciclo de vida</strong>, capturando cómo las condiciones de contexto se traducen en resultados concretos para diferentes grupos etarios.</p>
+<ol start="12" type="1">
+<li><a href="resultados_idx9_infnin.html"><strong>Infancia y niñez</strong></a> — Mortalidad infantil, desnutrición, cobertura en educación inicial y primaria, repitencia</li>
+<li><a href="resultados_idx10_juventud.html"><strong>Juventud</strong></a> — Fecundidad adolescente, cobertura en educación media, calidad educativa, repitencia</li>
+<li><a href="resultados_idx2_Adultez.html"><strong>Adultez</strong></a> — Desempleo (total y brechas género), informalidad laboral, afiliación a salud</li>
+<li><a href="resultados_idx15_vejez.html"><strong>Vejez</strong></a> — Índice de envejecimiento, mortalidad por IAM, cobertura pensional</li>
+</ol>
+<hr>
+</section>
+<section id="uso-de-los-índices-en-análisis-posteriores" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="uso-de-los-índices-en-análisis-posteriores"><span class="header-section-number">2.4</span> Uso de los índices en análisis posteriores</h2>
+<p>Los <strong>31 componentes principales</strong> resultantes (agregados de las 15 subdimensiones) constituyen la base del análisis de clustering territorial (<a href="resultados_cluster_antioquia.html">ver metodología de clustering</a>), donde se identifican los tres grandes grupos territoriales (Consolidada, Transición, Vulnerable) y sus respectivos subclusters.</p>
+<p>Cada componente principal tiene una interpretación sustantiva basada en las <strong>cargas (loadings)</strong> de las variables originales, documentada en las páginas individuales de cada índice. Esta interpretabilidad permite no solo clasificar territorios, sino también <strong>diagnosticar dimensiones específicas</strong> de rezago o fortaleza en cada municipio.os_idx1_servicio.html) - <a href="resultados_idx6_crecimiento.html">Crecimiento económico</a> - <a href="resultados_idx3_climatico.html">Cambio climático</a> - <a href="resultados_idx11_pobreza.html">Pobreza</a> - <a href="resultados_idx5_viviendas.html">Características de la vivienda</a> - <a href="resultados_idx4_Capacidad.html">Capacidad fiscal</a> - <a href="resultados_idx7_gini.html">Desigualdad</a> - <a href="resultados_idx8_demografica.html">Estructura demográfica</a> - <a href="resultados_idx12_salud.html">Salud</a> - <a href="resultados_idx13_saludmental.html">Salud Mental</a> - <a href="resultados_idx14_seguridad.html">Seguridad</a></p>
 <ul>
-<li><strong>Contexto</strong>: condiciones generales del hogar y entorno (esenciales para comprender el marco en el que se diseñan políticas).
-<ul>
-<li><a href="resultados_idx1_servicio.html">Agua potable y saneamiento</a></li>
-<li><a href="resultados_idx6_crecimiento.html">Crecimiento económico</a></li>
-<li><a href="resultados_idx3_climatico.html">Cambio climático</a></li>
-<li><a href="resultados_idx11_pobreza.html">Pobreza</a></li>
-<li><a href="resultados_idx5_viviendas.html">Características de la vivienda</a></li>
-<li><a href="resultados_idx4_Capacidad.html">Capacidad fiscal</a></li>
-<li><a href="resultados_idx7_gini.html">Desigualdad</a></li>
-<li><a href="resultados_idx8_demografica.html">Estructura demográfica</a></li>
-<li><a href="resultados_idx12_salud.html">Salud</a></li>
-<li><a href="resultados_idx13_saludmental.html">Salud Mental</a></li>
-<li><a href="resultados_idx14_seguridad.html">Seguridad</a></li>
-</ul></li>
 <li><strong>Resultados</strong>: situaciones sociales específicas <strong>a lo largo del ciclo de vida</strong>; reflejan el contexto e impactos en bienestar.
 <ul>
 <li><a href="resultados_idx9_infnin.html">Infancia y niñez</a></li>
@@ -381,17 +405,10 @@ Para garantizar <strong>alto poder explicativo</strong>, se conservan <strong>lo
 </ul>
 
 
-
+</section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-Beretta2016NearestEvaluation" class="csl-entry" role="listitem">
-Beretta, Lorenzo, y Alessandro Santaniello. 2016. <span>«<span>Nearest neighbor imputation algorithms: A critical evaluation</span>»</span>. <em>BMC Medical Informatics and Decision Making</em> 16 (3): 197-208. <a href="https://doi.org/10.1186/S12911-016-0318-Z/TABLES/5">https://doi.org/10.1186/S12911-016-0318-Z/TABLES/5</a>.
-</div>
-<div id="ref-MardiaK.V.KentJ.T.Bibby1979" class="csl-entry" role="listitem">
-Mardia, K, J Kent, y J Bibby. 1979. <em><span>Multivariate Analysis</span></em>. Academic Press Limited. <a href="http://www.loc.gov/catdir/toc/els031/79040922.html">http://www.loc.gov/catdir/toc/els031/79040922.html</a>.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

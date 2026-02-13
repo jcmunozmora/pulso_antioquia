@@ -16,3 +16,6 @@ _freeze/
 .Rhistory
 .RData
 .Rproj.user
+
+# Archivo de instrucciones para IA 
+copilot_proyecto_antioquias.md

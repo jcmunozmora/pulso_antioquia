@@ -1,5 +1,6 @@
 ---
-title: "Reducción de Dimensiones e Índices (Pulso Social)"
+title: "Metodología de Construcción de Índices Multidimensionales (Pulso Social)"
+subtitle: "Las Antioquias: Análisis de Brechas Territoriales en Antioquia"
 format:
   html:
     toc: true
@@ -12,50 +13,100 @@ bibliography: references.bib
 
 # Introducción
 
-El análisis de **reducción de dimensiones** busca simplificar el análisis de las dimensiones de *Pulso Social* mediante la construcción de **índices** que permitan identificar las principales diferencias o brechas territoriales. Para esto, se emplean **métodos de aprendizaje no supervisado** que aprenden, desde los datos, cuáles son las asociaciones naturales a partir de su comportamiento. En particular, se utilizan **métodos de reducción de dimensiones** que transforman un conjunto grande de variables en otro más pequeño que conserva la mayor parte de la información inicial.
+El análisis de **reducción de dimensiones** busca simplificar el estudio de las múltiples dimensiones del bienestar territorial en Antioquia mediante la construcción de **índices sintéticos** que permitan identificar las principales brechas entre los **125 municipios** del departamento. Para esto, se emplean **métodos de aprendizaje no supervisado** que identifican, a partir de los datos, las asociaciones y patrones naturales entre variables relacionadas. En particular, se utilizan **métodos de reducción de dimensiones** que transforman un conjunto grande de indicadores en otro más pequeño que conserva la mayor parte de la información relevante.
 
-Con la implementación de estos métodos se **sacrifica precisión** al no contar con la información completa, pero se **gana simplicidad** al disponer de índices fáciles de explorar y visualizar. Existen distintos métodos de reducción de dimensiones: **Análisis de Componentes Principales (ACP/PCA)**, **Mínimos Cuadrados Parciales (PLS)**, **Análisis de Correspondencias** y **Uniform Manifold Approximation and Projection (UMAP)**, entre otros. Dada la naturaleza **continua** de los indicadores, se realizó una **comparación** entre ACP y UMAP con resultados similares [@MardiaK.V.KentJ.T.Bibby1979]. Por su **simplicidad inferencial**, se decidió implementar el **ACP** como método principal, usando el paquete **tidymodels** de R.
+Con la implementación de estos métodos se **sacrifica cierta precisión** al reducir dimensiones, pero se **gana interpretabilidad y capacidad analítica** al disponer de índices sintéticos fáciles de explorar, visualizar y comparar. Existen distintos métodos de reducción de dimensiones: **Análisis de Componentes Principales (ACP/PCA)**, **Mínimos Cuadrados Parciales (PLS)**, **Análisis de Correspondencias** y **Uniform Manifold Approximation and Projection (UMAP)**, entre otros. Dada la naturaleza **continua** de los indicadores municipales y la necesidad de **interpretabilidad lineal**, se implementó el **ACP** como método principal.
 
-# Procedimiento de ACP en *Pulso Colombia*
+# Procedimiento de ACP en *Las Antioquias*
 
-1. **Selección de variables**  
-   La infraestructura de datos recoge información de múltiples fuentes con distinta disponibilidad temporal y espacial. Se construyó una base que prioriza la mayor cobertura posible por territorio y dimensión, aplicando los siguientes criterios:
+1. **Selección de variables y preparación de datos**  
+   La infraestructura de datos consolida información de múltiples fuentes institucionales (DANE, DNP, Ministerios, Gobernación de Antioquia) con distinta disponibilidad temporal y espacial. Se construyó una base de datos que prioriza la mayor cobertura posible aplicando los siguientes criterios:
 
-   - **Temporal:** se toma la **última información disponible** por cada indicador.  
-   - **Geográfico:** la unidad de análisis es **departamental**; cuando no hay dato departamental, se usa el de la **capital** (documentado).  
-   - **Disponibilidad:** se priorizan variables con información en **≥ 80%** del territorio.
+   - **Unidad de análisis:** **municipal**. Los 125 municipios de Antioquia constituyen la unidad básica de comparación territorial.  
+   - **Temporal:** se utiliza la **información más reciente disponible** para cada indicador, privilegiando datos posteriores a 2018 cuando es posible.  
+   - **Cobertura:** se priorizan variables con información en **≥ 80%** de los municipios del departamento.  
+   - **Agrupación temática:** las variables se organizan en **15 subdimensiones** que corresponden a las áreas clave de contexto y resultados del ciclo de vida.
+Tratamiento de variables direccionales**  
+   Previo al análisis PCA, se realiza un **ajuste direccional** de las variables para garantizar que todas tengan la misma interpretación: **valores más altos indican mejor situación**. Esto implica invertir el signo (multiplicar por -1) de aquellas variables donde valores elevados representan condiciones adversas:
 
-2. **Imputación de datos**  
-   Algunas variables sociales no están disponibles para todos los territorios. Para ofrecer una visión completa y balanceada, se aplica **imputación** que asocia valores plausibles usando toda la información disponible:
+   - **Ejemplos de inversión:** tasas de desempleo, pobreza, mortalidad, déficit habitacional, inseguridad alimentaria, índices de riesgo, etc.  
+   - **Documentación:** cada variable invertida queda explícitamente documentada en el código de construcción de índices (`01_IDX.R`).  
+   - **Beneficio:** permite que todos los componentes principales tengan interpretación consistente (mayor valor = mejor desempeño relativo).
 
-   - **Imputación por Vecino Más Cercano (Nearest Neighbor, NN / KNN):** método eficaz para imputar datos faltantes sustituyendo por valores derivados de casos con perfiles similares en el conjunto. Demuestra buena capacidad predictiva y preserva la estructura de los datos [@Beretta2016NearestEvaluation].  
-   - Cuando una observación es imputada, se **deja nota** explícita de ello.
+4. **Normalización y estandarización**  
+   Para evitar que variables con magnitudes muy diferentes dominen el análisis y garantizar que cada indicador contribuya equitativamente, se aplica un **pipeline de normalización en dos etapas** usando `recipes`:
 
-3. **Estandarización de los datos**  
-   Para evitar sesgos por magnitud y asegurar que cada variable contribuya por igual al análisis, se aplican **dos estandarizaciones consecutivas**:
-
-   - (1) **Transformación orderNorm**  
+   - **(Etapa 1) Normalización:** Se centra y escala cada variable para que tenga **media 0** y **desviación estándar 1**. Esto elimina efectos de escala entre variables medidas en unidades diferentes (porcentajes, tasas por 100,000 hab., índices 0-100, etc.).
+   
+   - **(Etapa 2 - Opcional) Transformación orderNorm:** En algunos casos se puede aplicar la transformación de normalización por rangos, que mapea los datos a una distribución aproximadamente normal:
      $$
      g(x) \;=\; \Phi^{-1}\!\left(\frac{\mathrm{rank}(x)-0.5}{\mathrm{length}(x)}\right)
      $$
-     donde \\(\Phi\\) es la Función de Distribución Acumulada (CDF) normal estándar, \\(\mathrm{rank}(x)\\) es el rango de cada observación y \\(\mathrm{length}(x)\\) el número de observaciones.
-   - (2) **Centrado y escalado:** todas las variables quedan con **media 0** y **desviación estándar 1**.
+     donde $\Phi^{-1}$ es la función cuantil de la distribución normal estándar, $\mathrm{rank}(x)$ es el rango de cada observación y $\mathrm{length}(x)$ el número de observaciones (125 municipios).
+5. **Análisis de Componentes Principales (PCA)**  
+   Con los datos normalizados e imputados, se aplica PCA mediante `step_pca()` de `tidymodels`. El método descompone la varianza multidimensional siguiendo estos pasos:
 
-4. **Matriz de covarianzas**  
-   Con los datos estandarizados, se construye la **matriz de covarianzas** para identificar la estructura de correlaciones, detectar **redundancias** y determinar cuáles variables logran explicar mayor variación.
+   - **Matriz de covarianzas:** Se construye automáticamente a partir de las variables estandarizadas, capturando todas las correlaciones bivariadas entre indicadores.
+   
+   - **Descomposición espectral:** Se calculan los **autovalores** (eigenvalues) y **autovectores** (eigenvectors) de la matriz de covarianzas. Cada autovector define la dirección de máxima varianza restante (un componente principal), y su autovalor asociado indica la cantidad de varianza explicada.
+   
+   - **Componentes principales:** Cada componente $PC_k$ es una **combinación lineal** de las variables originales:
+     $$
+     PC_k = w_{k1}x_1 + w_{k2}x_2 + \cdots + w_{kp}x_p
+     $$
+     donde $w_{ki}$ son las **cargas** (loadings) que indican la contribución de cada variable $x_i$ al componente $k$. Los componentes son **ortogonales entre sí** (no correlacionados) y están ordenados por varianza explicada decreciente.
 
-5. **Valores y vectores propios**  
-   Los **componentes principales** surgen de los **autovalores** y **autovectores** de la matriz de covarianzas. Cada componente es una **combinación lineal** de las variables originales, **no correlacionada** con las demás, que captura la mayor parte posible de la varianza. Los primeros componentes concentran la información más relevante.
+6. **Selección del número de componentes**  
+   Para cada una de las 15 subdimensiones se conservan **hasta 5 componentes principales** (o menos si el número de variables es menor), garantizando así:
 
-6. **Selección de Componentes Principales**  
-   Para garantizar **alto poder explicativo**, se conservan **los primeros cinco componentes** que presentan una estructura informativa suficiente (estadísticamente relevantes), ordenados por la varianza explicada. 
+   - **Poder explicativo:** Los primeros componentes capturan la mayor parte de la varianza (típicamente >60-75% con 2-3 componentes).  
+   - **Intes: 15 índices multidimensionales
 
-# Resultado
+Como resultado del pipeline de PCA, se construyen **15 índices temáticos** (uno por subdimensión), divididos entre **indicadores de contexto** (11) y **de resultado** (4). Cada índice genera múltiples componentes principales (típicamente 2-4), resultando en un total de **31 componentes principales** que alimentan el análisis posterior de clustering y brechas territoriales.
 
-Como resultado, se construyen **15 índices** correspondientes a las subdimensiones, divididos entre **indicadores de contexto** y **de resultado**. A partir de estos índices, se desarrolla el análisis comparativo y de brechas por territorio.
+## Estructura de outputs por índice
 
-- **Contexto**: condiciones generales del hogar y entorno (esenciales para comprender el marco en el que se diseñan políticas).  
-  - [Agua potable y saneamiento](resultados_idx1_servicio.html)
+Para cada uno de los 15 índices, el proceso genera automáticamente:
+
+- **Dataset con scores PCA:** valores de cada municipio en los componentes principales.  
+- **Tabla de cargas (loadings):** contribución de cada variable a cada componente.  
+- **Estadísticas descriptivas:** resúmenes de las variables originales y componentes.  
+- **Gráficos de cargas:** visualización de las variables con mayor peso en cada componente.  
+- **Mapas temáticos:** distribución espacial de los componentes principales por municipio.  
+- **Gráficos de telaraña (radar charts):** perfiles multivariados de los componentes.
+
+## Índices de contexto
+
+Estas 11 dimensiones capturan las **condiciones estructurales** del territorio (infraestructura, economía, demografía, riesgos), esenciales para comprender el marco en el que se diseñan políticas públicas y se generan oportunidades para la población.
+
+1. [**Agua potable y saneamiento**](resultados_idx1_servicio.html) — Acceso a servicios básicos (IRCA urbano/rural, cobertura acueducto/alcantarillado)
+2. [**Desarrollo económico**](resultados_idx6_crecimiento.html) — Infraestructura vial, densidad empresarial, conectividad digital, inclusión financiera
+3. [**Cambio climático**](resultados_idx3_climatico.html) — Vulnerabilidad ante eventos climáticos, amenazas naturales, capacidad de adaptación
+4. [**Pobreza**](resultados_idx11_pobreza.html) — Índice de Pobreza Multidimensional (IPM), NBI, líneas de pobreza, inseguridad alimentaria
+5. [**Características de la vivienda**](resultados_idx5_viviendas.html) — Déficit cualitativo/cuantitativo, hacinamiento, materialidad, servicios públicos
+6. [**Capacidad fiscal**](resultados_idx4_Capacidad.html) — Desempeño fiscal municipal, capacidad de gestión, categorización
+7. [**Desigualdad**](resultados_idx7_gini.html) — Coeficiente de Gini, brechas de ingreso, concentración de la riqueza
+8. [**Estructura demográfica**](resultados_idx8_demografica.html) — Pirámide poblacional, tasas de dependencia, razón de masculinidad
+9. [**Salud**](resultados_idx12_salud.html) — Enfermedades transmitidas por vectores (dengue, malaria, leishmaniasis), infraestructura hospitalaria
+10. [**Salud mental**](resultados_idx13_saludmental.html) — Tasas de suicidio e intentos, trastornos mentales, violencia
+11. [**Seguridad**](resultados_idx14_seguridad.html) — Índice de Riesgo de Victimización (IRV), homicidios, delitos, violencias de género
+
+## Índices de resultado (ciclo de vida)
+
+Estas 4 dimensiones reflejan **situaciones de bienestar específicas a lo largo del ciclo de vida**, capturando cómo las condiciones de contexto se traducen en resultados concretos para diferentes grupos etarios.
+
+12. [**Infancia y niñez**](resultados_idx9_infnin.html) — Mortalidad infantil, desnutrición, cobertura en educación inicial y primaria, repitencia
+13. [**Juventud**](resultados_idx10_juventud.html) — Fecundidad adolescente, cobertura en educación media, calidad educativa, repitencia
+14. [**Adultez**](resultados_idx2_Adultez.html) — Desempleo (total y brechas género), informalidad laboral, afiliación a salud
+15. [**Vejez**](resultados_idx15_vejez.html) — Índice de envejecimiento, mortalidad por IAM, cobertura pensional
+
+---
+
+## Uso de los índices en análisis posteriores
+
+Los **31 componentes principales** resultantes (agregados de las 15 subdimensiones) constituyen la base del análisis de clustering territorial ([ver metodología de clustering](resultados_cluster_antioquia.html)), donde se identifican los tres grandes grupos territoriales (Consolidada, Transición, Vulnerable) y sus respectivos subclusters.
+
+Cada componente principal tiene una interpretación sustantiva basada en las **cargas (loadings)** de las variables originales, documentada en las páginas individuales de cada índice. Esta interpretabilidad permite no solo clasificar territorios, sino también **diagnosticar dimensiones específicas** de rezago o fortaleza en cada municipio.os_idx1_servicio.html)
   - [Crecimiento económico ](resultados_idx6_crecimiento.html )
   - [Cambio climático ](resultados_idx3_climatico.html )
   - [Pobreza ](resultados_idx11_pobreza.html)
