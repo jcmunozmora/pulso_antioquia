@@ -268,7 +268,7 @@ idx_10 <- idx_10 %>%
     trep_secundaria = -1*trep_secundaria,
     vinculacion_nna = -1*vinculacion_nna
     ) %>% select(ind_mpio, nvl_label,
-               #tcb_edsup,
+               tcb_edsup,
                tcb_media,
                tcb_secundaria,
                tti_edsup,
@@ -430,15 +430,15 @@ idx_15 <- idx_15 %>%
   ) %>% select(ind_mpio, nvl_label,
                ss_pension_hombres,
                ss_pension_mujeres,
-               #i_enve_c_t,
+               i_enve_c_t,
                i_enve_h,
                #i_enve_h_c,
-               #i_enve_h_r,
+               i_enve_h_r,
                i_enve_m,
                #i_enve_m_c,
                #i_enve_m_r,
                i_enve_t,
-               #i_enve_t_r,
+               i_enve_t_r,
                tasa_iam
   )  %>%
   reduc_dim(., 1,label, "idx15_vejez","all")

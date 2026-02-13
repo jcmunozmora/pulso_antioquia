@@ -93,8 +93,36 @@ lang: es
 - **Conurbación y movilidad** metropolitana (TOM, integración tarifaria).  
 - **Efecto derrame** hacia Transición (proveeduría, formación, empleo).
 
+---
+
+# Subclusters: heterogeneidad interna en cada tipología
+
+La clasificación anterior identifica tres grandes grupos territoriales; sin embargo, al interior de cada uno persiste **heterogeneidad significativa**. Para capturar estas diferencias, se realizó un **análisis de subclustering** que subdivide cada tipología (Consolidada, Transición y Vulnerable) en **tres niveles de desempeño relativo**: **Alto**, **Medio** y **Bajo**.
+
+Esta desagregación permite:
+
+- **Identificar municipios con mejor desempeño relativo** dentro de territorios con condiciones estructurales similares.
+- **Diseñar políticas diferenciadas** incluso dentro de un mismo grupo territorial.
+- **Reconocer dinámicas locales** que no son evidentes en la clasificación agregada.
+
+El mapa siguiente muestra las **nueve categorías resultantes** de este análisis jerárquico, facilitando una lectura más granular de las disparidades territoriales en Antioquia.
+
+![](all/04_Cluster/subcluster_map.png){fig-alt="Mapa de subclusters municipales en Antioquia" fig-cap="Desagregación de tipologías en niveles de desempeño: Alto, Medio y Bajo." width="95%"}
+
+::: {.callout-note}
+## Análisis detallados por subcluster
+
+Para consultar el análisis específico de brechas, caracterización multidimensional y líneas de acción diferenciadas para cada subcluster, consulte los documentos complementarios:
+
+- [**Consolidada**: análisis de subclusters](resultados_cluster_consolidada.html)
+- [**Transición**: análisis de subclusters](resultados_cluster_transicion.html)
+- [**Vulnerable**: análisis de subclusters](resultados_cluster_vulnerable.html)
+
+Estos documentos incluyen perfiles detallados de desempeño en las 15 dimensiones temáticas y recomendaciones específicas para cada nivel (Alto, Medio, Bajo).
+:::
 
 ---
+
 ## Descarga mapa y datos
 
 <div class="btn-group" role="group">

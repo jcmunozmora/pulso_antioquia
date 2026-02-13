@@ -307,21 +307,21 @@ ps_cluster <- function(pca_ds, df, lab_g, path, eje){
   # Corte inicial del dendrograma en 3 clusters
   sub_grp_raw <- cutree(hc5, k = 3)
   
-  # Reordenamiento por desempeño (basado en promedio de PC1)
-  # Identificar solo los PC1 (terminan en "1") donde valores altos = mejor situación
+  # Reordenamiento por desempeño
   cols_pc1 <- grep("1$", colnames(df), value = TRUE)
+  scores <- rowMeans(df[, cols_pc1, drop = FALSE], na.rm = TRUE)
   
-  # Calcular score promedio de PC1 por municipio para ranking
   df_ranking <- data.frame(
     old_cluster = sub_grp_raw,
-    score_orden = rowMeans(df[, cols_pc1, drop = FALSE], na.rm = TRUE)
+    score_orden = scores,
+    peso = ifelse(grepl("^Medellín$|^Medellin$", rownames(df), ignore.case = TRUE), 1.5, 1.0)
   )
   
   # Calcular desempeño promedio por cluster y asignar nuevos IDs
   resumen_clusters <- df_ranking %>%
     group_by(old_cluster) %>%
-    summarise(avg_score = mean(score_orden)) %>%
-    arrange(desc(avg_score)) %>%  # Mayor score = mejor cluster
+    summarise(avg_score = sum(score_orden * peso) / sum(peso)) %>%
+    arrange(desc(avg_score)) %>%
     mutate(new_cluster_id = row_number())
   
   # Mapear clusters: 1 = Mejor desempeño, 3 = Peor desempeño

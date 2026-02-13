@@ -1,0 +1,58 @@
+grupo_territorial,categoria,componente,componente_descripcion,media_grupo,media_departamental,desviacion_estandar,brecha_estandarizada
+Consolidada,Características de la Vivienda,idx5_viviendas1,Suficiencia de infraestructura y espacio habitacional,1.1812446004332626,-5.190292640122607e-17,1.4930757614950871,0.791148467409602
+Consolidada,Características de la Vivienda,idx5_viviendas2,Calidad de vivienda en zonas rurales,0.7161129929439491,-6.234856381182041e-17,1.1539716688449946,0.6205637558335412
+Transición,Características de la Vivienda,idx5_viviendas1,Suficiencia de infraestructura y espacio habitacional,0.3300159086371694,-5.190292640122607e-17,1.4930757614950871,0.22103091962775484
+Transición,Características de la Vivienda,idx5_viviendas2,Calidad de vivienda en zonas rurales,-0.24107292527028057,-6.234856381182041e-17,1.1539716688449946,-0.20890714371832836
+Vulnerable,Características de la Vivienda,idx5_viviendas1,Suficiencia de infraestructura y espacio habitacional,-1.8599022805244654,-5.190292640122607e-17,1.4930757614950871,-1.2456851343310653
+Vulnerable,Características de la Vivienda,idx5_viviendas2,Calidad de vivienda en zonas rurales,0.13052749607365421,-6.234856381182041e-17,1.1539716688449946,0.11311152569655258
+Consolidada,Pobreza,idx11_pobreza1,Vulnerabilidad estructural y NBI,3.6618830571200647,1.7142537389602807e-16,3.6097064446475526,1.0144545306585468
+Consolidada,Pobreza,idx11_pobreza2,Inseguridad alimentaria en hogares con niños,-0.9091846458948432,8.540564089276614e-17,1.7561337214812007,-0.5177194850105132
+Transición,Pobreza,idx11_pobreza1,Vulnerabilidad estructural y NBI,0.57845717388574025,1.7142537389602807e-16,3.6097064446475526,0.16025047542120005
+Transición,Pobreza,idx11_pobreza2,Inseguridad alimentaria en hogares con niños,0.4388419446063698,8.540564089276614e-17,1.7561337214812007,0.2498909617407899
+Vulnerable,Pobreza,idx11_pobreza1,Vulnerabilidad estructural y NBI,-4.497805429211975,1.7142537389602807e-16,3.6097064446475526,-1.246030805602292
+Vulnerable,Pobreza,idx11_pobreza2,Inseguridad alimentaria en hogares con niños,-0.5443685989221764,8.540564089276614e-17,1.7561337214812007,-0.3099812914377796
+Consolidada,Desarrollo Económico,idx6_crecimiento1,Infraestructura vial y conectividad,1.9116331721071211,4.928175922902511e-17,1.5863477893800377,1.2050530059705309
+Consolidada,Desarrollo Económico,idx6_crecimiento2,Dinamismo empresarial,1.082678398750739,1.7843539146245036e-16,1.2997817641378855,0.8329693711842877
+Transición,Desarrollo Económico,idx6_crecimiento1,Infraestructura vial y conectividad,-0.02688027910259835,4.928175922902511e-17,1.5863477893800377,-0.01694475781575206
+Transición,Desarrollo Económico,idx6_crecimiento2,Dinamismo empresarial,-0.3591078635182168,1.7843539146245036e-16,1.2997817641378855,-0.27628319878483965
+Vulnerable,Desarrollo Económico,idx6_crecimiento1,Infraestructura vial y conectividad,-1.410167226790721,4.928175922902511e-17,1.5863477893800377,-0.8889395101321571
+Vulnerable,Desarrollo Económico,idx6_crecimiento2,Dinamismo empresarial,0.18203922656063684,1.7843539146245036e-16,1.2997817641378855,0.14005368561342987
+Consolidada,Salud,idx12_salud1,Enfermedades transmitidas por vectores,0.6797013768861085,-1.0727529975440575e-17,1.2625503385129875,0.5383558628534768
+Consolidada,Salud,idx12_salud2,Infraestructura hospitalaria,0.6989489265770548,6.771926769344461e-19,1.0447453481812712,0.6690136766761481
+Transición,Salud,idx12_salud1,Enfermedades transmitidas por vectores,0.4530258136816632,-1.0727529975440575e-17,1.2625503385129875,0.3588180208444046
+Transición,Salud,idx12_salud2,Infraestructura hospitalaria,-0.12769998384670234,6.771926769344461e-19,1.0447453481812712,-0.12223072739113591
+Vulnerable,Salud,idx12_salud1,Enfermedades transmitidas por vectores,-1.8206191321517167,-1.0727529975440575e-17,1.2625503385129875,-1.4420170638867469
+Vulnerable,Salud,idx12_salud2,Infraestructura hospitalaria,-0.1794455074785952,6.771926769344461e-19,1.0447453481812712,-0.17176004448450538
+Consolidada,Seguridad,idx14_seguridad1,Violencia letal y riesgo de victimización,0.8903936640317989,1.0798046484739032e-16,1.3642254034416115,0.6526734231642003
+Consolidada,Seguridad,idx14_seguridad2,Delitos y violencias de género e intrafamiliares,1.1450051305168538,-1.8200718709948662e-17,1.0924480538374175,1.0481094515156306
+Transición,Seguridad,idx14_seguridad1,Violencia letal y riesgo de victimización,0.13227869285863864,1.0798046484739032e-16,1.3642254034416115,0.09696249060084301
+Transición,Seguridad,idx14_seguridad2,Delitos y violencias de género e intrafamiliares,-0.26319680428573805,-1.8200718709948662e-17,1.0924480538374175,-0.24092386211061717
+Vulnerable,Seguridad,idx14_seguridad1,Violencia letal y riesgo de victimización,-1.0697676405475163,1.0798046484739032e-16,1.3642254034416115,-0.7841575430634488
+Vulnerable,Seguridad,idx14_seguridad2,Delitos y violencias de género e intrafamiliares,-0.1399612522537816,-1.8200718709948662e-17,1.0924480538374175,-0.12811707775224904
+Consolidada,Capacidad Fiscal,idx4_Capacidad1,Desempeño fiscal municipal,1.5497362996696395,-5.524969587736295e-17,1.1822345555106781,1.3108534955656201
+Transición,Capacidad Fiscal,idx4_Capacidad1,Desempeño fiscal municipal,-0.2770098814074986,-5.524969587736295e-17,1.1822345555106781,-0.2343104252166283
+Vulnerable,Capacidad Fiscal,idx4_Capacidad1,Desempeño fiscal municipal,-0.41535931202537196,-5.524969587736295e-17,1.1822345555106781,-0.3513340987110238
+Consolidada,Adultez,idx2_Adultez1,Desempleo y brechas laborales de género,-0.43971470329774237,9.128505243372054e-17,1.4436706824248815,-0.30458102990577435
+Consolidada,Adultez,idx2_Adultez2,Informalidad y protección social,-1.3738636312768877,-2.5615555683533574e-16,1.181804053424222,-1.162513893310978
+Transición,Adultez,idx2_Adultez1,Desempleo y brechas laborales de género,-0.19562883928794692,9.128505243372054e-17,1.4436706824248815,-0.1355079393586883
+Transición,Adultez,idx2_Adultez2,Informalidad y protección social,0.3016665759700707,-2.5615555683533574e-16,1.181804053424222,0.2552593850867292
+Vulnerable,Adultez,idx2_Adultez1,Desempleo y brechas laborales de género,0.8999047923860931,9.128505243372054e-17,1.4436706824248815,0.6233449243940837
+Vulnerable,Adultez,idx2_Adultez2,Informalidad y protección social,0.20825221878219136,-2.5615555683533574e-16,1.181804053424222,0.1762155225130516
+Consolidada,Infancia y Niñez,idx9_infnin1,Mortalidad y desnutrición infantil,0.339596641306843,-1.2236479191019e-16,1.5923544145490134,0.21326699521414247
+Consolidada,Infancia y Niñez,idx9_infnin2,Acceso y permanencia en educación inicial,-1.7975616393697469,3.1018330265419893e-16,1.3735844960485677,-1.3086647705626027
+Transición,Infancia y Niñez,idx9_infnin1,Mortalidad y desnutrición infantil,-0.5363635331652551,-1.2236479191019e-16,1.5923544145490134,-0.33683677971726156
+Transición,Infancia y Niñez,idx9_infnin2,Acceso y permanencia en educación inicial,0.3977221641098787,3.1018330265419893e-16,1.3735844960485677,0.2895505629642864
+Vulnerable,Infancia y Niñez,idx9_infnin1,Mortalidad y desnutrición infantil,1.265498614306701,-1.2236479191019e-16,1.5923544145490134,0.7947342643974871
+Vulnerable,Infancia y Niñez,idx9_infnin2,Acceso y permanencia en educación inicial,0.2638588070482987,3.1018330265419893e-16,1.3735844960485677,0.19209506790980027
+Consolidada,Juventud,idx10_juventud1,Fecundidad adolescente y vulnerabilidad juvenil,2.429054503373401,2.1545265571631944e-18,1.7495465046956087,1.388390932652582
+Consolidada,Juventud,idx10_juventud2,Cobertura y permanencia en educación media,-0.5112922217880014,5.6673415960162286e-18,1.5422968599425402,-0.3315134946245369
+Transición,Juventud,idx10_juventud1,Fecundidad adolescente y vulnerabilidad juvenil,-0.027161896758244212,2.1545265571631944e-18,1.7495465046956087,-0.015525107040792793
+Transición,Juventud,idx10_juventud2,Cobertura y permanencia en educación media,0.5608008554720622,5.6673415960162286e-18,1.5422968599425402,0.3636140810744796
+Vulnerable,Juventud,idx10_juventud1,Fecundidad adolescente y vulnerabilidad juvenil,-1.81180290816506,2.1545265571631944e-18,1.7495465046956087,-1.0355843090208585
+Vulnerable,Juventud,idx10_juventud2,Cobertura y permanencia en educación media,-1.2016492301407686,5.6673415960162286e-18,1.5422968599425402,-0.7791296613192464
+Consolidada,Vejez,idx15_vejez1,Envejecimiento demográfico y mortalidad asociada,1.089612695745836,1.332024768263551e-16,2.4904146184284017,0.43752260675109816
+Consolidada,Vejez,idx15_vejez2,Cobertura pensional y protección en la vejez,-2.0428157075633773,4.8652921968983523e-17,1.3106993116782757,-1.558569299122976
+Transición,Vejez,idx15_vejez1,Envejecimiento demográfico y mortalidad asociada,0.8671591382428666,1.332024768263551e-16,2.4904146184284017,0.3481987022667314
+Transición,Vejez,idx15_vejez2,Cobertura pensional y protección en la vejez,0.5119297939970497,4.8652921968983523e-17,1.3106993116782757,0.3905776019227117
+Vulnerable,Vejez,idx15_vejez1,Envejecimiento demográfico y mortalidad asociada,-3.320485935383825,1.332024768263551e-16,2.4904146184284017,-1.3333064746781993
+Vulnerable,Vejez,idx15_vejez2,Cobertura pensional y protección en la vejez,0.12890873040955908,4.8652921968983523e-17,1.3106993116782757,0.0983511086493963

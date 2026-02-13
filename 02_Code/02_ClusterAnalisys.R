@@ -31,7 +31,9 @@ pacman::p_load(
   tidyverse,
   readr,
   tidyr,
-  dplyr
+  dplyr,
+  sf,
+  ggrepel
 )
 
 # ---- paths ----
@@ -219,4 +221,104 @@ for (i in c("Consolidada", "Transición", "Vulnerable")) {
     "Desviaciones de la Media Departamental (std. desv.)"
   )
 }
+
+# ==============================================================================#
+# MAPA INTEGRADO DE TODOS LOS SUBCLUSTERS
+# ==============================================================================#
+# ---- lectura de resultados de subclustering ----
+# Leer los resultados generados en el paso anterior (referencia interna)
+df_consolidada <- read_rds("03_Outputs/Consolidada_ref_subset/04_Cluster/ds_cluster.rds")
+df_transicion <- read_rds("03_Outputs/Transición_ref_subset/04_Cluster/ds_cluster.rds")
+df_vulnerable <- read_rds("03_Outputs/Vulnerable_ref_subset/04_Cluster/ds_cluster.rds")
+
+# ---- seleccionar columnas relevantes ----
+df_consolidada <- df_consolidada %>% 
+  select(nivl_vl, nvl_label, sub_grp) %>%
+  mutate(grupo_principal = "Consolidada")
+
+df_transicion <- df_transicion %>% 
+  select(nivl_vl, nvl_label, sub_grp) %>%
+  mutate(grupo_principal = "Transición")
+
+df_vulnerable <- df_vulnerable %>% 
+  select(nivl_vl, nvl_label, sub_grp) %>%
+  mutate(grupo_principal = "Vulnerable")
+
+# ---- combinar todos los subclusters ----
+data_integrada <- bind_rows(
+  df_consolidada,
+  df_transicion,
+  df_vulnerable
+) %>%
+  filter(!is.na(sub_grp))  # Eliminar municipios sin asignación
+
+# ---- cargar shapefile de municipios ----
+map_mpios <- st_read("01_Data/01_Derived/maps/municipios_antioquia.shp", quiet = TRUE)
+
+# ---- unir datos con geometría ----
+data_map_integrado <- merge(
+  map_mpios, 
+  data_integrada,
+  by.x = "nivl_vl", 
+  by.y = "nivl_vl",
+  all.x = TRUE,
+  sort = FALSE
+)
+
+# ---- configurar factor con las 9 categorías ----
+# Usar la paleta de colores definida en AUX_Functions_Clusters.R
+data_map_integrado$categoria <- factor(
+  data_map_integrado$sub_grp,
+  levels = c(
+    "Consolidada - Alto", "Consolidada - Medio", "Consolidada - Bajo",
+    "Transición - Alto", "Transición - Medio", "Transición - Bajo",
+    "Vulnerable - Alto", "Vulnerable - Medio", "Vulnerable - Bajo"
+  )
+)
+
+# ---- calcular centroides para etiquetas ----
+data_map_integrado <- data_map_integrado %>%
+  mutate(
+    centroid = st_centroid(geometry),
+    x_centroid = st_coordinates(centroid)[,1],
+    y_centroid = st_coordinates(centroid)[,2]
+  )
+
+# ---- generar mapa integrado ----
+mapa_integrado <- ggplot(data_map_integrado) +
+  geom_sf(aes(fill = categoria), color = "#606060", size = 0.05) +
+  geom_text_repel(aes(x_centroid, y_centroid, label = nvl_lbl),
+                  size = 2.5,
+                  color = "black",
+                  alpha = 0.9,
+                  max.overlaps = Inf,
+                  min.segment.length = 0,
+                  force = 0.1,
+                  force_pull = 5,
+                  box.padding = 0.05,
+                  point.padding = 0.1) +
+  scale_fill_manual(
+    values = col_palette,  # Paleta definida en AUX_Functions_Clusters.R
+    na.value = "#ededed", 
+    na.translate = FALSE
+  ) +
+  guides(fill = guide_legend(ncol = 1)) +
+  xlab("") +
+  labs(fill="")+
+  map_theme +
+  theme(
+    legend.position = c(0.9, 0.15)
+  )
+
+# ---- exportar mapa ----
+ggsave(
+  filename = "03_Outputs/all/04_Cluster/subcluster_map.png",
+  plot = mapa_integrado,
+  height = h * 1.3,
+  width = w * 0.85,
+  dpi = d
+)
+
+# ---- mostrar mapa ----
+print(mapa_integrado)
 

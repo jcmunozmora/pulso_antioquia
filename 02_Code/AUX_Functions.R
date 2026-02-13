@@ -179,7 +179,7 @@ mk_map <- function(data_map, var, ann) {
     xlab("") +
     labs(fill = "", caption = NULL) +
     theme + map_theme +
-    theme_map(base_size = 12) +
+    ggthemes::theme_map(base_size = 12) +
     theme(legend.position = c(0.8, 0.2),
           plot.caption = element_text(color = "blue", face = "italic", size = 7))
   
